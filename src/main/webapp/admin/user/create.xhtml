@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:eip="http://java.sun.com/jsf/composite/eip"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/common/admin_template.xhtml">
+        <ui:define name="title">#{msg.appNavTitleUserManagement}</ui:define>
+        
+        <ui:define name="mainNav">
+            <eip:admin_nav current="user"/>
+        </ui:define>
+        
+        <ui:define name="adminContent">
+            
+            <h3 class="header"><h:outputText value="#{msg.UserEntryCreateTitle}"/></h3>
+            
+            <h:form>
+                <fieldset>
+                    <div class="form-field">
+                        <h:outputLabel value="${msg.UserEntryCodeTitle}" for="code"/>
+                        
+                        <h:inputText id="code"
+                                     value="#{userEntryController.current.code}"
+                                     required="true"
+                                     size="30"
+                                     requiredMessage="#{msg.UserEntryCodeRequiredMessage}"/>
+                    </div>
+                    
+                    <div class="form-field">
+                        <h:outputLabel value="${msg.UserEntryFullNameTitle}" for="fullName"/>
+                        
+                        <h:inputText id="fullName"
+                                     value="#{userEntryController.current.fullName}"
+                                     required="true"
+                                     size="50"
+                                     requiredMessage="#{msg.UserEntryFullNameRequiredMessage}"/>
+                    </div>
+                    
+                    <div class="form-field">
+                        <h:outputLabel value="${msg.UserEntryPasswordTitle}" for="password"/>
+                        
+                        <h:inputSecret id="password"
+                                       required="true" 
+                                       size="50"
+                                       requiredMessage="#{msg.UserEntryPasswordRequiredMessage}"
+                                       value="#{userEntryController.current.password}"/>
+                    </div>
+                    
+                    <div class="form-field">
+                        <h:outputLabel value="${msg.UserEntryEmailTitle}" for="email"/>
+                        
+                        <h:inputText id="email"
+                                     required="true"
+                                     size="50"
+                                     requiredMessage="${msg.UserEntryEmailRequiredMessage}"
+                                     value="#{userEntryController.current.email}"
+                                     validatorMessage="${msg.UserEntryEmailInvalidMessage}">
+                        </h:inputText>
+                    </div>
+                    
+                    <div class="form-field">
+                        <h:outputLabel value="${msg.UserEntryUserRolesTitle}" for="userRoles"/>
+                        
+                        <h:selectManyListbox id="userRoles"
+                                             converter="enumConverter"
+                                             value="#{userEntryController.current.userRoles}">
+                            <f:selectItems value="#{userEntryController.roleSelectItems}"/>
+                        </h:selectManyListbox>
+                    </div>
+                    
+                    <div class="form-field">
+                        <h:outputLabel value="${msg.UserEntryDescriptionTitle}" for="description"/>
+                        
+                        <h:inputText id="description"
+                                    size="50"
+                                       value="#{userEntryController.current.description}"/>
+                    </div>
+                    
+                </fieldset>
+                
+                <h:commandButton value="#{msg.Save}" 
+                                 action="#{userEntryController.create}"/>
+                <h:commandButton value="#{msg.Cancel}"
+                                 action="list.xhtml" immediate="true"/>  
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

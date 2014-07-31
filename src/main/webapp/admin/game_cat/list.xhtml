@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:eip="http://java.sun.com/jsf/composite/eip"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/common/admin_template.xhtml">
+        <ui:define name="title">#{msg.appNavTitleGameCategoryManagement}</ui:define>
+        
+        <ui:define name="mainNav">
+            <eip:admin_nav current="game_cat"/>
+        </ui:define>
+        
+        <ui:define name="adminContent">
+            
+            <h3 class="header"><h:outputText value="#{msg.GameCategoryListTitle}"/></h3>
+            
+            <h:form>
+                
+                <h:outputText value="#{msg.appEmptyDataTableTitle}" 
+                              rendered="#{gameCategoryController.items.rowCount == 0}"/>
+                
+                <h:panelGroup rendered="#{gameCategoryController.items.rowCount > 0}">
+                    
+                    <h:dataTable value="#{gameCategoryController.items}" 
+                                 var="category"
+                                 styleClass="eip-datatable"
+                                 width="100%">
+                        
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{msg.Id}"/>
+                            </f:facet>
+                            <h:outputText value="#{category.id}"/>
+                        </h:column>
+                        
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="${msg.Title}"/>
+                            </f:facet>
+                            <h:outputText value="${category.title}"/>
+                        </h:column>
+                        
+                        <h:column>
+                            <div class="align-right">
+                                <h:commandButton value="#{msg.Update}"
+                                             action="#{gameCategoryController.prepareEdit}"/>
+                                <h:commandButton value="#{msg.Delete}"
+                                             action="#{gameCategoryController.delete}"/>
+                            </div>
+                        </h:column>
+                    </h:dataTable>
+                    
+                    <eip:table_paginator startAction="#{gameCategoryController.startPage()}"
+                                         startRendered="#{gameCategoryController.paginationHelper.hasPreviewPage}"
+                                         previewAction="#{gameCategoryController.previewPage()}"
+                                         previewRendered="#{gameCategoryController.paginationHelper.hasPreviewPage}"
+                                         nextAction="#{gameCategoryController.nextPage()}"
+                                         nextRendered="#{gameCategoryController.paginationHelper.hasNextPage}"
+                                         endAction="#{gameCategoryController.endPage()}"
+                                         endRendered="#{gameCategoryController.paginationHelper.hasNextPage}"/>
+                </h:panelGroup>
+                
+                <h:commandButton action="#{gameCategoryController.prepareCreate}" 
+                                 value="#{msg.Create}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

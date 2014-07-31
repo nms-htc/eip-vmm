@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition template="common/template.xhtml">
+        <ui:define name="content">
+            <f:metadata>
+                <f:event listener="#{gameDetailController.loadProduct}" type="preRenderView"/>
+            </f:metadata>
+            <h:form>
+                <h:messages styleClass="messages"
+                    errorClass="error-messages"
+                    fatalClass="fatal-messages"
+                    infoClass="info-messages"/>
+                
+                <section class="product-item">
+                    <h:graphicImage value="#{gameDetailController.gameEntry.thumbnailUrl}"/>
+                    <h3><h:outputText value="#{gameDetailController.gameEntry.title}"/></h3>
+                    <span class="product-item-price">
+                        <h:graphicImage library="image" name="monney.png"/>
+                        <h:outputText value="#{gameDetailController.gameEntry.price}">
+                            <f:convertNumber maxFractionDigits="0" pattern="#0.000"/>
+                        </h:outputText>
+                    </span>
+                    
+                    <span class="product-item-download-count">
+                        <h:graphicImage library="image" name="download.png"/>
+                        <h:outputText value="#{gameDetailController.gameEntry.downloadCount}"/>
+                    </span>
+                    
+                    <div>
+                        <h:commandButton value="#{msg.DownloadGame}" action="#{gameDetailController.buyGame}" styleClass="downloadButton"/>
+                    </div>
+                    
+                    <span class="product-item-description">
+                        <h:outputText value="#{gameDetailController.gameEntry.description}"/>
+                    </span>
+                    
+                    <div class="product-item-buy-area">
+                        <span class="product-item-sms-text">
+                            <h4><h:outputText value="#{msg.toDownloadGameSms}"/></h4>
+                            <h:outputFormat value="#{msg['GameSMSSyntax']}">
+                                <f:param value="#{gameDetailController.gameEntry.code}"/>
+                            </h:outputFormat>
+                        </span>
+                    </div>
+
+                    <span class="product-item-specification">
+                        <h4><h:outputText value="#{msg.detailGame}"/></h4>
+                        <h:outputText escape="false" value="#{gameDetailController.gameEntry.specification}"/>
+                    </span>
+                </section>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>
+

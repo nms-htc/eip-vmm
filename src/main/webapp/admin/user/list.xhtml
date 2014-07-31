@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:eip="http://java.sun.com/jsf/composite/eip"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/common/admin_template.xhtml">
+        <ui:define name="title">#{msg.appNavTitleUserManagement}</ui:define>
+        
+        <ui:define name="mainNav">
+            <eip:admin_nav current="user"/>
+        </ui:define>
+        
+        <ui:define name="adminContent">
+            
+            <h3 class="header"><h:outputText value="#{msg.UserListTitle}"/></h3>
+            
+            <h:form>
+                <h:panelGroup rendered="#{userEntryController.items.rowCount == 0}">
+                    <ul class="messages">
+                        <li class="info-messages">
+                            <h:outputText value="#{msg.appEmptyDataTableTitle}"/>
+                        </li>
+                    </ul>
+                </h:panelGroup>
+                
+                <h:panelGroup rendered="#{userEntryController.items.rowCount > 0}">
+                    
+                    <h:dataTable value="#{userEntryController.items}" 
+                                 var="user"
+                                 styleClass="eip-datatable"
+                                 width="100%">
+                        
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{msg.UserEntryCodeTitle}"/>
+                            </f:facet>
+                            <h:outputText value="#{user.code}"/>
+                        </h:column>
+                        
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="${msg.UserEntryFullNameTitle}"/>
+                            </f:facet>
+                            <h:outputText value="${user.fullName}"/>
+                        </h:column>
+                        
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="${msg.UserEntryEmailTitle}"/>
+                            </f:facet>
+                            <h:outputText value="${user.email}"/>
+                        </h:column>
+                        
+                         <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="${msg.UserEntryDescriptionTitle}"/>
+                            </f:facet>
+                            <h:outputText value="${user.description}"/>
+                        </h:column>
+                        
+                        <h:column>
+                            <div class="align-right">
+                                <h:commandButton value="#{msg.Update}"
+                                                 action="#{userEntryController.prepareEdit}"/>
+                                <h:commandButton value="#{msg.Delete}"
+                                             action="#{userEntryController.delete}"/>
+                            </div>
+                        </h:column>
+                    </h:dataTable>
+                    
+                    <eip:table_paginator startAction="#{userEntryController.startPage()}"
+                                         startRendered="#{userEntryController.paginationHelper.hasPreviewPage}"
+                                         previewAction="#{userEntryController.previewPage()}"
+                                         previewRendered="#{userEntryController.paginationHelper.hasPreviewPage}"
+                                         nextAction="#{userEntryController.nextPage()}"
+                                         nextRendered="#{userEntryController.paginationHelper.hasNextPage}"
+                                         endAction="#{userEntryController.endPage()}"
+                                         endRendered="#{userEntryController.paginationHelper.hasNextPage}"/>
+                    
+                    <div class="clearfix"></div>
+                </h:panelGroup>
+                
+                <h:commandButton action="#{userEntryController.prepareCreate}" 
+                                 value="#{msg.Create}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

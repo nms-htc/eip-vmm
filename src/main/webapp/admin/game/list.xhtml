@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:eip="http://java.sun.com/jsf/composite/eip"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/common/admin_template.xhtml">
+        <ui:define name="title">#{msg.appNavTitleGameCategoryManagement}</ui:define>
+        
+        <ui:define name="mainNav">
+            <eip:admin_nav current="game"/>
+        </ui:define>
+        
+        <ui:define name="adminContent">
+            
+            <h3 class="header"><h:outputText value="#{msg.GameListTitle}"/></h3>
+            
+            <h:form>
+                
+                <h:outputText value="#{msg.appEmptyDataTableTitle}" 
+                              rendered="#{gameEntryController.items.rowCount == 0}"/>
+                
+                <h:panelGroup rendered="#{gameEntryController.items.rowCount > 0}">
+                    
+                    <h:dataTable value="#{gameEntryController.items}" 
+                                 var="game"
+                                 styleClass="eip-datatable"
+                                 width="100%">
+                        
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{msg.Id}"/>
+                            </f:facet>
+                            <h:outputText value="#{game.id}"/>
+                        </h:column>
+                        
+                        <h:column>
+                            <h:graphicImage value="#{game.thumbnailUrl}"
+                                            height="80px"
+                                            width="80px"/>
+                        </h:column>
+                        
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="${msg.Title}"/>
+                            </f:facet>
+                            <h3><h:outputText value="${game.title}"/></h3>
+                            <p><h:outputText value="#{game.description}"/></p>
+                        </h:column>
+                        
+                        <h:column>
+                            <div class="align-right">
+                                <h:commandButton value="#{msg.Update}"
+                                                 action="#{gameEntryController.prepareEdit}"/>
+                                <h:commandButton value="#{msg.Delete}"
+                                                 action="#{gameEntryController.delete}"/>
+                            </div>
+                        </h:column>
+                    </h:dataTable>
+
+                    <eip:table_paginator startAction="#{gameEntryController.startPage()}"
+                                         startRendered="#{gameEntryController.paginationHelper.hasPreviewPage}"
+                                         previewAction="#{gameEntryController.previewPage()}"
+                                         previewRendered="#{gameEntryController.paginationHelper.hasPreviewPage}"
+                                         nextAction="#{gameEntryController.nextPage()}"
+                                         nextRendered="#{gameEntryController.paginationHelper.hasNextPage}"
+                                         endAction="#{gameEntryController.endPage()}"
+                                         endRendered="#{gameEntryController.paginationHelper.hasNextPage}"/>
+                    
+                </h:panelGroup>
+                
+                <h:commandButton action="#{gameEntryController.prepareCreate}" 
+                                 value="#{msg.Create}"/>
+                
+                <h:commandButton value="Batch add by excel"
+                                 action="batch_create?faces-redirect=true"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>
