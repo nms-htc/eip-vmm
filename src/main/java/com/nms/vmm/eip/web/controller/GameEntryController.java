@@ -7,6 +7,8 @@ import com.nms.vmm.eip.ejb.GameEntryFacade;
 import com.nms.vmm.eip.entity.Flatform;
 import com.nms.vmm.eip.entity.GameEntry;
 import com.nms.vmm.eip.entity.UserEntry;
+import com.nms.vmm.eip.entity.UserRole;
+import com.nms.vmm.eip.search.GameEntryCriteria;
 import com.nms.vmm.eip.web.util.MessageUtil;
 import com.nms.vmm.eip.web.util.PaginationHelper;
 import com.nms.vmm.eip.web.util.UserAgentInfo;
@@ -14,6 +16,7 @@ import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.event.ActionEvent;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
@@ -36,6 +39,7 @@ public class GameEntryController implements Serializable {
     private GameEntry current;
     private DataModel<GameEntry> items;
     private PaginationHelper paginationHelper;
+    private GameEntryCriteria criteria;
     @Inject
     private UserEntryController userEntryController;
 
@@ -68,13 +72,11 @@ public class GameEntryController implements Serializable {
 
     public PaginationHelper getPaginationHelper() {
         if (paginationHelper == null) {
-            paginationHelper = new PaginationHelper(10, facade.countAll()) {
+            paginationHelper = new PaginationHelper(10, facade.count(getCriteria())) {
 
                 @Override
                 public DataModel createPageDataModel() {
-                    return new ListDataModel(facade.findRange(
-                            new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize() -1})
-                    );
+                    return new ListDataModel(facade.search(getCriteria(), getPageFirstItem(),getPageSize()));
                 }
             };
         }
@@ -136,15 +138,15 @@ public class GameEntryController implements Serializable {
     }
 
     public List<GameEntry> getTopDownloadGames() {
-        return facade.findByCategory(null, UserAgentInfo.createInstance(), new int[] {0, 9}, "downloadCount", "desc");
+        return facade.findByCategory(null, UserAgentInfo.createInstance(), new int[]{0, 9}, "downloadCount", "desc");
     }
 
     public List<GameEntry> getHotGames() {
-        return facade.findByCategory(null, UserAgentInfo.createInstance(), new int[] {0, 9}, "downloadCount", "desc");
+        return facade.findByCategory(null, UserAgentInfo.createInstance(), new int[]{0, 9}, "downloadCount", "desc");
     }
 
     public List<GameEntry> getNewGames() {
-        return facade.findByCategory(null, UserAgentInfo.createInstance(), new int[] {0, 9}, "createdDate", "desc");
+        return facade.findByCategory(null, UserAgentInfo.createInstance(), new int[]{0, 9}, "createdDate", "desc");
     }
 
     public SelectItem[] getFlatformSelectItems() {
@@ -184,10 +186,31 @@ public class GameEntryController implements Serializable {
         items = null;
         return "list?faces-redirect=true";
     }
-    
+
     public String endPage() {
         paginationHelper.goToEndPage();
         items = null;
         return "list?faces-redirect=true";
+    }
+
+    public GameEntryCriteria getCriteria() {
+        if (criteria == null) {
+            criteria = new GameEntryCriteria();
+        }
+        
+        UserEntry currentUser = userEntryController.getUserFromRequest();
+        if (currentUser != null && !currentUser.getUserRoles().contains(UserRole.Admin)) {
+            criteria.setCpCode(getCurrentCpCode());
+        }
+        return criteria;
+    }
+
+    public void setCriteria(GameEntryCriteria criteria) {
+        this.criteria = criteria;
+    }
+
+    public void search(ActionEvent event) {
+        items = null;
+        paginationHelper = null;
     }
 }

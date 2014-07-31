@@ -33,7 +33,7 @@ public abstract class AbstractController<T> {
 
     /* Getters And Setters */
     
-    public T getCurrent() {
+        public T getCurrent() {
         if (current == null) {
             try {
                 current = itemClass.newInstance();

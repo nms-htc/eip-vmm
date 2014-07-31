@@ -19,10 +19,46 @@
             
             <h:form>
                 
-                <h:outputText value="#{msg.appEmptyDataTableTitle}" 
-                              rendered="#{gameEntryController.items.rowCount == 0}"/>
+                <h:panelGrid columns="4" width="100%">
+                    <h:outputLabel for="code" value="#{msg.ProductCodeLabel}"/>
+                    <h:inputText id="code" value="#{gameEntryController.criteria.code}"/>
+                    
+                    <h:outputLabel for="title" value="#{msg.ProductTitleLabel}"/>
+                    <h:inputText id="title" value="#{gameEntryController.criteria.title}"/>
+                    
+                    <h:outputLabel for="description" value="#{msg.ProductDescriptionLabel}"/>
+                    <h:inputText id="description" value="#{gameEntryController.criteria.description}"/>
+                    
+                    <h:outputLabel for="price" value="#{msg.ProductPriceLabel}"/>
+                    <h:inputText id="price" value="#{gameEntryController.criteria.price}"/>
+                    
+                    
+                </h:panelGrid>
                 
-                <h:panelGroup rendered="#{gameEntryController.items.rowCount > 0}">
+                <div class="buttons-row">
+                    <h:commandButton 
+                        value="#{msg.Search}" 
+                        actionListener="#{gameEntryController.search}"/>
+                    
+                    <h:commandButton 
+                        action="#{gameEntryController.prepareCreate}" 
+                        value="#{msg.Create}"/>
+                
+                    <h:commandButton 
+                        value="Batch add by excel"
+                        action="batch_create?faces-redirect=true"/>
+                </div>
+                
+                <h:panelGroup rendered="#{gameEntryController.items.rowCount == 0}">
+                    <ul class="messages">
+                        <li class="info-messages">
+                            <h:outputText value="#{msg.appEmptyDataTableTitle}" />
+                        </li>
+                    </ul>
+                    
+                </h:panelGroup>
+                
+                <h:panelGroup id="resultRows" rendered="#{gameEntryController.items.rowCount > 0}">
                     
                     <h:dataTable value="#{gameEntryController.items}" 
                                  var="game"
@@ -70,12 +106,6 @@
                                          endRendered="#{gameEntryController.paginationHelper.hasNextPage}"/>
                     
                 </h:panelGroup>
-                
-                <h:commandButton action="#{gameEntryController.prepareCreate}" 
-                                 value="#{msg.Create}"/>
-                
-                <h:commandButton value="Batch add by excel"
-                                 action="batch_create?faces-redirect=true"/>
             </h:form>
         </ui:define>
     </ui:composition>

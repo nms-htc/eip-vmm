@@ -191,23 +191,57 @@ public class GameEntryFacade extends AbstractFacade<GameEntry> implements Serial
         return predicate;
     }
 
-    public List<GameEntry> search(GameEntryCriteria criteria, String cpCode) {
+    public List<GameEntry> search(GameEntryCriteria criteria, int start, int range) {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<GameEntry> cq = cb.createQuery(GameEntry.class);
         Root<GameEntry> root = cq.from(GameEntry.class);
         Join<GameEntry, GameCategory> category = root.join(GameEntry_.category);
         cq.select(root);
 
-        List<Predicate> predicates = buildPredicate(cb, root, category, criteria, cpCode);
+        List<Predicate> predicates = buildPredicate(cb, root, category, criteria);
 
         if (predicates != null && predicates.size() > 0) {
             cq.where(predicates.toArray(new Predicate[]{}));
         }
 
         TypedQuery<GameEntry> q = em.createQuery(cq);
+        if (start >= 0 && range > 0) {
+            q.setFirstResult(start);
+            q.setMaxResults(range);
+        }
         return q.getResultList();
     }
+    
+    public int count(GameEntryCriteria criteria) {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Long> cq = cb.createQuery(Long.class);
+        Root<GameEntry> root = cq.from(GameEntry.class);
+        Join<GameEntry, GameCategory> category = root.join(GameEntry_.category);
+        cq.select(cb.count(root));
 
+        List<Predicate> predicates = buildPredicate(cb, root, category, criteria);
+
+        if (predicates != null && predicates.size() > 0) {
+            cq.where(predicates.toArray(new Predicate[]{}));
+        }
+
+        TypedQuery<Long> q = em.createQuery(cq);
+        Long result = q.getSingleResult();
+        if (result != null) {
+            return result.intValue();
+        }
+        return 0;
+    }
+
+    /**
+     * For webservice
+     * @param categoryId
+     * @param keywords
+     * @param orderType
+     * @param start
+     * @param range
+     * @return
+     */
     public List<GameEntry> search(Long categoryId, String keywords, OrderType orderType, int start,
             int range) {
         CriteriaBuilder cb = em.getCriteriaBuilder();
@@ -256,7 +290,7 @@ public class GameEntryFacade extends AbstractFacade<GameEntry> implements Serial
         TypedQuery<GameEntry> q = em.createQuery(cq);
 
         // validate start and rangle
-        if (start > 0 && range >= start) {
+        if (start > 0 && range > 0) {
             q.setFirstResult(start);
             q.setMaxResults(range);
         }
@@ -264,6 +298,12 @@ public class GameEntryFacade extends AbstractFacade<GameEntry> implements Serial
         return q.getResultList();
     }
     
+    /**
+     * For webservices.
+     * @param categoryId
+     * @param keywords
+     * @return 
+     */
     public int count(Long categoryId, String keywords) {
         
         CriteriaBuilder cb = em.getCriteriaBuilder();
@@ -304,7 +344,7 @@ public class GameEntryFacade extends AbstractFacade<GameEntry> implements Serial
     }
 
     private List<Predicate> buildPredicate(CriteriaBuilder cb, Root<GameEntry> root, Join<GameEntry, GameCategory> categoryJoin,
-            GameEntryCriteria criteria, String cpCode) {
+            GameEntryCriteria criteria) {
         List<Predicate> predicates = new ArrayList<>();
 
         if (criteria.getId() != null) {
