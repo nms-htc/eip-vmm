@@ -9,6 +9,7 @@ import com.nms.vmm.eip.entity.GameCategory;
 import com.nms.vmm.eip.entity.GameCategory_;
 import com.nms.vmm.eip.entity.GameEntry;
 import com.nms.vmm.eip.entity.GameEntry_;
+import com.nms.vmm.eip.entity.Product;
 import com.nms.vmm.eip.search.GameEntryCriteria;
 import com.nms.vmm.eip.search.OrderType;
 import com.nms.vmm.eip.search.ProductCriteria;
@@ -211,7 +212,7 @@ public class GameEntryFacade extends AbstractFacade<GameEntry> implements Serial
         }
         return q.getResultList();
     }
-    
+
     public int count(GameEntryCriteria criteria) {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Long> cq = cb.createQuery(Long.class);
@@ -235,6 +236,7 @@ public class GameEntryFacade extends AbstractFacade<GameEntry> implements Serial
 
     /**
      * For webservice
+     *
      * @param categoryId
      * @param keywords
      * @param orderType
@@ -263,7 +265,7 @@ public class GameEntryFacade extends AbstractFacade<GameEntry> implements Serial
             Predicate titlePredicate = cb.like(cb.upper(root.get(GameEntry_.title)), keywords);
             Predicate descriptionPredicate = cb.like(cb.upper(root.get(GameEntry_.description)), keywords);
             predicates.add(cb.or(new Predicate[]{
-                titlePredicate, 
+                titlePredicate,
                 descriptionPredicate
             }));
         }
@@ -297,15 +299,16 @@ public class GameEntryFacade extends AbstractFacade<GameEntry> implements Serial
 
         return q.getResultList();
     }
-    
+
     /**
      * For webservices.
+     *
      * @param categoryId
      * @param keywords
-     * @return 
+     * @return
      */
     public int count(Long categoryId, String keywords) {
-        
+
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Long> cq = cb.createQuery(Long.class);
         Root<GameEntry> root = cq.from(GameEntry.class);
@@ -325,7 +328,7 @@ public class GameEntryFacade extends AbstractFacade<GameEntry> implements Serial
             Predicate titlePredicate = cb.like(cb.upper(root.get(GameEntry_.title)), keywords);
             Predicate descriptionPredicate = cb.like(cb.upper(root.get(GameEntry_.description)), keywords);
             predicates.add(cb.or(new Predicate[]{
-                titlePredicate, 
+                titlePredicate,
                 descriptionPredicate
             }));
         }
@@ -333,13 +336,99 @@ public class GameEntryFacade extends AbstractFacade<GameEntry> implements Serial
         if (predicates.size() > 0) {
             cq.where(predicates.toArray(new Predicate[]{}));
         }
-        
+
         TypedQuery<Long> q = em.createQuery(cq);
+        Long result = q.getSingleResult();
+
+        if (result != null) {
+            return result.intValue();
+        }
+        return 0;
+    }
+
+    public List<GameEntry> search(String keywords, UserAgentInfo agentInfo, int start, int range) {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<GameEntry> cq = cb.createQuery(GameEntry.class);
+        Root<GameEntry> root = cq.from(GameEntry.class);
+        cq.select(root);
+
+        List<Predicate> predicates = new ArrayList<>();
+
+        // check keywords
+        if (Validator.isNotNull(keywords)) {
+            keywords = "%" + keywords.toUpperCase() + "%";
+            Predicate titlePredicate = cb.like(cb.upper(root.get(GameEntry_.title)), keywords);
+            Predicate descriptionPredicate = cb.like(cb.upper(root.get(GameEntry_.description)), keywords);
+            predicates.add(cb.or(new Predicate[]{
+                titlePredicate,
+                descriptionPredicate
+            }));
+        }
+
+        Predicate p = getDetectMobilePredicate(root, agentInfo, cb);
+
+        if (p != null) {
+            predicates.add(p);
+        }
+
+        if (predicates.size() > 0) {
+            cq.where(predicates.toArray(new Predicate[]{}));
+        }
+
+        // order
+        cq.orderBy(cb.asc(root.get(GameEntry_.title)));
+
+        // Create TypedQuery
+        TypedQuery<GameEntry> q = em.createQuery(cq);
+
+        // validate start and rangle
+        if (start > 0 && range > 0) {
+            q.setFirstResult(start);
+            q.setMaxResults(range);
+        }
+
+        return q.getResultList();
+    }
+
+    public int count(String keywords, UserAgentInfo agentInfo) {
+
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Long> cq = cb.createQuery(Long.class);
+        Root<GameEntry> root = cq.from(GameEntry.class);
+        cq.select(cb.count(root));
+
+        List<Predicate> predicates = new ArrayList<>();
+
+        // check keywords
+        if (Validator.isNotNull(keywords)) {
+            keywords = "%" + keywords.toUpperCase() + "%";
+            Predicate titlePredicate = cb.like(cb.upper(root.get(GameEntry_.title)), keywords);
+            Predicate descriptionPredicate = cb.like(cb.upper(root.get(GameEntry_.description)), keywords);
+            predicates.add(cb.or(new Predicate[]{
+                titlePredicate,
+                descriptionPredicate
+            }));
+        }
+
+        Predicate p = getDetectMobilePredicate(root, agentInfo, cb);
+
+        if (p != null) {
+            predicates.add(p);
+        }
+
+        if (predicates.size() > 0) {
+            cq.where(predicates.toArray(new Predicate[]{}));
+        }
+
+        // Create TypedQuery
+        TypedQuery<Long> q = em.createQuery(cq);
+
         Long result = q.getSingleResult();
         
         if (result != null) {
             return result.intValue();
         }
+       
         return 0;
     }
 
@@ -363,21 +452,20 @@ public class GameEntryFacade extends AbstractFacade<GameEntry> implements Serial
             predicates.add(cb.equal(root.get(GameEntry_.code), criteria.getCode()));
         }
 
-        if (Validator.isNotNull(criteria.getCode())) {
+        if (Validator.isNotNull(criteria.getCpCode())) {
             predicates.add(cb.equal(root.get(GameEntry_.cpCode), criteria.getCpCode()));
         }
-        
+
         // price
         if (Validator.isNotNull(criteria.getPrice())) {
             predicates.add(cb.equal(root.get(GameEntry_.price), criteria.getPrice()));
         }
-        
+
         //TODO: Update is code late
         // maxPrice
         // minPrice
         // maxCreateDate
         // minCreateDate
-
         return predicates;
     }
 }

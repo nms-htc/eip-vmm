@@ -172,7 +172,7 @@ nav#mainNav {
       nav#mainNav ul > li:hover ul {
         border-top: 2px solid #000;
         display: block; }
-  nav#mainNav #pull {
+  nav#mainNav #mobileHeader {
     display: none; }
 
 #banner {

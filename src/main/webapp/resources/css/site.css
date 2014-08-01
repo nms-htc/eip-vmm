@@ -60,20 +60,27 @@ px      68    160    252    */
                 background: none; }
         nav#mainNav ul li:hover ul {
           border-top: none; }
-    nav#mainNav a#pull {
+    nav#mainNav #mobileHeader {
       display: block;
       font-size: 18px;
       position: relative;
-      line-height: 40px; }
-      nav#mainNav a#pull#pull:after {
-        content: "";
-        background: url("/vmm-eip/javax.faces.resource/image/nav-icon.png.xhtml") no-repeat;
-        width: 30px;
-        height: 30px;
-        display: inline-block;
-        right: 15px;
-        position: absolute;
-        top: 10px; }
+      line-height: 20px; }
+      nav#mainNav #mobileHeader div {
+        float: left;
+        text-align: center;
+        vertical-align: middle; }
+        nav#mainNav #mobileHeader div#menu {
+          width: 20%; }
+        nav#mainNav #mobileHeader div#logo {
+          width: 60%; }
+        nav#mainNav #mobileHeader div#search {
+          width: 20%; }
+      nav#mainNav #mobileHeader a {
+        border: none;
+        padding: 0 5px; }
+        nav#mainNav #mobileHeader a img {
+          margin-top: 7px;
+          height: 23px; }
 
   div.list-product .list-product-title {
     font-size: 13px;
@@ -210,6 +217,7 @@ px      68    160    252    */
     color: #999;
     font-size: 13px;
     width: 100%;
+    bottom: 0;
     background: white; }
     div#footer span {
       color: orange; } }

@@ -34,7 +34,25 @@
                 </h:panelGroup>
             </li>
         </ul>
-        <a href="javascript:void(0);" id="pull">Menu</a>
+        
+        <div id="mobileHeader">
+            <div id="menu">
+                <a href="javascript:void(0);" id="pull">
+                    <h:graphicImage library="image" name="nav-icon.png"/>
+                </a>
+            </div>
+            <div id="logo">
+                <h:link outcome="/index.xhtml" value="">
+                    <h:graphicImage library="image" name="logo_vnm.png"/>
+                </h:link>
+            </div>
+            <div id="search">
+                <h:link outcome="/search.xhtml">
+                    <h:graphicImage library="image" name="search-icon.png"/>
+                </h:link>
+            </div>
+        </div>
+        
     </ui:define>
     
     <ui:define name="content">

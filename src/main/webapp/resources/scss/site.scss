@@ -82,20 +82,35 @@ px      68    160    252    */
             }
         }
         
-        a#pull {  
+        #mobileHeader {  
             display: block;
             font-size: 18px;
             position: relative; 
-            line-height: 40px;
-            &#pull:after {
-                content: "";
-                background: url('/vmm-eip/javax.faces.resource/image/nav-icon.png.xhtml') no-repeat;
-                width: 30px;
-                height: 30px;
-                display: inline-block;
-                right: 15px;
-                position: absolute;
-                top: 10px;
+            line-height: 20px;
+            div {
+                float: left;
+                text-align: center;
+                vertical-align: middle;
+                &#menu {
+                    width: 20%;
+                }
+                
+                &#logo {
+                    width: 60%;
+                }
+                
+                &#search {
+                    width: 20%;
+                }
+            }
+            
+            a {
+                border: none;
+                padding: 0 5px;
+                img {
+                    margin-top: 7px;
+                    height: 23px;
+                }
             }
         }
     }

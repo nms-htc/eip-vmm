@@ -40,13 +40,15 @@
                         value="#{msg.Search}" 
                         actionListener="#{gameEntryController.search}"/>
                     
-                    <h:commandButton 
+                    <h:panelGroup rendered="#{request.isUserInRole('cp')}">
+                        <h:commandButton 
                         action="#{gameEntryController.prepareCreate}" 
                         value="#{msg.Create}"/>
                 
-                    <h:commandButton 
-                        value="Batch add by excel"
-                        action="batch_create?faces-redirect=true"/>
+                        <h:commandButton 
+                            value="Batch add by excel"
+                            action="batch_create?faces-redirect=true"/>
+                    </h:panelGroup>
                 </div>
                 
                 <h:panelGroup rendered="#{gameEntryController.items.rowCount == 0}">
