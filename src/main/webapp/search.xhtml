@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:eip="http://xmlns.jcp.org/jsf/composite/eip">
+      xmlns:eip="http://xmlns.jcp.org/jsf/composite/eip"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:composition template="common/template.xhtml">
       
@@ -11,39 +12,48 @@
             
             <h:form>
                 <h:messages styleClass="messages"
-                    errorClass="error-messages"
-                    fatalClass="fatal-messages"
-                    infoClass="info-messages"/>
+                            id="messages"
+                            errorClass="error-messages"
+                            fatalClass="fatal-messages"
+                            infoClass="info-messages"/>
                 
                 <div id="search-form">
                     <h3><h:outputText value="#{msg.appSearchTitle}"/></h3>
-                    <h:inputText styleClass="searchField" 
+                    <h:inputText id="keywords" 
+                                 styleClass="searchField" 
                                  value="#{productSearchController.keywords}"
                                  required="true"
                                  requiredMessage="#{msg.appSearchFieldRequiredMessage}"/>
+                    <h:commandButton value="#{msg.Search}" actionListener="#{productSearchController.search}">
+                        <f:ajax execute="keywords" render="searchResult messages"/>
+                    </h:commandButton>
                     
-                    <h:panelGroup rendered="#{gameEntryController.items != null and gameEntryController.items.rowCount == 0}">
-                        <ul class="messages">
-                            <li class="info-messages">
-                                <h:outputText value="#{msg.appEmptyDataTableTitle}" />
-                            </li>
-                        </ul>
-                    </h:panelGroup>
+                    <h:panelGroup id="searchResult">
                     
-                    <eip:list-product rendered="#{productSearchController.items != null and productSearchController.items.rowCount > 0}"
-                                      list="#{productSearchController.items}"
-                                      listTitle="#{msg.appSearchTitle}"
-                                      productType="#{productSearchController.productViewingStr}"/>
-                    <h:panelGroup rendered="#{productSearchController.items != null and productSearchController.items.rowCount > 0}">
-                        <span class="list-product-pagging">
-                            <h:commandLink value="#{msg['product.list.preview.title']}" 
-                                           actionListener="#{productSearchController.preview}"
-                                           disabled="#{not productSearchController.paginationHelper.hasPreviewPage}"/>
+                        <h:panelGroup rendered="#{productSearchController.items != null and productSearchController.items.rowCount == 0}">
+                            <ul class="messages">
+                                <li class="info-messages">
+                                    <h:outputText value="#{msg.appEmptyDataTableTitle}" />
+                                </li>
+                            </ul>
+                        </h:panelGroup>
 
-                            <h:commandLink value="#{msg['product.list.next.title']}" 
-                                           actionListener="#{productSearchController.next}"
-                                           disabled="#{not productSearchController.paginationHelper.hasNextPage}"/>
-                        </span>
+                        <eip:list-product rendered="#{productSearchController.items != null and productSearchController.items.rowCount > 0}"
+                                          list="#{productSearchController.items}"
+                                          listTitle="#{msg.appSearchResultTitle}"
+                                          productType="#{productSearchController.productViewingStr}"/>
+                        
+                        <h:panelGroup rendered="#{productSearchController.items != null and productSearchController.items.rowCount > 0}">
+                            <span class="list-product-pagging">
+                                <h:commandLink value="#{msg['product.list.preview.title']}" 
+                                               actionListener="#{productSearchController.preview}"
+                                               disabled="#{not productSearchController.paginationHelper.hasPreviewPage}"/>
+
+                                <h:commandLink value="#{msg['product.list.next.title']}" 
+                                               actionListener="#{productSearchController.next}"
+                                               disabled="#{not productSearchController.paginationHelper.hasNextPage}"/>
+                            </span>
+                        </h:panelGroup>
                     </h:panelGroup>
                 </div>
             </h:form>

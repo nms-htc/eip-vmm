@@ -382,7 +382,7 @@ public class GameEntryFacade extends AbstractFacade<GameEntry> implements Serial
         TypedQuery<GameEntry> q = em.createQuery(cq);
 
         // validate start and rangle
-        if (start > 0 && range > 0) {
+        if (start >= 0 && range >= 0) {
             q.setFirstResult(start);
             q.setMaxResults(range);
         }

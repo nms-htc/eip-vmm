@@ -1,5 +1,17 @@
 $nav_background_color: #F78B31;
 $vmm_color: #FFA500;
+@mixin border-radius($radius) {
+    border-radius: $radius;
+    -moz-border-radius: $radius;
+    -webkit-border-radius: $radius;
+    -ms-border-radius: $radius;
+}
+
+@mixin box-shadow($left, $right, $deep, $color) {
+    box-shadow: $left $right $deep $color;
+    -moz-box-shadow: $left $right $deep $color;
+    -webkit-box-shadow: $left $right $deep $color;
+}
 
 /*		Tablet Layout: 768px.
                 Gutters: 24px.
@@ -108,6 +120,7 @@ px      68    160    252    */
                 border: none;
                 padding: 0 5px;
                 img {
+                    outline: none;
                     margin-top: 7px;
                     height: 23px;
                 }
@@ -115,19 +128,16 @@ px      68    160    252    */
         }
     }
     
-    // list product style
-    @mixin border-radius($radius) {
-        border-radius: $radius;
-        -moz-border-radius: $radius;
-        -webkit-border-radius: $radius;
-        -ms-border-radius: $radius;
+    #search-form {
+        min-height: 500px;
+        input[type=text] {
+            padding: 3px;
+            margin-left: 5px;
+            
+        }
     }
     
-    @mixin box-shadow($left, $right, $deep, $color) {
-        box-shadow: $left $right $deep $color;
-        -moz-box-shadow: $left $right $deep $color;
-        -webkit-box-shadow: $left $right $deep $color;
-    }
+    // list product style
     
     div.list-product {
         .list-product-title {

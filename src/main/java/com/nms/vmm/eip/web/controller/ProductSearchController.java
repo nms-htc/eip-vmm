@@ -91,6 +91,7 @@ public class ProductSearchController implements Serializable {
     // Bussiness functionalities....
        
     public void search(ActionEvent e) {
+        productType = ProductType.GAME;
         switch (productType) {
             case GAME: 
                 paginationHelper = new PaginationHelper(10, gameEntryFacade.count(keywords, UserAgentInfo.createInstance())) {

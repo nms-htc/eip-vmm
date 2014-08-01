@@ -79,8 +79,15 @@ px      68    160    252    */
         border: none;
         padding: 0 5px; }
         nav#mainNav #mobileHeader a img {
+          outline: none;
           margin-top: 7px;
           height: 23px; }
+
+  #search-form {
+    min-height: 500px; }
+    #search-form input[type=text] {
+      padding: 3px;
+      margin-left: 5px; }
 
   div.list-product .list-product-title {
     font-size: 13px;
