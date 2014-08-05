@@ -10,6 +10,7 @@
         </cc:interface>
         <cc:implementation>
             <ul class="clearfix">
+                <li><h:link outcome="/admin/index.xhtml" value="${msg.appNavTitleHomePage}"/></li>
                 <h:panelGroup rendered='#{request.isUserInRole("admin")}'>
                     <li>
                         <h:link outcome="/admin/game_cat/list.xhtml" 
@@ -30,7 +31,6 @@
                                 value="${msg.appNavTitleUserManagement}"/>
                     </li>
                 </h:panelGroup>
-                <li><h:link outcome="/index.xhtml" value="${msg.appNavTitleBackToHomePage}"/></li>
                 <h:form>
                 <h:commandLink action="#{logoutController.logout}" value="Logout"/>
                 </h:form>

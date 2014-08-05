@@ -48,7 +48,8 @@
                                 <h:commandButton value="#{msg.Update}"
                                              action="#{gameCategoryController.prepareEdit}"/>
                                 <h:commandButton value="#{msg.Delete}"
-                                             action="#{gameCategoryController.delete}"/>
+                                             action="#{gameCategoryController.delete}"
+                                             onclick="return confirm('#{msg.ProductCategoryDeleteConfirmationMessge}');"/>
                             </div>
                         </h:column>
                     </h:dataTable>

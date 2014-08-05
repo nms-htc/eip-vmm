@@ -30,7 +30,7 @@
                     </div>
                     
                     <div class="form-field">
-                        <h:outputLabel for="code" value="Code"/>
+                        <h:outputLabel for="code" value="#{msg.ProductCodeLabel}"/>
                         
                         <h:inputText id="code" 
                                      value="#{gameEntryController.current.code}"
@@ -39,7 +39,7 @@
                     </div>
                     
                     <div class="form-field">
-                        <h:outputLabel for="description" value="Description"/>
+                        <h:outputLabel for="description" value="#{msg.ProductDescriptionLabel}"/>
                         
                         <h:inputText id="description" 
                                      value="#{gameEntryController.current.description}"
@@ -47,7 +47,7 @@
                     </div>
                     
                     <div class="form-field">
-                        <h:outputLabel for="specification" value="Specification"/>
+                        <h:outputLabel for="specification" value="#{msg.ProductSpecificationTitle}"/>
                         
                         <h:inputTextarea id="specification" 
                                          value="#{gameEntryController.current.specification}"
@@ -56,7 +56,7 @@
                     </div>
                     
                     <div class="form-field">
-                        <h:outputLabel for="price" value="Price"/>
+                        <h:outputLabel for="price" value="#{msg.ProductPriceLabel}"/>
                         
                         <h:inputText id="price" 
                                      value="#{gameEntryController.current.price}"
@@ -64,14 +64,14 @@
                     </div>
                     
                     <div class="form-field">
-                        <h:outputLabel for="thumbnailUrl" value="Thumbnail URL"/>
+                        <h:outputLabel for="thumbnailUrl" value="#{msg.ProductThumbnailUrlLabel}"/>
                         <h:inputText id="thumbnailUrl" 
                                      value="#{gameEntryController.current.thumbnailUrl}"
                                      size="80"/>
                     </div>
                     
                     <div class="form-field">
-                        <h:outputLabel for="deviceSupport" value="Devices Support"/>
+                        <h:outputLabel for="deviceSupport" value="#{msg.ProductDeviceSupportLabel}"/>
                         
                         <h:inputTextarea id="deviceSupport" 
                                          value="#{gameEntryController.current.devicesSupport}"
@@ -80,14 +80,14 @@
                     </div>
                     
                      <div class="form-field">
-                        <h:outputLabel for="downloadCount" value="Download count"/>
+                        <h:outputLabel for="downloadCount" value="#{msg.ProductDownloadCountLabel}"/>
                         
                         <h:inputText id="downloadCount" 
                                          value="#{gameEntryController.current.downloadCount}"/>
                     </div>
                     
                      <div class="form-field">
-                        <h:outputLabel for="flatForm" value="Flatforms"/>
+                        <h:outputLabel for="flatForm" value="#{msg.ProductFlatformLabel}"/>
                         
                         <h:selectManyCheckbox id="flatForm"
                                               value="#{gameEntryController.current.flatforms}"
@@ -98,7 +98,7 @@
                     </div>
                     
                     <div class="form-field">
-                        <h:outputLabel for="category" value="Category"/>
+                        <h:outputLabel for="category" value="#{msg.ProductCategoryLabel}"/>
                         
                         <h:selectOneMenu id="category" value="#{gameEntryController.current.category}">
                             <f:selectItems value="#{gameCategoryController.itemsAvailableSelectOne}"/>

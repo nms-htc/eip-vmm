@@ -75,6 +75,13 @@
                         </h:column>
                         
                         <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{msg.ProductCodeLabel}"/>
+                            </f:facet>
+                            <h:outputText value="#{game.code}"/>
+                        </h:column>
+                        
+                        <h:column>
                             <h:graphicImage value="#{game.thumbnailUrl}"
                                             height="80px"
                                             width="80px"/>
@@ -89,11 +96,19 @@
                         </h:column>
                         
                         <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{msg.ProductDownloadCountLabel}"/>
+                            </f:facet>
+                            <h:outputText value="#{game.downloadCount}"/>
+                        </h:column>
+                        
+                        <h:column>
                             <div class="align-right">
                                 <h:commandButton value="#{msg.Update}"
                                                  action="#{gameEntryController.prepareEdit}"/>
                                 <h:commandButton value="#{msg.Delete}"
-                                                 action="#{gameEntryController.delete}"/>
+                                                 action="#{gameEntryController.delete}"
+                                                 onclick="return confirm('#{msg.ProductDeleteConfirmationMessage}');"/>
                             </div>
                         </h:column>
                     </h:dataTable>

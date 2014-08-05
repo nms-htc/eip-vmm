@@ -3,16 +3,13 @@
  */
 package com.nms.vmm.eip.ejb;
 
-import com.nms.vmm.eip.entity.Category;
 import com.nms.vmm.eip.entity.Flatform;
 import com.nms.vmm.eip.entity.GameCategory;
 import com.nms.vmm.eip.entity.GameCategory_;
 import com.nms.vmm.eip.entity.GameEntry;
 import com.nms.vmm.eip.entity.GameEntry_;
-import com.nms.vmm.eip.entity.Product;
 import com.nms.vmm.eip.search.GameEntryCriteria;
 import com.nms.vmm.eip.search.OrderType;
-import com.nms.vmm.eip.search.ProductCriteria;
 import com.nms.vmm.eip.web.util.UserAgentInfo;
 import com.nms.vmm.eip.web.util.Validator;
 import java.io.Serializable;
@@ -157,7 +154,7 @@ public class GameEntryFacade extends AbstractFacade<GameEntry> implements Serial
 
         Date now = new Date();
         entity.setModifiedDate(now);
-        entity.setCode(cpCode);
+        entity.setCpCode(cpCode);
 
         super.edit(entity);
     }
@@ -449,7 +446,7 @@ public class GameEntryFacade extends AbstractFacade<GameEntry> implements Serial
         }
 
         if (Validator.isNotNull(criteria.getCode())) {
-            predicates.add(cb.equal(root.get(GameEntry_.code), criteria.getCode()));
+            predicates.add(cb.like(cb.upper(root.get(GameEntry_.code)), "%" + criteria.getCode().toUpperCase() + "%"));
         }
 
         if (Validator.isNotNull(criteria.getCpCode())) {

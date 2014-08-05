@@ -4,6 +4,7 @@
 package com.nms.vmm.eip.web.controller;
 
 import com.nms.vmm.eip.ejb.AbstractFacade;
+import com.nms.vmm.eip.web.util.JsfUtil;
 import com.nms.vmm.eip.web.util.MessageUtil;
 import com.nms.vmm.eip.web.util.PaginationHelper;
 import java.util.logging.Level;
@@ -111,6 +112,8 @@ public abstract class AbstractController<T> {
             paginationHelper = null;
             return "list";
         } catch (Exception e) {
+            items = null;
+            paginationHelper = null;
             MessageUtil.addGlobalPersistenceErrorMessage();
             return null;
         }
@@ -125,7 +128,9 @@ public abstract class AbstractController<T> {
             paginationHelper = null;
             return "list";
         } catch (Exception e) {
-            MessageUtil.addGlobalPersistenceErrorMessage();
+            items = null;
+            paginationHelper = null;
+            JsfUtil.addErrorMessage(JsfUtil.getRootCause(e).getLocalizedMessage());
             return null;
         }
     }

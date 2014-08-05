@@ -27,11 +27,11 @@ public class MessageUtil {
     }
     
     public static void addGlobalErrorMessage() {
-        JsfUtil.addErrorMessage("appGlobalErrorMessage");
+        JsfUtil.addErrorMessage(getBundleMessage("appGlobalErrorMessage"));
     }
     
     public static void addGlobalPersistenceErrorMessage() {
-        JsfUtil.addErrorMessage("PersistenceErrorOccured");
+        JsfUtil.addErrorMessage(getBundleMessage("PersistenceErrorOccured"));
     }
     
 }

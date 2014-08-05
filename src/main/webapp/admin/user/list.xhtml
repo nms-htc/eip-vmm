@@ -66,7 +66,8 @@
                                 <h:commandButton value="#{msg.Update}"
                                                  action="#{userEntryController.prepareEdit}"/>
                                 <h:commandButton value="#{msg.Delete}"
-                                             action="#{userEntryController.delete}"/>
+                                             action="#{userEntryController.delete}"
+                                             onclick="return confirm('#{msg.ProductDeleteConfirmationMessage}')"/>
                             </div>
                         </h:column>
                     </h:dataTable>
