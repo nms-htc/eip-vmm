@@ -15,22 +15,22 @@
         
         <ui:define name="adminContent">
             
-            <h3 class="header"><h:outputText value="Create new game contents"/></h3>
+            <h3 class="header"><h:outputText value="#{msg.GameContentBatchGameUploadTitle}"/></h3>
             
             <h:form enctype="multipart/form-data">
                 
                 <fieldset>
                     
                     <div class="form-field">
-                        <h:outputLabel for="category" value="Game category"/>
+                        <h:outputLabel for="category" value="#{msg.ProductCategoryLabel}"/>
                     
                         <h:selectOneMenu id="category" value="#{gameEntryBatchUploadController.category}">
-                            <f:selectItems value="#{gameCategoryController.itemsAvailableSelectOne}"/>
+                            <f:selectItems value="#{gameCategoryController.itemsAvailableSelectMany}"/>
                         </h:selectOneMenu>
                     </div>
                     
                     <div class="form-field">
-                        <h:outputLabel for="fileUpload" value="File upload"/>
+                        <h:outputLabel for="fileUpload" value="#{msg.GameEntryFileUploadLabel}"/>
                         <h:inputFile id="fileUpload" 
                                      value="#{gameEntryBatchUploadController.fileUpload}"
                                      required="true"/>

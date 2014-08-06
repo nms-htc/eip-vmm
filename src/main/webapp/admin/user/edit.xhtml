@@ -26,7 +26,8 @@
                                      value="#{userEntryController.current.code}"
                                      required="true"
                                      size="30"
-                                     requiredMessage="#{msg.UserEntryCodeRequiredMessage}"/>
+                                     requiredMessage="#{msg.UserEntryCodeRequiredMessage}"
+                                     disabled="true"/>
                     </div>
                     
                     <div class="form-field">
@@ -57,7 +58,8 @@
                                      size="50"
                                      requiredMessage="${msg.UserEntryEmailRequiredMessage}"
                                      value="#{userEntryController.current.email}"
-                                     validatorMessage="${msg.UserEntryEmailInvalidMessage}">
+                                     validatorMessage="${msg.UserEntryEmailInvalidMessage}"
+                                     disabled="true">
                         </h:inputText>
                     </div>
                     

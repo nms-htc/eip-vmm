@@ -92,16 +92,19 @@ public abstract class AbstractController<T> {
     }
     
     public String create() {
-        try {
-            getFacade().create(current);
-            MessageUtil.addGlobalSuccessMessage();
-            items = null;
-            paginationHelper = null;
-            return "list";
-        } catch (Exception e) {
-            MessageUtil.addGlobalPersistenceErrorMessage();
-            return null;
+        if (validate(current)) {
+            try {
+                getFacade().create(current);
+                MessageUtil.addGlobalSuccessMessage();
+                items = null;
+                paginationHelper = null;
+                return "list";
+            } catch (Exception e) {
+                MessageUtil.addGlobalPersistenceErrorMessage();
+                return null;
+            }
         }
+        return null;
     }
     
     public String update() {
@@ -158,4 +161,6 @@ public abstract class AbstractController<T> {
         items = null;
         return "list?faces-redirect=true";
     }
+    
+    protected abstract boolean validate(T entity);
 }

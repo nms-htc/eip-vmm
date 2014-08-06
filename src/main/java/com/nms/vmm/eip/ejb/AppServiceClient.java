@@ -34,9 +34,9 @@ public class AppServiceClient implements Serializable {
     private  ChargingWebserviceImplService nmsChargingService;
 
     public String checkPhoneNumber() {
-//        if (true) {
-//            return "8492134543";
-//        }
+        if (true) {
+            return "84925003155";
+        }
         
         String phoneNumber;
         HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance()

@@ -7,6 +7,8 @@ import com.nms.vmm.eip.ejb.AbstractFacade;
 import com.nms.vmm.eip.ejb.UserEntryFacade;
 import com.nms.vmm.eip.entity.UserEntry;
 import com.nms.vmm.eip.entity.UserRole;
+import com.nms.vmm.eip.web.util.JsfUtil;
+import com.nms.vmm.eip.web.util.MessageUtil;
 import java.io.Serializable;
 import java.security.Principal;
 import javax.ejb.EJB;
@@ -58,5 +60,34 @@ public class UserEntryController extends AbstractController<UserEntry> implement
         }
         
         return user;
+    }
+
+    @Override
+    protected boolean validate(UserEntry entity) {
+        UserEntry userEntry = null;
+        
+        try {
+            userEntry = facade.findByCode(entity.getCode());
+        } catch (Exception e) {
+            // valid
+        }
+        
+        if (userEntry != null) {
+            JsfUtil.addErrorMessage(MessageUtil.getBundleMessage("UserEntryCodeHasExits"));
+            return false;
+        }
+        
+        try {
+            userEntry = facade.find(entity.getEmail());
+        } catch (Exception e) {
+            // valid
+        }
+        
+        if (userEntry != null) {
+            JsfUtil.addErrorMessage(MessageUtil.getBundleMessage("UserEntryEmailHasExits"));
+            return false;
+        }
+        
+        return true;
     }
 }

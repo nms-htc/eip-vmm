@@ -35,7 +35,7 @@ public class LogoutController {
         }
         
         
-        return "/index.xhtml?faces-redirect=true";
+        return "/admin/index.xhtml?faces-redirect=true";
     }
     
     private static final Logger _logger = Logger.getLogger(LogoutController.class.getName());
