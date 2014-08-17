@@ -1,0 +1,140 @@
+/**
+ * Copyright (C) 2014 Next Generation Mobile Service JSC., (NMS). All rights reserved.
+ */
+package com.nms.vmm.eip.rs;
+
+import com.nms.vmm.eip.ejb.GameCategoryFacade;
+import com.nms.vmm.eip.ejb.GameEntryFacade;
+import com.nms.vmm.eip.entity.Flatform;
+import com.nms.vmm.eip.entity.GameCategory;
+import com.nms.vmm.eip.entity.GameEntry;
+import com.nms.vmm.eip.search.OrderType;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
+import javax.ws.rs.DefaultValue;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
+import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+
+/**
+ * Public Eip resources via RESTFull Webservice.
+ *
+ * @author Cuong
+ */
+@Stateless
+@Path("/")
+@Produces({MediaType.APPLICATION_JSON + ";" + MediaType.CHARSET_PARAMETER + "=UTF-8"})
+public class EipContentResource {
+
+    private static final Logger LOGGER = Logger.getLogger(EipContentResource.class.getName());
+    @EJB
+    private GameCategoryFacade gameCategoryFacade;
+    @EJB
+    private GameEntryFacade gameEntryFacade;
+
+    @GET
+    @Path("game/categories")
+    public List<GameCategory> getCategories() {
+
+        List<GameCategory> categories = null;
+
+        try {
+            categories = gameCategoryFacade.findAll();
+        } catch (Exception e) {
+            LOGGER.severe("Error when getCategories");
+            throw new WebApplicationException(e, Response.Status.INTERNAL_SERVER_ERROR);
+        }
+
+        return categories;
+    }
+
+    @GET
+    @Path("game/{id}")
+    public GameEntry getGameEntry(@PathParam("id") Long id) {
+        GameEntry gameEntry = null;
+        try {
+            gameEntry = gameEntryFacade.find(id);
+        } catch (Exception e) {
+            LOGGER.log(Level.SEVERE, "Error when find GameEntry with Id = {0}", id);
+        }
+
+        if (gameEntry == null) {
+            throw new WebApplicationException(Response.Status.NOT_FOUND);
+        }
+
+        return gameEntry;
+    }
+
+    @GET
+    @Path("game/search")
+    public List<GameEntry> searchGameEntries(
+            @QueryParam("categoryId") Long categoryId,
+            @QueryParam("keyword") String keyword,
+            @QueryParam("flatform") @DefaultValue("0") int flatform,
+            @QueryParam("page") @DefaultValue("0") int page,
+            @QueryParam("range") @DefaultValue("10") int range,
+            @QueryParam("orderType") String orderType) {
+
+        List<GameEntry> gameEntries = null;
+
+        Flatform flatformEnum = null;
+        OrderType orderTypeEnum = null;
+
+        // validate flatform
+        switch (flatform) {
+            case 0:
+                flatformEnum = Flatform.ANDROID;
+                break;
+            case 1:
+                flatformEnum = Flatform.IOS;
+                break;
+            case 2:
+                flatformEnum = Flatform.JAVA;
+                break;
+            case 3:
+                flatformEnum = Flatform.WINDOW_PHONE;
+                break;
+            case 4:
+                flatformEnum = Flatform.OTHER;
+                break;
+        }
+
+        // validate orderType
+        if (orderType != null && !orderType.trim().isEmpty()) {
+            orderType = orderType.trim().toUpperCase();
+
+            switch (orderType) {
+                case "HOT":
+                    orderTypeEnum = OrderType.TOP_HOT;
+                    break;
+                case "DOWNLOAD":
+                    orderTypeEnum = OrderType.TOP_DOWNLOAD;
+                    break;
+                case "NEW":
+                    orderTypeEnum = OrderType.TOP_NEW;
+                    break;
+            }
+        }
+
+        try {
+
+            gameEntries = gameEntryFacade.search(categoryId, keyword, orderTypeEnum, page, range, flatformEnum);
+        } catch (Exception e) {
+
+            LOGGER.log(Level.SEVERE, "Error when searchGameEntries with categoryId = {0}, "
+                    + " keyword = {1}, flatform = {2}, page = {3}, range = {4},"
+                    + "orderType = {5}, Exception message = {6}", new Object[]{
+                        categoryId, keyword, flatform, page, range, orderType, e.toString()});
+        }
+
+        return gameEntries;
+    }
+}

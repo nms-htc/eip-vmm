@@ -297,6 +297,81 @@ public class GameEntryFacade extends AbstractFacade<GameEntry> implements Serial
 
         return q.getResultList();
     }
+    
+    /**
+     * Search for RS
+     * @param categoryId
+     * @param keyword
+     * @param orderType
+     * @param page
+     * @param range
+     * @param flatform
+     * @return 
+     */
+    public List<GameEntry> search(Long categoryId, String keyword, OrderType orderType, int page,
+            int range, Flatform flatform) {
+        
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<GameEntry> cq = cb.createQuery(GameEntry.class);
+        Root<GameEntry> root = cq.from(GameEntry.class);
+        Join<GameEntry, GameCategory> categoryJoin = root.join(GameEntry_.category, JoinType.LEFT);
+        cq.select(root);
+
+        List<Predicate> predicates = new ArrayList<>();
+
+        // check categoryId
+        if (categoryId != null && categoryId > 0) {
+            predicates.add(cb.equal(categoryJoin.get(GameCategory_.id), categoryId));
+        }
+
+        // check keywords
+        if (Validator.isNotNull(keyword)) {
+            keyword = "%" + keyword.toUpperCase() + "%";
+            Predicate titlePredicate = cb.like(cb.upper(root.get(GameEntry_.title)), keyword);
+            Predicate descriptionPredicate = cb.like(cb.upper(root.get(GameEntry_.description)), keyword);
+            predicates.add(cb.or(new Predicate[]{
+                titlePredicate,
+                descriptionPredicate
+            }));
+        }
+        
+        // check flatform
+        if (flatform != null) {
+            predicates.add(cb.isMember(flatform, root.get(GameEntry_.flatforms)));
+        }
+
+        if (predicates.size() > 0) {
+            cq.where(predicates.toArray(new Predicate[]{}));
+        }
+
+        if (orderType != null) {
+            switch (orderType) {
+                case TOP_DOWNLOAD:
+                    cq.orderBy(cb.desc(root.get(GameEntry_.downloadCount)));
+                    break;
+                case TOP_HOT:
+                    cq.orderBy(cb.desc(root.get(GameEntry_.hot)));
+                    break;
+                case TOP_NEW:
+                    cq.orderBy(cb.desc(root.get(GameEntry_.createdDate)));
+                    break;
+            }
+        }
+
+        // Create TypedQuery
+        TypedQuery<GameEntry> q = em.createQuery(cq);
+
+        // validate start and rangle
+        if (page < 0) page = 0;
+        if (range < 0) range = 0;
+        
+        int start = page * range;
+        
+        q.setFirstResult(start);
+        q.setMaxResults(range);
+
+        return q.getResultList();
+    }
 
     /**
      * For webservices.
