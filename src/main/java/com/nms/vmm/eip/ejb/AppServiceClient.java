@@ -34,7 +34,7 @@ public class AppServiceClient implements Serializable {
     private  ChargingWebserviceImplService nmsChargingService;
 
     public String checkPhoneNumber() {
-        if (true) {
+        if (false) {
             return "84925003155";
         }
         
