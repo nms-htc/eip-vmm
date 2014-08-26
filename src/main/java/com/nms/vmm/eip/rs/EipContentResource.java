@@ -79,7 +79,7 @@ public class EipContentResource {
             @QueryParam("categoryId") Long categoryId,
             @QueryParam("keyword") String keyword,
             @QueryParam("flatform") @DefaultValue("0") int flatform,
-            @QueryParam("page") @DefaultValue("0") int page,
+            @QueryParam("page") @DefaultValue("0") int page, 
             @QueryParam("range") @DefaultValue("10") int range,
             @QueryParam("orderType") String orderType) {
 
