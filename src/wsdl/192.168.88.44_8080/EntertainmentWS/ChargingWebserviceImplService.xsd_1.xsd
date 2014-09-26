@@ -17,6 +17,7 @@
 <xs:element name="contentCode" type="xs:string" minOccurs="0"/>
 <xs:element name="cpName" type="xs:string" minOccurs="0"/>
 <xs:element name="isdn" type="xs:string" minOccurs="0"/>
+<xs:element name="osCode" type="xs:string" minOccurs="0"/>
 <xs:element name="price" type="xs:double"/>
 <xs:element name="shortCode" type="xs:string" minOccurs="0"/>
 </xs:sequence>
@@ -48,6 +49,7 @@
 
 <xs:complexType name="responseBase">
 <xs:sequence>
+<xs:element name="content" type="xs:string" minOccurs="0"/>
 <xs:element name="detail" type="xs:string" minOccurs="0"/>
 <xs:element name="msisdn" type="xs:string" minOccurs="0"/>
 <xs:element name="result" type="xs:int"/>

@@ -2,6 +2,6 @@
 <catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
     <system systemId="http://203.128.246.85/NMS.asmx" uri="wsdl/203.128.246.85/NMS.asmx"/>
     <system systemId="http://203.128.246.85/NMS.asmx?WSDL" uri="wsdl/203.128.246.85/NMS.asmx.wsdl"/>
-    <system systemId="http://192.168.88.44:8181/EntertainmentWS/ChargingWebserviceImplService?wsdl" uri="wsdl/192.168.88.44_8181/EntertainmentWS/ChargingWebserviceImplService.wsdl"/>
-    <system systemId="http://192.168.88.44:8181/EntertainmentWS/ChargingWebserviceImplService?xsd=1" uri="wsdl/192.168.88.44_8181/EntertainmentWS/ChargingWebserviceImplService.xsd_1.xsd"/>
+    <system systemId="http://192.168.88.44:8080/EntertainmentWS/ChargingWebserviceImplService?wsdl" uri="wsdl/192.168.88.44_8080/EntertainmentWS/ChargingWebserviceImplService.wsdl"/>
+    <system systemId="http://192.168.88.44:8080/EntertainmentWS/ChargingWebserviceImplService?xsd=1" uri="wsdl/192.168.88.44_8080/EntertainmentWS/ChargingWebserviceImplService.xsd_1.xsd"/>
 </catalog>

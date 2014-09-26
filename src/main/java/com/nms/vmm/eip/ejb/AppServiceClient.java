@@ -30,7 +30,7 @@ public class AppServiceClient implements Serializable {
     private static final long serialVersionUID = -2727007622815437439L;
     @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/203.128.246.85/NMS.asmx.wsdl")
     private CHARGING chargingService;
-    @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/192.168.88.44_8181/EntertainmentWS/ChargingWebserviceImplService.wsdl")
+    @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/192.168.88.44_8080/EntertainmentWS/ChargingWebserviceImplService.wsdl")
     private  ChargingWebserviceImplService nmsChargingService;
 
     public String checkPhoneNumber() {
@@ -67,7 +67,7 @@ public class AppServiceClient implements Serializable {
         return phoneNumber;
     }
 
-    public boolean charging(String contentCode, String cpName, String isdn, double price, String shortCode) {
+    public boolean charging(String contentCode, String cpName, String isdn, double price, String shortCode,String osCode) {
         LOGGER.log(Level.INFO, "Start call NMS_CHARGING Service");
         long startTime = System.currentTimeMillis();
         ChargingWebserviceImpl port = nmsChargingService.getChargingWebserviceImplPort();
@@ -77,6 +77,7 @@ public class AppServiceClient implements Serializable {
             request.setContentCode(contentCode);
             request.setCpName(cpName);
             request.setIsdn(isdn);
+            request.setOsCode(osCode);
             request.setPrice(price);
             request.setShortCode(shortCode);
             request.setTimeout(0);

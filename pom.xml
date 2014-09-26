@@ -129,10 +129,10 @@
                         </goals>
                         <configuration>
                             <wsdlFiles>
-                                <wsdlFile>192.168.88.44_8181/EntertainmentWS/ChargingWebserviceImplService.wsdl</wsdlFile>
+                                <wsdlFile>192.168.88.44_8080/EntertainmentWS/ChargingWebserviceImplService.wsdl</wsdlFile>
                             </wsdlFiles>
                             <packageName></packageName>
-                            <wsdlLocation>http://192.168.88.44:8181/EntertainmentWS/ChargingWebserviceImplService?wsdl</wsdlLocation>
+                            <wsdlLocation>http://192.168.88.44:8080/EntertainmentWS/ChargingWebserviceImplService?wsdl</wsdlLocation>
                             <staleFile>${project.build.directory}/jaxws/stale/ChargingWebserviceImplService.stale</staleFile>
                         </configuration>
                         <id>wsimport-generate-ChargingWebserviceImplService</id>

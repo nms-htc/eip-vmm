@@ -6,6 +6,7 @@ package com.nms.vmm.eip.web.controller;
 import com.nms.vmm.eip.ejb.AppServiceClient;
 import com.nms.vmm.eip.ejb.GameCategoryFacade;
 import com.nms.vmm.eip.ejb.GameEntryFacade;
+import com.nms.vmm.eip.entity.Flatform;
 import com.nms.vmm.eip.entity.GameCategory;
 import com.nms.vmm.eip.entity.GameEntry;
 import com.nms.vmm.eip.web.util.JsfUtil;
@@ -101,9 +102,22 @@ public class GameDetailController implements Serializable {
 
             String isdn = serviceClient.checkPhoneNumber();
             if (isdn != null && !isdn.trim().isEmpty()) {
+                String osCode;
+                UserAgentInfo agentInfo = UserAgentInfo.createInstance();
+                
+                if (agentInfo.detectIos()) {
+                    osCode = String.valueOf(Flatform.IOS.ordinal() + 1);
+                } else if (agentInfo.detectAndroid()) {
+                    osCode = String.valueOf(Flatform.ANDROID.ordinal() + 1);
+                } else if (agentInfo.detectWindowsMobile()) {
+                    osCode = String.valueOf(Flatform.WINDOW_PHONE.ordinal() + 1);
+                } else {
+                    osCode = String.valueOf(Flatform.JAVA.ordinal() + 1);
+                }
+                
                 boolean success = serviceClient.charging(gameEntry.getCode(), gameEntry.getCpCode(), isdn,
                         gameEntry.getPrice(),
-                        MessageUtil.getBundleMessage("Service.NmsChargingGame.Shortcode"));
+                        MessageUtil.getBundleMessage("Service.NmsChargingGame.Shortcode"), osCode);
 
                 if (success) {
                     // update download count

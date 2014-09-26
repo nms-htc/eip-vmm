@@ -183,7 +183,7 @@ public class GameEntryFacade extends AbstractFacade<GameEntry> implements Serial
             } else {
                 predicate = cb.or(
                         cb.isMember(Flatform.JAVA, root.get(GameEntry_.flatforms)),
-                        cb.isMember(Flatform.JAVA, root.get(GameEntry_.flatforms)));
+                        cb.isMember(Flatform.OTHER, root.get(GameEntry_.flatforms)));
 
             }
         }
