@@ -5,10 +5,12 @@ package com.nms.vmm.eip.ejb;
 
 import com.nms.vmm.eip.entity.UserEntry;
 import com.nms.vmm.eip.entity.UserEntry_;
+import com.nms.vmm.eip.entity.UserRole;
 import com.nms.vmm.eip.web.util.AppUtil;
 import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
@@ -71,5 +73,11 @@ public class UserEntryFacade extends AbstractFacade<UserEntry> implements Serial
         TypedQuery<UserEntry> q = em.createQuery(cq);
         
         return q.getSingleResult();
+    }
+    
+    public int countAdministrator() {
+        TypedQuery<Long> q = em.createQuery("SELECT COUNT(u) FROM UserEntry u WHERE :userRole IN (u.userRoles)", Long.class);
+        q.setParameter("userRole", UserRole.Admin);
+        return q.getSingleResult().intValue();
     }
 }
