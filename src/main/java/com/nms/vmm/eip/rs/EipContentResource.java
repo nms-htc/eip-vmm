@@ -5,9 +5,8 @@ package com.nms.vmm.eip.rs;
 
 import com.nms.vmm.eip.ejb.GameCategoryFacade;
 import com.nms.vmm.eip.ejb.GameEntryFacade;
-import com.nms.vmm.eip.entity.Flatform;
 import com.nms.vmm.eip.entity.GameCategory;
-import com.nms.vmm.eip.entity.GameEntry;
+import com.nms.vmm.eip.entity.Game;
 import com.nms.vmm.eip.search.OrderType;
 import java.util.List;
 import java.util.logging.Level;
@@ -58,8 +57,8 @@ public class EipContentResource {
 
     @GET
     @Path("game/{id}")
-    public GameEntry getGameEntry(@PathParam("id") Long id) {
-        GameEntry gameEntry = null;
+    public Game getGameEntry(@PathParam("id") Long id) {
+        Game gameEntry = null;
         try {
             gameEntry = gameEntryFacade.find(id);
         } catch (Exception e) {
@@ -75,7 +74,7 @@ public class EipContentResource {
 
     @GET
     @Path("game/search")
-    public List<GameEntry> searchGameEntries(
+    public List<Game> searchGameEntries(
             @QueryParam("categoryId") Long categoryId,
             @QueryParam("keyword") String keyword,
             @QueryParam("flatform") @DefaultValue("0") int flatform,
@@ -83,27 +82,27 @@ public class EipContentResource {
             @QueryParam("range") @DefaultValue("10") int range,
             @QueryParam("orderType") String orderType) {
 
-        List<GameEntry> gameEntries = null;
+        List<Game> gameEntries = null;
 
-        Flatform flatformEnum = null;
+        Game.Flatform flatformEnum = null;
         OrderType orderTypeEnum = null;
 
         // validate flatform
         switch (flatform) {
             case 0:
-                flatformEnum = Flatform.ANDROID;
+                flatformEnum = Game.Flatform.ANDROID;
                 break;
             case 1:
-                flatformEnum = Flatform.IOS;
+                flatformEnum = Game.Flatform.IOS;
                 break;
             case 2:
-                flatformEnum = Flatform.JAVA;
+                flatformEnum = Game.Flatform.JAVA;
                 break;
             case 3:
-                flatformEnum = Flatform.WINDOW_PHONE;
+                flatformEnum = Game.Flatform.WINDOW_PHONE;
                 break;
             case 4:
-                flatformEnum = Flatform.OTHER;
+                flatformEnum = Game.Flatform.OTHER;
                 break;
         }
 

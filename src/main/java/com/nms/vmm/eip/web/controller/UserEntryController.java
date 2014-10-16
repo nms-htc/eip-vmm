@@ -5,7 +5,7 @@ package com.nms.vmm.eip.web.controller;
 
 import com.nms.vmm.eip.ejb.AbstractFacade;
 import com.nms.vmm.eip.ejb.UserEntryFacade;
-import com.nms.vmm.eip.entity.UserEntry;
+import com.nms.vmm.eip.entity.User;
 import com.nms.vmm.eip.entity.UserRole;
 import com.nms.vmm.eip.web.util.JsfUtil;
 import com.nms.vmm.eip.web.util.MessageUtil;
@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 @Named
 @SessionScoped
-public class UserEntryController extends AbstractController<UserEntry> implements Serializable {
+public class UserEntryController extends AbstractController<User> implements Serializable {
 
     private static final long serialVersionUID = 8571506113105478642L;
 
@@ -32,11 +32,11 @@ public class UserEntryController extends AbstractController<UserEntry> implement
     private UserEntryFacade facade;
 
     public UserEntryController() {
-        super(UserEntry.class);
+        super(User.class);
     }
 
     @Override
-    protected AbstractFacade<UserEntry> getFacade() {
+    protected AbstractFacade<User> getFacade() {
         return facade;
     }
     
@@ -49,8 +49,8 @@ public class UserEntryController extends AbstractController<UserEntry> implement
         return selectItems;
     }
     
-    public UserEntry getUserFromRequest() {
-        UserEntry user = null;
+    public User getUserFromRequest() {
+        User user = null;
         HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance()
                 .getExternalContext().getRequest();
         Principal principal = request.getUserPrincipal();
@@ -63,8 +63,8 @@ public class UserEntryController extends AbstractController<UserEntry> implement
     }
 
     @Override
-    protected boolean validate(UserEntry entity) {
-        UserEntry userEntry = null;
+    protected boolean validate(User entity) {
+        User userEntry = null;
         
         try {
             userEntry = facade.findByCode(entity.getCode());

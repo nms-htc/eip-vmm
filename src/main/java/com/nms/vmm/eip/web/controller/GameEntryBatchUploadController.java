@@ -6,8 +6,8 @@ package com.nms.vmm.eip.web.controller;
 import com.nms.vmm.eip.ejb.GameEntryFacade;
 import com.nms.vmm.eip.entity.Flatform;
 import com.nms.vmm.eip.entity.GameCategory;
-import com.nms.vmm.eip.entity.GameEntry;
-import com.nms.vmm.eip.entity.UserEntry;
+import com.nms.vmm.eip.entity.Game;
+import com.nms.vmm.eip.entity.User;
 import com.nms.vmm.eip.web.util.MessageUtil;
 import java.io.IOException;
 import java.io.Serializable;
@@ -92,10 +92,10 @@ public class GameEntryBatchUploadController implements Serializable {
         }
 
         if (rowIter != null) {
-            List<GameEntry> games = getGameEntries(rowIter);
+            List<Game> games = getGameEntries(rowIter);
 
             try {
-                UserEntry userEntry = userEntryController.getUserFromRequest();
+                User userEntry = userEntryController.getUserFromRequest();
                 String cpCode = null;
                 if (userEntry != null) {
                     cpCode = userEntry.getCode();
@@ -115,9 +115,9 @@ public class GameEntryBatchUploadController implements Serializable {
         return "list?faces-redirect=true";
     }
 
-    private List<GameEntry> getGameEntries(Iterator<Row> rowIterater) {
+    private List<Game> getGameEntries(Iterator<Row> rowIterater) {
 
-        List<GameEntry> gameEntries = new ArrayList<>();
+        List<Game> gameEntries = new ArrayList<>();
 
         // next header row
         if (rowIterater.hasNext()) {
@@ -126,7 +126,7 @@ public class GameEntryBatchUploadController implements Serializable {
 
         // process other row.
         while (rowIterater.hasNext()) {
-            GameEntry gameEntry = new GameEntry();
+            Game gameEntry = new Game();
             gameEntry.setCategory(category);
 
             Row row = rowIterater.next();

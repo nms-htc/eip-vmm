@@ -8,7 +8,7 @@ import com.nms.vmm.eip.ejb.GameCategoryFacade;
 import com.nms.vmm.eip.ejb.GameEntryFacade;
 import com.nms.vmm.eip.entity.Flatform;
 import com.nms.vmm.eip.entity.GameCategory;
-import com.nms.vmm.eip.entity.GameEntry;
+import com.nms.vmm.eip.entity.Game;
 import com.nms.vmm.eip.web.util.JsfUtil;
 import com.nms.vmm.eip.web.util.MessageUtil;
 import com.nms.vmm.eip.web.util.PaginationHelper;
@@ -29,8 +29,8 @@ import javax.inject.Named;
 public class GameDetailController implements Serializable {
 
     private static final long serialVersionUID = 4146463756712373608L;
-    private GameEntry gameEntry;
-    private DataModel<GameEntry> gameEntries;
+    private Game gameEntry;
+    private DataModel<Game> gameEntries;
     private PaginationHelper paginationHelper;
     private GameCategory gameCategory = null;
     @EJB
@@ -62,23 +62,23 @@ public class GameDetailController implements Serializable {
         gameEntries = null;
     }
     
-    public GameEntry getGameEntry() {
+    public Game getGameEntry() {
 
         return gameEntry;
     }
 
-    public void setGameEntry(GameEntry gameEntry) {
+    public void setGameEntry(Game gameEntry) {
         this.gameEntry = gameEntry;
     }
 
-    public DataModel<GameEntry> getGameEntries() {
+    public DataModel<Game> getGameEntries() {
         if (gameEntries == null) {
             gameEntries = getPaginationHelper().createPageDataModel();
         }
         return gameEntries;
     }
 
-    public void setGameEntries(DataModel<GameEntry> gameEntries) {
+    public void setGameEntries(DataModel<Game> gameEntries) {
         this.gameEntries = gameEntries;
     }
 

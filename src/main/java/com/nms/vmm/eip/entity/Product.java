@@ -4,94 +4,84 @@
  */
 package com.nms.vmm.eip.entity;
 
-import java.io.Serializable;
-import java.util.Date;
+import com.nms.vmm.eip.util.validation.Url;
 import java.util.List;
-import javax.persistence.Basic;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ConstraintMode;
+import javax.persistence.DiscriminatorColumn;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.ForeignKey;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
 
-/**
- *
- * @author Cuong
- */
 @Entity
 @Table(name = "EIP_PRODUCT")
-@SuppressWarnings("serial")
-public abstract class Product implements Serializable {
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "TYPE")
+@XmlRootElement
+public abstract class Product extends BaseEntity {
+    
+    private static final long serialVersionUID = 1600980462406964970L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    protected Long id;
+    @NotNull
+    @Size(max = 150)
+    @Column(name = "CODE", length = 150, unique = true, nullable = false)
+    protected String code;
 
-    @Size(max = 75, message = "{product.code}")
-    @Basic(optional = false)
-    private String code;
+    @NotNull
+    @Size(max = 75)
+    @Column(name = "CPCODE", length = 75, nullable = false)
+    protected String cpCode;
 
-    @Size(max = 75, message = "{product.cpcode}")
-    @Basic(optional = false)
-
-    private String cpCode;
-    @Temporal(TemporalType.TIMESTAMP)
-    @Basic(optional = false)
-    @Column(name = "CREATED_DATE")
-    private Date createdDate;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    @Basic(optional = false)
-    @Column(name = "MODIFIED_DATE")
-    private Date modifiedDate;
-
-    @Basic(optional = false)
-    @Size(max = 250, message = "{product.title}")
-    private String title;
-
-    @Size(max = 300, message = "{product.description}")
-    @Basic(optional = false)
-    private String description;
+    @NotNull
+    @Size(max = 250)
+    @Column(name = "TITLE", length = 250, nullable = false)
+    protected String title;
 
     @Lob
-    private String specification;
+    @Column(name = "SPEC")
+    protected String specification;
 
     @Column(name = "DOWNLOAD_COUNT")
-    private int downloadCount;
+    @Min(0)
+    protected int downloadCount;
     
+    @Column(name = "VIEW_COUNT")
+    @Min(0)
+    protected int viewCount;
+
     @Column(name = "IS_HOT")
-    private boolean hot;
+    protected boolean hot;
 
     @Column(name = "PROMO_PRICE")
-    private double promoPrice;
+    protected double promoPrice;
 
     @Column(name = "PRICE")
-    private double price;
-
+    protected double price;
+    
+    @Url
     @Column(name = "THUMBNAIL_URL")
-    private String thumbnailUrl;
+    protected String thumbnailUrl;
 
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "EIP_SCREENSHORT", joinColumns = @JoinColumn(name = "PRODUCT_ID"))
     @Column(name = "SCREENSHORT_URL")
-    private List<String> screenShorts;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+    protected List<String> screenShorts;
+    
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "USERID", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    protected User user;
 
     public String getCode() {
         return code;
@@ -109,36 +99,12 @@ public abstract class Product implements Serializable {
         this.cpCode = cpCode;
     }
 
-    public Date getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate(Date createdDate) {
-        this.createdDate = createdDate;
-    }
-
-    public Date getModifiedDate() {
-        return modifiedDate;
-    }
-
-    public void setModifiedDate(Date modifiedDate) {
-        this.modifiedDate = modifiedDate;
-    }
-
     public String getTitle() {
         return title;
     }
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public String getSpecification() {
@@ -189,33 +155,27 @@ public abstract class Product implements Serializable {
         this.screenShorts = screenShorts;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Product)) {
-            return false;
-        }
-        Product other = (Product) object;
-        return (this.id != null || other.id == null) && (this.id == null || this.id.equals(other.id));
-    }
-
-    @Override
-    public String toString() {
-        return "com.nms.vmm.eip.entity.Product[ id=" + id + " ]";
-    }
-
     public boolean isHot() {
         return hot;
     }
 
     public void setHot(boolean hot) {
         this.hot = hot;
+    }
+
+    public int getViewCount() {
+        return viewCount;
+    }
+
+    public void setViewCount(int viewCount) {
+        this.viewCount = viewCount;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

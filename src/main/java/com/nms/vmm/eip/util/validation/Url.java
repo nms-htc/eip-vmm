@@ -1,7 +1,8 @@
 /**
- * Copyright (C) 2014 Next Generation Mobile Service JSC., (NMS). All rights reserved.
+ * Copyright (C) 2014 Next Generation Mobile Service JSC., (NMS). All rights
+ * reserved.
  */
-package com.nms.vmm.eip.beanvalidator;
+package com.nms.vmm.eip.util.validation;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -12,13 +13,8 @@ import javax.validation.Constraint;
 import javax.validation.Payload;
 import javax.validation.constraints.Pattern;
 
-/**
- *
- * @author Cuong
- */
 @Pattern.List({
-    @Pattern(regexp = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*\n"
-            + "@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")
+    @Pattern(regexp = "^(?:ftp|http|https):\\/\\/(?:[\\w\\.\\-\\+]+:{0,1}[\\w\\.\\-\\+]*@)?(?:[a-z0-9\\-\\.]+)(?::[0-9]+)?(?:\\/|\\/(?:[\\w#!:\\.\\?\\+=&%@!\\-\\/\\(\\)]+)|\\?(?:[\\w#!:\\.\\?\\+=&%@!\\-\\/\\(\\)]+))?$")
 })
 @Constraint(validatedBy = {})
 @Documented
@@ -28,9 +24,9 @@ import javax.validation.constraints.Pattern;
     ElementType.CONSTRUCTOR,
     ElementType.PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Email {
+public @interface Url {
 
-    String message() default "{invalid.email}";
+    String message() default "{com.nms.vmm.eip.util.validation.url}";
 
     Class<?>[] groups() default {};
 
@@ -44,7 +40,6 @@ public @interface Email {
     @Retention(RetentionPolicy.RUNTIME)
     @Documented
     @interface List {
-
-        Email[] value();
+        Url[] value();
     }
 }

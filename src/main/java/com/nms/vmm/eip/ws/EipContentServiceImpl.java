@@ -6,7 +6,7 @@ package com.nms.vmm.eip.ws;
 import com.nms.vmm.eip.ejb.GameCategoryFacade;
 import com.nms.vmm.eip.ejb.GameEntryFacade;
 import com.nms.vmm.eip.entity.GameCategory;
-import com.nms.vmm.eip.entity.GameEntry;
+import com.nms.vmm.eip.entity.Game;
 import com.nms.vmm.eip.search.OrderType;
 import java.util.List;
 import javax.ejb.EJB;
@@ -34,7 +34,7 @@ public class EipContentServiceImpl {
     }
 
     @WebMethod(operationName = "searchGameEntry")
-    public List<GameEntry> searchGameEntry(@WebParam(name = "categoryId") Long categoryId, 
+    public List<Game> searchGameEntry(@WebParam(name = "categoryId") Long categoryId, 
             @WebParam(name = "keywords") String keywords, @WebParam(name = "orderType") OrderType orderType, 
             @WebParam(name = "start") int start, @WebParam(name = "range") int range) {
         return gameEntryFacade.search(categoryId, keywords, orderType, start, range);

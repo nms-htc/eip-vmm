@@ -3,10 +3,12 @@
  */
 package com.nms.vmm.eip.ejb;
 
+import com.nms.vmm.eip.entity.BaseEntity_;
 import com.nms.vmm.eip.entity.Flatform;
 import com.nms.vmm.eip.entity.GameCategory;
 import com.nms.vmm.eip.entity.GameCategory_;
-import com.nms.vmm.eip.entity.GameEntry;
+import com.nms.vmm.eip.entity.Game;
+import com.nms.vmm.eip.entity.Game.Flatform;
 import com.nms.vmm.eip.entity.GameEntry_;
 import com.nms.vmm.eip.search.GameEntryCriteria;
 import com.nms.vmm.eip.search.OrderType;
@@ -32,30 +34,30 @@ import javax.persistence.criteria.Root;
  * @author Cuong
  */
 @Stateless
-public class GameEntryFacade extends AbstractFacade<GameEntry> implements Serializable {
+public class GameEntryFacade extends AbstractFacade<Game> implements Serializable {
 
     private static final long serialVersionUID = 1894346867028333637L;
 
     @PersistenceContext
     private EntityManager em;
 
-    public List<GameEntry> findByCategoryId(Long categoryId) {
+    public List<Game> findByCategoryId(Long categoryId) {
         CriteriaBuilder cb = em.getCriteriaBuilder();
-        CriteriaQuery<GameEntry> cq = cb.createQuery(GameEntry.class);
-        Root<GameEntry> root = cq.from(GameEntry.class);
-        Join<GameEntry, GameCategory> category = root.join(GameEntry_.category, JoinType.LEFT);
+        CriteriaQuery<Game> cq = cb.createQuery(Game.class);
+        Root<Game> root = cq.from(Game.class);
+        Join<Game, GameCategory> category = root.join(GameEntry_.category, JoinType.LEFT);
         cq.select(root);
         cq.where(cb.equal(category.get(GameCategory_.id), categoryId));
-        TypedQuery<GameEntry> q = em.createQuery(cq);
+        TypedQuery<Game> q = em.createQuery(cq);
 
         return q.getResultList();
     }
 
-    public List<GameEntry> findByCategory(Long categoryId, UserAgentInfo agentInfo) {
+    public List<Game> findByCategory(Long categoryId, UserAgentInfo agentInfo) {
         CriteriaBuilder cb = em.getCriteriaBuilder();
-        CriteriaQuery<GameEntry> cq = cb.createQuery(GameEntry.class);
-        Root<GameEntry> root = cq.from(GameEntry.class);
-        Join<GameEntry, GameCategory> category = root.join(GameEntry_.category, JoinType.LEFT);
+        CriteriaQuery<Game> cq = cb.createQuery(Game.class);
+        Root<Game> root = cq.from(Game.class);
+        Join<Game, GameCategory> category = root.join(GameEntry_.category, JoinType.LEFT);
         List<Predicate> pridicates = new ArrayList<>();
         cq.select(root);
         if (category != null) {
@@ -68,16 +70,16 @@ public class GameEntryFacade extends AbstractFacade<GameEntry> implements Serial
         }
 
         cq.where(pridicates.toArray(new Predicate[]{}));
-        TypedQuery<GameEntry> q = em.createQuery(cq);
+        TypedQuery<Game> q = em.createQuery(cq);
         return q.getResultList();
     }
 
-    public List<GameEntry> findByCategory(Long categoryId, UserAgentInfo agentInfo, int[] range,
+    public List<Game> findByCategory(Long categoryId, UserAgentInfo agentInfo, int[] range,
             String orderByField, String orderByType) {
         CriteriaBuilder cb = em.getCriteriaBuilder();
-        CriteriaQuery<GameEntry> cq = cb.createQuery(GameEntry.class);
-        Root<GameEntry> root = cq.from(GameEntry.class);
-        Join<GameEntry, GameCategory> category = root.join(GameEntry_.category, JoinType.LEFT);
+        CriteriaQuery<Game> cq = cb.createQuery(Game.class);
+        Root<Game> root = cq.from(Game.class);
+        Join<Game, GameCategory> category = root.join(GameEntry_.category, JoinType.LEFT);
         List<Predicate> pridicates = new ArrayList<>();
         cq.select(root);
 
@@ -100,7 +102,7 @@ public class GameEntryFacade extends AbstractFacade<GameEntry> implements Serial
             }
         }
 
-        TypedQuery<GameEntry> q = em.createQuery(cq);
+        TypedQuery<Game> q = em.createQuery(cq);
         if (range != null && range.length == 2) {
             q.setFirstResult(range[0]);
             q.setMaxResults(range[1] - range[0] + 1);
@@ -112,8 +114,8 @@ public class GameEntryFacade extends AbstractFacade<GameEntry> implements Serial
 
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Long> cq = cb.createQuery(Long.class);
-        Root root = cq.from(GameEntry.class);
-        Join<GameEntry, GameCategory> category = root.join(GameEntry_.category, JoinType.LEFT);
+        Root root = cq.from(Game.class);
+        Join<Game, GameCategory> category = root.join(GameEntry_.category, JoinType.LEFT);
         List<Predicate> pridicates = new ArrayList<>();
         cq.select(cb.count(root));
 
@@ -133,7 +135,7 @@ public class GameEntryFacade extends AbstractFacade<GameEntry> implements Serial
     }
 
     public GameEntryFacade() {
-        super(GameEntry.class);
+        super(Game.class);
     }
 
     @Override
@@ -141,7 +143,7 @@ public class GameEntryFacade extends AbstractFacade<GameEntry> implements Serial
         return em;
     }
 
-    public void create(GameEntry entity, String cpCode) {
+    public void create(Game entity, String cpCode) {
 
         Date now = new Date();
         entity.setCreatedDate(now);
@@ -151,7 +153,7 @@ public class GameEntryFacade extends AbstractFacade<GameEntry> implements Serial
         super.create(entity);
     }
 
-    public void edit(GameEntry entity, String cpCode) {
+    public void edit(Game entity, String cpCode) {
 
         Date now = new Date();
         entity.setModifiedDate(now);
@@ -160,9 +162,9 @@ public class GameEntryFacade extends AbstractFacade<GameEntry> implements Serial
         super.edit(entity);
     }
 
-    public void create(List<GameEntry> entities, String cpCode) {
+    public void create(List<Game> entities, String cpCode) {
         Date now = new Date();
-        for (GameEntry entity : entities) {
+        for (Game entity : entities) {
             entity.setModifiedDate(now);
             entity.setCreatedDate(now);
             entity.setCpCode(cpCode);
@@ -170,7 +172,7 @@ public class GameEntryFacade extends AbstractFacade<GameEntry> implements Serial
         }
     }
 
-    private Predicate getDetectMobilePredicate(Root<GameEntry> root, UserAgentInfo agentInfo, CriteriaBuilder cb) {
+    private Predicate getDetectMobilePredicate(Root<Game> root, UserAgentInfo agentInfo, CriteriaBuilder cb) {
         Predicate predicate = null;
 
         if (agentInfo != null && agentInfo.isMobileDevice()) {
@@ -190,11 +192,11 @@ public class GameEntryFacade extends AbstractFacade<GameEntry> implements Serial
         return predicate;
     }
 
-    public List<GameEntry> search(GameEntryCriteria criteria, int start, int range) {
+    public List<Game> search(GameEntryCriteria criteria, int start, int range) {
         CriteriaBuilder cb = em.getCriteriaBuilder();
-        CriteriaQuery<GameEntry> cq = cb.createQuery(GameEntry.class);
-        Root<GameEntry> root = cq.from(GameEntry.class);
-        Join<GameEntry, GameCategory> category = root.join(GameEntry_.category, JoinType.LEFT);
+        CriteriaQuery<Game> cq = cb.createQuery(Game.class);
+        Root<Game> root = cq.from(Game.class);
+        Join<Game, GameCategory> category = root.join(GameEntry_.category, JoinType.LEFT);
         cq.select(root);
 
         List<Predicate> predicates = buildPredicate(cb, root, category, criteria);
@@ -203,7 +205,7 @@ public class GameEntryFacade extends AbstractFacade<GameEntry> implements Serial
             cq.where(predicates.toArray(new Predicate[]{}));
         }
 
-        TypedQuery<GameEntry> q = em.createQuery(cq);
+        TypedQuery<Game> q = em.createQuery(cq);
         if (start >= 0 && range > 0) {
             q.setFirstResult(start);
             q.setMaxResults(range);
@@ -214,8 +216,8 @@ public class GameEntryFacade extends AbstractFacade<GameEntry> implements Serial
     public int count(GameEntryCriteria criteria) {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Long> cq = cb.createQuery(Long.class);
-        Root<GameEntry> root = cq.from(GameEntry.class);
-        Join<GameEntry, GameCategory> category = root.join(GameEntry_.category, JoinType.LEFT);
+        Root<Game> root = cq.from(Game.class);
+        Join<Game, GameCategory> category = root.join(GameEntry_.category, JoinType.LEFT);
         cq.select(cb.count(root));
 
         List<Predicate> predicates = buildPredicate(cb, root, category, criteria);
@@ -242,19 +244,19 @@ public class GameEntryFacade extends AbstractFacade<GameEntry> implements Serial
      * @param range
      * @return
      */
-    public List<GameEntry> search(Long categoryId, String keywords, OrderType orderType, int start,
+    public List<Game> search(Long categoryId, String keywords, OrderType orderType, int start,
             int range) {
         CriteriaBuilder cb = em.getCriteriaBuilder();
-        CriteriaQuery<GameEntry> cq = cb.createQuery(GameEntry.class);
-        Root<GameEntry> root = cq.from(GameEntry.class);
-        Join<GameEntry, GameCategory> categoryJoin = root.join(GameEntry_.category, JoinType.LEFT);
+        CriteriaQuery<Game> cq = cb.createQuery(Game.class);
+        Root<Game> root = cq.from(Game.class);
+        Join<Game, GameCategory> categoryJoin = root.join(GameEntry_.category, JoinType.LEFT);
         cq.select(root);
 
         List<Predicate> predicates = new ArrayList<>();
 
         // check categoryId
         if (categoryId != null && categoryId > 0) {
-            predicates.add(cb.equal(categoryJoin.get(GameCategory_.id), categoryId));
+            predicates.add(cb.equal(categoryJoin.get(BaseEntity_.id), categoryId));
         }
 
         // check keywords
@@ -287,7 +289,7 @@ public class GameEntryFacade extends AbstractFacade<GameEntry> implements Serial
         }
 
         // Create TypedQuery
-        TypedQuery<GameEntry> q = em.createQuery(cq);
+        TypedQuery<Game> q = em.createQuery(cq);
 
         // validate start and rangle
         if (start > 0 && range > 0) {
@@ -308,20 +310,20 @@ public class GameEntryFacade extends AbstractFacade<GameEntry> implements Serial
      * @param flatform
      * @return 
      */
-    public List<GameEntry> search(Long categoryId, String keyword, OrderType orderType, int page,
-            int range, Flatform flatform) {
+    public List<Game> search(Long categoryId, String keyword, OrderType orderType, int page,
+            int range, Game.Flatform flatform) {
         
         CriteriaBuilder cb = em.getCriteriaBuilder();
-        CriteriaQuery<GameEntry> cq = cb.createQuery(GameEntry.class);
-        Root<GameEntry> root = cq.from(GameEntry.class);
-        Join<GameEntry, GameCategory> categoryJoin = root.join(GameEntry_.category, JoinType.LEFT);
+        CriteriaQuery<Game> cq = cb.createQuery(Game.class);
+        Root<Game> root = cq.from(Game.class);
+        Join<Game, GameCategory> categoryJoin = root.join(GameEntry_.category, JoinType.LEFT);
         cq.select(root);
 
         List<Predicate> predicates = new ArrayList<>();
 
         // check categoryId
         if (categoryId != null && categoryId > 0) {
-            predicates.add(cb.equal(categoryJoin.get(GameCategory_.id), categoryId));
+            predicates.add(cb.equal(categoryJoin.get(BaseEntity_.id), categoryId));
         }
 
         // check keywords
@@ -359,7 +361,7 @@ public class GameEntryFacade extends AbstractFacade<GameEntry> implements Serial
         }
 
         // Create TypedQuery
-        TypedQuery<GameEntry> q = em.createQuery(cq);
+        TypedQuery<Game> q = em.createQuery(cq);
 
         // validate start and rangle
         if (page < 0) page = 0;
@@ -384,15 +386,15 @@ public class GameEntryFacade extends AbstractFacade<GameEntry> implements Serial
 
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Long> cq = cb.createQuery(Long.class);
-        Root<GameEntry> root = cq.from(GameEntry.class);
-        Join<GameEntry, GameCategory> categoryJoin = root.join(GameEntry_.category, JoinType.LEFT);
+        Root<Game> root = cq.from(Game.class);
+        Join<Game, GameCategory> categoryJoin = root.join(GameEntry_.category, JoinType.LEFT);
         cq.select(cb.count(root));
 
         List<Predicate> predicates = new ArrayList<>();
 
         // check categoryId
         if (categoryId > 0) {
-            predicates.add(cb.equal(categoryJoin.get(GameCategory_.id), categoryId));
+            predicates.add(cb.equal(categoryJoin.get(BaseEntity_.id), categoryId));
         }
 
         // check keywords
@@ -419,10 +421,10 @@ public class GameEntryFacade extends AbstractFacade<GameEntry> implements Serial
         return 0;
     }
 
-    public List<GameEntry> search(String keywords, UserAgentInfo agentInfo, int start, int range) {
+    public List<Game> search(String keywords, UserAgentInfo agentInfo, int start, int range) {
         CriteriaBuilder cb = em.getCriteriaBuilder();
-        CriteriaQuery<GameEntry> cq = cb.createQuery(GameEntry.class);
-        Root<GameEntry> root = cq.from(GameEntry.class);
+        CriteriaQuery<Game> cq = cb.createQuery(Game.class);
+        Root<Game> root = cq.from(Game.class);
         cq.select(root);
 
         List<Predicate> predicates = new ArrayList<>();
@@ -452,7 +454,7 @@ public class GameEntryFacade extends AbstractFacade<GameEntry> implements Serial
         cq.orderBy(cb.asc(root.get(GameEntry_.title)));
 
         // Create TypedQuery
-        TypedQuery<GameEntry> q = em.createQuery(cq);
+        TypedQuery<Game> q = em.createQuery(cq);
 
         // validate start and rangle
         if (start >= 0 && range >= 0) {
@@ -467,7 +469,7 @@ public class GameEntryFacade extends AbstractFacade<GameEntry> implements Serial
 
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Long> cq = cb.createQuery(Long.class);
-        Root<GameEntry> root = cq.from(GameEntry.class);
+        Root<Game> root = cq.from(Game.class);
         cq.select(cb.count(root));
 
         List<Predicate> predicates = new ArrayList<>();
@@ -505,7 +507,7 @@ public class GameEntryFacade extends AbstractFacade<GameEntry> implements Serial
         return 0;
     }
 
-    private List<Predicate> buildPredicate(CriteriaBuilder cb, Root<GameEntry> root, Join<GameEntry, GameCategory> categoryJoin,
+    private List<Predicate> buildPredicate(CriteriaBuilder cb, Root<Game> root, Join<Game, GameCategory> categoryJoin,
             GameEntryCriteria criteria) {
         List<Predicate> predicates = new ArrayList<>();
 

@@ -5,8 +5,8 @@ package com.nms.vmm.eip.web.controller;
 
 import com.nms.vmm.eip.ejb.GameEntryFacade;
 import com.nms.vmm.eip.entity.Flatform;
-import com.nms.vmm.eip.entity.GameEntry;
-import com.nms.vmm.eip.entity.UserEntry;
+import com.nms.vmm.eip.entity.Game;
+import com.nms.vmm.eip.entity.User;
 import com.nms.vmm.eip.entity.UserRole;
 import com.nms.vmm.eip.search.GameEntryCriteria;
 import com.nms.vmm.eip.web.util.MessageUtil;
@@ -36,8 +36,8 @@ public class GameEntryController implements Serializable {
     // Private Data Memmber
     @EJB
     private GameEntryFacade facade;
-    private GameEntry current;
-    private DataModel<GameEntry> items;
+    private Game current;
+    private DataModel<Game> items;
     private PaginationHelper paginationHelper;
     private GameEntryCriteria criteria;
     @Inject
@@ -48,25 +48,25 @@ public class GameEntryController implements Serializable {
     }
 
     // Getters and Setters
-    public GameEntry getCurrent() {
+    public Game getCurrent() {
         if (current == null) {
-            current = new GameEntry();
+            current = new Game();
         }
         return current;
     }
 
-    public void setCurrent(GameEntry current) {
+    public void setCurrent(Game current) {
         this.current = current;
     }
 
-    public DataModel<GameEntry> getItems() {
+    public DataModel<Game> getItems() {
         if (items == null) {
             items = getPaginationHelper().createPageDataModel();
         }
         return items;
     }
 
-    public void setItems(DataModel<GameEntry> items) {
+    public void setItems(DataModel<Game> items) {
         this.items = items;
     }
 
@@ -137,15 +137,15 @@ public class GameEntryController implements Serializable {
         }
     }
 
-    public List<GameEntry> getTopDownloadGames() {
+    public List<Game> getTopDownloadGames() {
         return facade.findByCategory(null, UserAgentInfo.createInstance(), new int[]{0, 9}, "downloadCount", "desc");
     }
 
-    public List<GameEntry> getHotGames() {
+    public List<Game> getHotGames() {
         return facade.findByCategory(null, UserAgentInfo.createInstance(), new int[]{0, 9}, "downloadCount", "desc");
     }
 
-    public List<GameEntry> getNewGames() {
+    public List<Game> getNewGames() {
         return facade.findByCategory(null, UserAgentInfo.createInstance(), new int[]{0, 9}, "createdDate", "desc");
     }
 
@@ -162,7 +162,7 @@ public class GameEntryController implements Serializable {
 
     private String getCurrentCpCode() {
         String cpCode = null;
-        UserEntry userEntry = userEntryController.getUserFromRequest();
+        User userEntry = userEntryController.getUserFromRequest();
         if (userEntry != null) {
             cpCode = userEntry.getCode();
         }
@@ -198,7 +198,7 @@ public class GameEntryController implements Serializable {
             criteria = new GameEntryCriteria();
         }
         
-        UserEntry currentUser = userEntryController.getUserFromRequest();
+        User currentUser = userEntryController.getUserFromRequest();
         if (currentUser != null && !currentUser.getUserRoles().contains(UserRole.Admin)) {
             criteria.setCpCode(getCurrentCpCode());
         }

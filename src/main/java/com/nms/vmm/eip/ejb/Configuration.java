@@ -3,7 +3,7 @@
  */
 package com.nms.vmm.eip.ejb;
 
-import com.nms.vmm.eip.entity.UserEntry;
+import com.nms.vmm.eip.entity.User;
 import com.nms.vmm.eip.entity.UserRole;
 import java.util.Arrays;
 import javax.annotation.PostConstruct;
@@ -21,7 +21,7 @@ public class Configuration {
     @PostConstruct
     public void initApplication() {
         if (userService.countAdministrator() <= 0) {
-            UserEntry userEntry = new UserEntry();
+            User userEntry = new User();
             userEntry.setCode("admin");
             userEntry.setDescription("Default Administrator");
             userEntry.setEmail("admin@nms.com.vn");

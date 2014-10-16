@@ -4,47 +4,31 @@
  */
 package com.nms.vmm.eip.entity;
 
-import java.io.Serializable;
-import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
-import javax.persistence.GenerationType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
-/**
- *
- * @author Cuong
- */
 @Entity
 @Table(name = "EIP_CATEGORY")
-@SuppressWarnings("serial")
-public abstract class Category implements Serializable {
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "TYPE")
+@XmlRootElement
+public abstract class Category extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    protected Long id;
-    
-    @Basic(optional = false)
-    @Size(min = 3, max = 100, message = "{category.title}")
+    private static final long serialVersionUID = -615131548850056148L;
+
+    @NotNull
+    @Size(max = 250)
+    @Column(name = "TITLE", length = 250)
     protected String title;
 
     public Category() {
-    }
-
-    public Category(Long id, String tilte) {
-        this.id = id;
-        this.title = tilte;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getTitle() {
@@ -53,27 +37,5 @@ public abstract class Category implements Serializable {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Category)) {
-            return false;
-        }
-        Category other = (Category) object;
-        return (this.id != null || other.id == null) && (this.id == null || this.id.equals(other.id));
-    }
-
-    @Override
-    public String toString() {
-        return "com.nms.vmm.eip.entity.Category[ id=" + id + " ]";
     }
 }

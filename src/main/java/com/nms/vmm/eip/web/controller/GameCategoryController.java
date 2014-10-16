@@ -6,7 +6,7 @@ package com.nms.vmm.eip.web.controller;
 import com.nms.vmm.eip.ejb.GameCategoryFacade;
 import com.nms.vmm.eip.ejb.GameEntryFacade;
 import com.nms.vmm.eip.entity.GameCategory;
-import com.nms.vmm.eip.entity.GameEntry;
+import com.nms.vmm.eip.entity.Game;
 import com.nms.vmm.eip.web.util.JsfUtil;
 import com.nms.vmm.eip.web.util.MessageUtil;
 import com.nms.vmm.eip.web.util.PaginationHelper;
@@ -125,7 +125,7 @@ public class GameCategoryController implements Serializable {
     public String delete() {
         current = (GameCategory) items.getRowData();
         try {
-            List<GameEntry> games = gameEntryFacade.findByCategoryId(current.getId());
+            List<Game> games = gameEntryFacade.findByCategoryId(current.getId());
             if (games != null && games.size() > 0) {
                 JsfUtil.addErrorMessage(MessageUtil.getBundleMessage("GameCategoryDeleteCategoryHasGameErrorMessage"));
             } else {

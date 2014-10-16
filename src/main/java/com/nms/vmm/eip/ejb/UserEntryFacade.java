@@ -3,7 +3,7 @@
  */
 package com.nms.vmm.eip.ejb;
 
-import com.nms.vmm.eip.entity.UserEntry;
+import com.nms.vmm.eip.entity.User;
 import com.nms.vmm.eip.entity.UserEntry_;
 import com.nms.vmm.eip.entity.UserRole;
 import com.nms.vmm.eip.web.util.AppUtil;
@@ -26,7 +26,7 @@ import javax.persistence.criteria.Root;
  * @author Cuong
  */
 @Stateless
-public class UserEntryFacade extends AbstractFacade<UserEntry> implements Serializable {
+public class UserEntryFacade extends AbstractFacade<User> implements Serializable {
 
     private static final long serialVersionUID = 8105388844447106807L;
 
@@ -34,7 +34,7 @@ public class UserEntryFacade extends AbstractFacade<UserEntry> implements Serial
     private EntityManager em;
 
     public UserEntryFacade() {
-        super(UserEntry.class);
+        super(User.class);
     }
 
     @Override
@@ -43,7 +43,7 @@ public class UserEntryFacade extends AbstractFacade<UserEntry> implements Serial
     }
 
     @Override
-    public void create(UserEntry entity) {
+    public void create(User entity) {
         try {
             entity.setPassword(AppUtil.encodeSHA256(entity.getPassword()));
         } catch (NoSuchAlgorithmException | UnsupportedEncodingException ex) {
@@ -53,7 +53,7 @@ public class UserEntryFacade extends AbstractFacade<UserEntry> implements Serial
     }
 
     @Override
-    public void edit(UserEntry entity) {
+    public void edit(User entity) {
          try {
             entity.setPassword(AppUtil.encodeSHA256(entity.getPassword()));
         } catch (NoSuchAlgorithmException | UnsupportedEncodingException ex) {
@@ -62,15 +62,15 @@ public class UserEntryFacade extends AbstractFacade<UserEntry> implements Serial
         super.edit(entity);
     }
     
-    public UserEntry findByCode(String code) {
+    public User findByCode(String code) {
         CriteriaBuilder cb = em.getCriteriaBuilder();
-        CriteriaQuery<UserEntry> cq = cb.createQuery(UserEntry.class);
-        Root<UserEntry> root = cq.from(UserEntry.class);
+        CriteriaQuery<User> cq = cb.createQuery(User.class);
+        Root<User> root = cq.from(User.class);
         cq.select(root);
         
         cq.where(cb.equal(root.get(UserEntry_.code), code));
         
-        TypedQuery<UserEntry> q = em.createQuery(cq);
+        TypedQuery<User> q = em.createQuery(cq);
         
         return q.getSingleResult();
     }

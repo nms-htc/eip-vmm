@@ -9,10 +9,10 @@ import javax.persistence.Entity;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
-@DiscriminatorValue("Game")
+@DiscriminatorValue("Picture")
 @XmlRootElement
-public class GameCategory extends Category {
+public class PictureCategory extends Category {
 
-    private static final long serialVersionUID = -8167109820678750424L;
+    private static final long serialVersionUID = -5809524831295842691L;
 
 }
