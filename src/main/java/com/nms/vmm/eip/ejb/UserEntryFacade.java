@@ -4,8 +4,6 @@
 package com.nms.vmm.eip.ejb;
 
 import com.nms.vmm.eip.entity.User;
-import com.nms.vmm.eip.entity.UserEntry_;
-import com.nms.vmm.eip.entity.UserRole;
 import com.nms.vmm.eip.web.util.AppUtil;
 import java.io.Serializable;
 import java.io.UnsupportedEncodingException;

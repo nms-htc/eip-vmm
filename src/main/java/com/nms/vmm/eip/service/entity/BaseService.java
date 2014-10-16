@@ -2,7 +2,7 @@
  * Copyright (C) 2014 Next Generation Mobile Service JSC., (NMS).
  * All rights reserved.
  */
-package com.nms.vmm.eip.service;
+package com.nms.vmm.eip.service.entity;
 
 import java.io.Serializable;
 import java.util.List;

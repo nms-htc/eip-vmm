@@ -4,7 +4,7 @@
  */
 package com.nms.vmm.eip.entity;
 
-import com.nms.vmm.eip.util.validation.Email;
+import com.nms.vmm.eip.entity.validation.Email;
 import java.util.List;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;

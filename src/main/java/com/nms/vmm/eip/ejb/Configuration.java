@@ -4,7 +4,6 @@
 package com.nms.vmm.eip.ejb;
 
 import com.nms.vmm.eip.entity.User;
-import com.nms.vmm.eip.entity.UserRole;
 import java.util.Arrays;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;

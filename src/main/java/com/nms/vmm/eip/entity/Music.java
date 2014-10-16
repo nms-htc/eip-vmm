@@ -4,7 +4,7 @@
  */
 package com.nms.vmm.eip.entity;
 
-import com.nms.vmm.eip.util.validation.Url;
+import com.nms.vmm.eip.entity.validation.Url;
 import javax.persistence.Column;
 import javax.persistence.ConstraintMode;
 import javax.persistence.DiscriminatorValue;
