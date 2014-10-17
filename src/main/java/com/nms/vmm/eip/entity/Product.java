@@ -36,7 +36,7 @@ public abstract class Product extends BaseEntity {
 
     @NotNull
     @Size(max = 150)
-    @Column(name = "CODE", length = 150, unique = true, nullable = false)
+    @Column(name = "CODE", length = 150, nullable = false)
     protected String code;
 
     @NotNull

@@ -9,13 +9,16 @@ import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIInput;
 import javax.faces.component.UISelectItem;
+import javax.faces.component.UISelectItems;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.model.SelectItem;
 
 /**
- *
- * @author Cuong
+ * JsfUtil functionalitis.
+ * @author Nguyen Trong Cuong (cuongnt1987@gmail.com)
+ * @since 08/26/2014
+ * @version 1.0
  */
 public class JsfUtil {
 
@@ -54,12 +57,26 @@ public class JsfUtil {
      */
     public static boolean isDummySelectItem(UIComponent component, String value) {
         for (UIComponent children : component.getChildren()) {
+            /* First check if children is UISelectItem */
             if (children instanceof UISelectItem) {
                 UISelectItem item = (UISelectItem) children;
                 if (item.getItemValue() == null && item.getItemLabel().equals(value)) {
                     return true;
                 }
                 break;
+                /* Second check is children is UISelectItems */
+            } else if (children instanceof UISelectItems) {
+                UISelectItems items = (UISelectItems) children;
+                Object itemsObject = items.getValue();
+                if (itemsObject instanceof SelectItem[]) {
+                    SelectItem[] itemSi = (SelectItem[]) itemsObject;
+                    for (SelectItem si : itemSi) {
+                        if (si.getValue() == null && si.getLabel().equals(value)) {
+                            return true;
+                        }
+                        break;
+                    }
+                }
             }
         }
         return false;
@@ -72,7 +89,7 @@ public class JsfUtil {
 
     public static Object getObjectFromRequestParameter(String requestParameter, Converter converter,
             UIComponent component) {
-        
+
         String theId = getRequestParameter(requestParameter);
         return converter.getAsObject(FacesContext.getCurrentInstance(), component, theId);
     }

@@ -4,21 +4,28 @@
  */
 package com.nms.vmm.eip.ejb;
 
+import com.nms.vmm.eip.entity.BaseEntity;
+import com.nms.vmm.eip.entity.BaseEntity_;
 import com.nms.vmm.eip.service.entity.BaseService;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Order;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 
-public abstract class AbstractFacadeBean<T> implements BaseService<T> {
+public abstract class AbstractFacadeBean<T extends BaseEntity> implements BaseService<T> {
 
     private static final long serialVersionUID = -3193947671333109472L;
 
     @PersistenceContext
     protected EntityManager em;
-    
+
     private final Class<T> entityClass;
 
     public AbstractFacadeBean(Class<T> entityClass) {
@@ -54,7 +61,6 @@ public abstract class AbstractFacadeBean<T> implements BaseService<T> {
 
     /* Callback method */
     protected void onAfterPersist(T entity) {
-        
     }
 
     @Override
@@ -95,5 +101,82 @@ public abstract class AbstractFacadeBean<T> implements BaseService<T> {
         onBeforeRemove(entity);
         em.remove(em.merge(entity));
         onAfterRemove(entity);
+    }
+
+    @Override
+    public int countForPFDatatable(Map<String, Object> filters) {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Long> cq = cb.createQuery(Long.class);
+        Root<T> root = cq.from(entityClass);
+        cq.select(cb.count(root));
+
+        List<Predicate> predicates = buildConditions(filters, root, cb);
+
+        if (predicates != null && !predicates.isEmpty()) {
+            cq.where(predicates.toArray(new Predicate[]{}));
+        }
+
+        TypedQuery<Long> q = em.createQuery(cq);
+        return q.getSingleResult().intValue();
+    }
+
+    @Override
+    public List<T> searchForPFDatatable(int start, int range, String sortField,
+            boolean asc, Map<String, Object> filters) {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<T> cq = cb.createQuery(entityClass);
+        Root<T> root = cq.from(entityClass);
+        cq.select(root);
+
+        List<Predicate> predicates = buildConditions(filters, root, cb);
+
+        if (predicates != null && !predicates.isEmpty()) {
+            cq.where(predicates.toArray(new Predicate[]{}));
+        }
+
+        Order[] orders = buildOrder(sortField, asc, cb, root);
+
+        if (orders != null && orders.length > 0) {
+            cq.orderBy(orders);
+        }
+
+        TypedQuery<T> q = em.createQuery(cq);
+
+        q.setFirstResult(start);
+        q.setMaxResults(range);
+
+        return q.getResultList();
+    }
+
+    protected List<Predicate> buildConditions(Map<String, Object> filters, Root<T> root, CriteriaBuilder cb) {
+        List<Predicate> predicates = new ArrayList<>();
+
+        for (Map.Entry<String, Object> entry : filters.entrySet()) {
+            Predicate predicate = buildCondition(entry, root, cb);
+            if (predicate != null) {
+                predicates.add(predicate);
+            }
+        }
+
+        return predicates;
+    }
+
+    protected Predicate buildCondition(Map.Entry<String, Object> entry, Root<T> root, CriteriaBuilder cb) {
+        return cb.equal(root.get(entry.getKey()), entry.getValue());
+    }
+
+    protected Order[] buildOrder(String sortField, boolean asc, CriteriaBuilder cb, Root<T> root) {
+        List<Order> orders = new ArrayList<>();
+
+        if (sortField == null || !sortField.isEmpty()) {
+            orders.add(cb.desc(root.get(BaseEntity_.modifiedDate)));
+        } else {
+            if (asc) {
+                orders.add(cb.asc(root.get(sortField)));
+            } else {
+                orders.add(cb.desc(root.get(sortField)));
+            }
+        }
+        return orders.toArray(new Order[]{});
     }
 }

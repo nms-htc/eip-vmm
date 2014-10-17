@@ -4,6 +4,8 @@
 package com.nms.vmm.eip.web.controller;
 
 import com.nms.vmm.eip.ejb.AbstractFacade;
+import com.nms.vmm.eip.entity.Product;
+import com.nms.vmm.eip.web.model.AbstractLazyDataModel;
 import com.nms.vmm.eip.web.util.JsfUtil;
 import com.nms.vmm.eip.web.util.MessageUtil;
 import com.nms.vmm.eip.web.util.PaginationHelper;

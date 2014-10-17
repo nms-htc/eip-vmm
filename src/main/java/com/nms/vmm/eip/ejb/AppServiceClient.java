@@ -14,7 +14,6 @@ import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
-import javax.xml.ws.WebServiceRef;
 //import nmscgw.CHARGING;
 //import nmscgw.CHARGINGSoap;
 

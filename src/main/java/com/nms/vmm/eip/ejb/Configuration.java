@@ -4,6 +4,7 @@
 package com.nms.vmm.eip.ejb;
 
 import com.nms.vmm.eip.entity.User;
+import com.nms.vmm.eip.service.entity.UserService;
 import java.util.Arrays;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -15,19 +16,20 @@ import javax.ejb.Startup;
 public class Configuration {
 
     @EJB
-    private UserEntryFacade userService;
+    private UserService userService;
     
     @PostConstruct
     public void initApplication() {
-        if (userService.countAdministrator() <= 0) {
-            User userEntry = new User();
-            userEntry.setCode("admin");
-            userEntry.setDescription("Default Administrator");
-            userEntry.setEmail("admin@nms.com.vn");
-            userEntry.setPassword("admin");
-            userEntry.setFullName("Administrator");
-            userEntry.setUserRoles(Arrays.asList(UserRole.Admin));
-            userService.create(userEntry);
+        if (!userService.hasAdminUser()) {
+            User user = new User();
+            user.setCode("admin");
+            user.setUsername("admin");
+            user.setEmail("admin@nms.com.vn");
+            user.setPassword("admin");
+            user.setFullname("Administrator");
+            user.setGroups(Arrays.asList(User.Group.Admin));
+            user.setDescription("Default Administrator");
+            userService.persist(user);
         }
     }
 }

@@ -1,12 +1,13 @@
 /**
- * Copyright (C) 2014 Next Generation Mobile Service JSC., (NMS).
- * All rights reserved.
+ * Copyright (C) 2014 Next Generation Mobile Service JSC., (NMS). All rights
+ * reserved.
  */
 package com.nms.vmm.eip.service.entity;
 
+import com.nms.vmm.eip.entity.BaseEntity;
 import java.io.Serializable;
 import java.util.List;
-
+import java.util.Map;
 
 /**
  * Basic functionalities of ejb beans.
@@ -16,29 +17,33 @@ import java.util.List;
  * @version 1.0
  * @param <T> Entity Class Type
  */
-public interface BaseService<T> extends Serializable {
+public interface BaseService<T extends BaseEntity> extends Serializable {
 
     /**
      * Find entity by id object.
+     *
      * @param id
-     * @return 
+     * @return
      */
     public T find(Object id);
 
     /**
      * Find all entities.
+     *
      * @return all of entities in database.
      */
     public List<T> findAll();
 
     /**
      * count all record in db.
+     *
      * @return number of entity records.
      */
     public int countAll();
 
     /**
      * Persist entity to db
+     *
      * @param entity object to persist.
      * @return entity after persist.
      */
@@ -46,14 +51,36 @@ public interface BaseService<T> extends Serializable {
 
     /**
      * Update entity
+     *
      * @param entity
-     * @return 
+     * @return
      */
     public T update(T entity);
 
     /**
      * Delete entity from db.
-     * @param entity 
+     *
+     * @param entity
      */
     public void remove(T entity);
+
+    /**
+     * Filter method for primerfaces lazy data table.
+     *
+     * @param start
+     * @param range
+     * @param sortField
+     * @param asc
+     * @param filters
+     * @return
+     */
+    public List<T> searchForPFDatatable(int start, int range, String sortField, boolean asc, Map<String, Object> filters);
+
+    /**
+     * Using in primeface lazy data model.
+     *
+     * @param filters
+     * @return
+     */
+    public int countForPFDatatable(Map<String, Object> filters);
 }

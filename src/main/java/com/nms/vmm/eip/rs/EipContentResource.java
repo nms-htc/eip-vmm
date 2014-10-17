@@ -3,11 +3,11 @@
  */
 package com.nms.vmm.eip.rs;
 
-import com.nms.vmm.eip.ejb.GameCategoryFacade;
-import com.nms.vmm.eip.ejb.GameEntryFacade;
 import com.nms.vmm.eip.entity.GameCategory;
 import com.nms.vmm.eip.entity.Game;
 import com.nms.vmm.eip.search.OrderType;
+import com.nms.vmm.eip.service.entity.GameCategoryService;
+import com.nms.vmm.eip.service.entity.GameService;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -35,9 +35,9 @@ public class EipContentResource {
 
     private static final Logger LOGGER = Logger.getLogger(EipContentResource.class.getName());
     @EJB
-    private GameCategoryFacade gameCategoryFacade;
+    private GameCategoryService gameCategoryFacade;
     @EJB
-    private GameEntryFacade gameEntryFacade;
+    private GameService gameEntryFacade;
 
     @GET
     @Path("game/categories")
