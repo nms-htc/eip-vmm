@@ -15,21 +15,21 @@ import javax.ejb.Startup;
 @Singleton
 public class Configuration {
 
-    @EJB
-    private UserService userService;
+//    @EJB
+//    private UserService userService;
     
     @PostConstruct
     public void initApplication() {
-        if (!userService.hasAdminUser()) {
-            User user = new User();
-            user.setCode("admin");
-            user.setUsername("admin");
-            user.setEmail("admin@nms.com.vn");
-            user.setPassword("admin");
-            user.setFullname("Administrator");
-            user.setGroups(Arrays.asList(User.Group.Admin));
-            user.setDescription("Default Administrator");
-            userService.persist(user);
-        }
+//        if (!userService.hasAdminUser()) {
+//            User user = new User();
+//            user.setCode("admin");
+//            user.setUsername("admin");
+//            user.setEmail("admin@nms.com.vn");
+//            user.setPassword("admin");
+//            user.setFullname("Administrator");
+//            user.setGroups(Arrays.asList(User.Group.Admin));
+//            user.setDescription("Default Administrator");
+//            userService.persist(user);
+//        }
     }
 }

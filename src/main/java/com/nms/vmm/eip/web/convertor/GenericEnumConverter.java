@@ -14,7 +14,7 @@ import javax.faces.convert.FacesConverter;
  *
  * @author Cuong
  */
-@FacesConverter("enumConverter")
+@FacesConverter("enumConvertor")
 public class GenericEnumConverter implements Converter{
     public static final String ATTRIBUTE_ENUM_TYPE = "GenericEnumConverter.enumType";
 

@@ -1,92 +1,124 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:eip="http://java.sun.com/jsf/composite/eip"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-
-    <ui:composition template="/common/admin_template.xhtml">
-        <ui:define name="title">#{msg.appNavTitleUserManagement}</ui:define>
-        
-        <ui:define name="mainNav">
-            <eip:admin_nav current="user"/>
+    <ui:composition template="/template/admin/main.xhtml">
+        <ui:define name="dialogs">
+            <ui:include src="create.xhtml"/>
+            <ui:include src="edit.xhtml"/>
         </ui:define>
-        
-        <ui:define name="adminContent">
-            
-            <h3 class="header"><h:outputText value="#{msg.UserListTitle}"/></h3>
-            
-            <h:form>
-                <h:panelGroup rendered="#{userEntryController.items.rowCount == 0}">
-                    <ul class="messages">
-                        <li class="info-messages">
-                            <h:outputText value="#{msg.appEmptyDataTableTitle}"/>
-                        </li>
-                    </ul>
-                </h:panelGroup>
-                
-                <h:panelGroup rendered="#{userEntryController.items.rowCount > 0}">
-                    
-                    <h:dataTable value="#{userEntryController.items}" 
-                                 var="user"
-                                 styleClass="eip-datatable"
-                                 width="100%">
-                        
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{msg.UserEntryCodeTitle}"/>
-                            </f:facet>
-                            <h:outputText value="#{user.code}"/>
-                        </h:column>
-                        
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="${msg.UserEntryFullNameTitle}"/>
-                            </f:facet>
-                            <h:outputText value="${user.fullName}"/>
-                        </h:column>
-                        
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="${msg.UserEntryEmailTitle}"/>
-                            </f:facet>
-                            <h:outputText value="${user.email}"/>
-                        </h:column>
-                        
-                         <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="${msg.UserEntryDescriptionTitle}"/>
-                            </f:facet>
-                            <h:outputText value="${user.description}"/>
-                        </h:column>
-                        
-                        <h:column>
-                            <div class="align-right">
-                                <h:commandButton value="#{msg.Update}"
-                                                 action="#{userEntryController.prepareEdit}"/>
-                                <h:commandButton value="#{msg.Delete}"
-                                             action="#{userEntryController.delete}"
-                                             onclick="return confirm('#{msg.ProductDeleteConfirmationMessage}')"/>
-                            </div>
-                        </h:column>
-                    </h:dataTable>
-                    
-                    <eip:table_paginator startAction="#{userEntryController.startPage()}"
-                                         startRendered="#{userEntryController.paginationHelper.hasPreviewPage}"
-                                         previewAction="#{userEntryController.previewPage()}"
-                                         previewRendered="#{userEntryController.paginationHelper.hasPreviewPage}"
-                                         nextAction="#{userEntryController.nextPage()}"
-                                         nextRendered="#{userEntryController.paginationHelper.hasNextPage}"
-                                         endAction="#{userEntryController.endPage()}"
-                                         endRendered="#{userEntryController.paginationHelper.hasNextPage}"/>
-                    
-                    <div class="clearfix"></div>
-                </h:panelGroup>
-                
-                <h:commandButton action="#{userEntryController.prepareCreate}" 
-                                 value="#{msg.Create}"/>
+
+        <ui:define name="main-content">
+            <h:form id="listForm">
+                <p:messages globalOnly="true"/>
+                <p:toolbar>
+                    <f:facet name="left">
+                        <p:commandButton id="addButton" 
+                                         value="#{msg['user.action.add']}" 
+                                         immediate="true"
+                                         icon="ui-icon-plus"
+                                         actionListener="#{userBean.resetEntity()}"
+                                         update=":createDl"
+                                         oncomplete="PF('createDl').show();">
+                            <p:resetInput target=":createDl"/>
+                        </p:commandButton>
+
+                    </f:facet>
+                    <f:facet name="right">
+                        <!--p:commandButton id="toggler" type="button" value="Columns" icon="ui-icon-calculator" />
+                        <p:columnToggler datasource="listTable" trigger="toggler" /-->
+                    </f:facet>
+                </p:toolbar>
+
+                <p:spacer height="10"/>
+
+                <p:dataTable id="listTable"
+                             widgetVar="listTable"
+                             value="#{userBean.model}"
+                             var="user"
+                             rowIndexVar="index"
+                             lazy="true"
+                             paginator="true"
+                             rows="10"
+                             paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+                             rowsPerPageTemplate="10,15,20" 
+                             paginatorPosition="bottom"
+                             resizableColumns="true"
+                             rowStyleClass="#{index mod 2 == 1 ? 'odd' : null}">
+
+                    <p:column headerText="#{msg['user.username']}" 
+                              filterBy="#{user.username}" 
+                              sortBy="#{user.username}" 
+                              filterStyle="width: 90%;">
+                        <h:outputText value="#{user.username}"/>
+                    </p:column>
+
+                    <p:column headerText="#{msg['user.fullname']}" 
+                              filterBy="#{user.fullname}" 
+                              sortBy="#{user.fullname}"
+                              filterStyle="width: 90%">
+                        <h:outputText value="#{user.fullname}"/>
+                    </p:column>
+
+                    <p:column headerText="#{msg['user.email']}" 
+                              sortBy="#{user.email}"
+                              filterBy="#{user.email}" 
+                              filterStyle="width: 90%">
+                        <h:outputText value="#{user.email}"/>
+                    </p:column>
+
+                    <p:column headerText="#{msg['user.groups']}"
+                              filterBy="#{user.groups}"
+                              filterStyle="width: 90%">
+                        <f:facet name="filter">
+<!--                                <p:selectCheckboxMenu label="#{msg['user-groups-label']}"
+                                                  converter="enumConvertor"
+                                                  onHide="PF('listTable').filter()"
+                                                  panelStyle="width: 150px">
+                                <f:selectItems value="#{userBean.groupSelectItems}"/>
+                            </p:selectCheckboxMenu>-->
+                        </f:facet>
+                        <ui:repeat value="#{user.groups}" var="group" varStatus="vs">
+                            <h:outputText value="#{group}"/>
+                            <h:outputText value=", " rendered="#{!vs.last}"/>
+                        </ui:repeat>
+                    </p:column>
+
+                    <p:column headerText="#{msg['description']}" 
+                              sortBy="#{user.description}"
+                              filterBy="#{user.description}"
+                              filterStyle="width: 90%">
+                        <h:outputText value="#{user.description}"/>
+                    </p:column>
+
+                    <p:column style="width: 90px" toggleable="false" >
+                        <p:commandButton icon="ui-icon-pencil" 
+                                         update=":editDl" 
+                                         immediate="true"
+                                         actionListener="#{userBean.prepareEntity(user)}"
+                                         oncomplete="PF('editDl').show();"/>
+
+                        <!--                        <p:commandButton icon="ui-icon-key" 
+                                                                 update=":changePassDl" 
+                                                                 immediate="true" 
+                                                                 actionListener="#{userBean.prepareChangePassword(user)}"
+                                                                 oncomplete="PF('changePassDl').show();"/>-->
+
+                        <p:commandButton icon="ui-icon-trash" 
+                                         actionListener="#{userBean.remove(user)}"
+                                         immediate="true"
+                                         update="@form :growl">
+                            <p:confirm header="Confirmation"
+                                       message="#{msg['user.action.delete.confirm']}" 
+                                       icon="ui-icon-alert"/>
+                        </p:commandButton>
+                    </p:column>
+                </p:dataTable>
             </h:form>
         </ui:define>
     </ui:composition>
 </html>
+

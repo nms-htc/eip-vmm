@@ -1,93 +1,61 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:eip="http://java.sun.com/jsf/composite/eip"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition >
+        <p:dialog id="editDl"
+                  widgetVar="editDl"
+                  modal="true"
+                  closeOnEscape="true">
+            <f:facet name="header">
+                <h:outputFormat value="#{msg['user.action.update']}">
+                    <f:param value="#{userBean.current.username}"/>
+                </h:outputFormat>
+            </f:facet>
 
-    <ui:composition template="/common/admin_template.xhtml">
-        <ui:define name="title">#{userEntryController.current.fullName}</ui:define>
-        
-        <ui:define name="mainNav">
-            <eip:admin_nav current="user"/>
-        </ui:define>
-        
-        <ui:define name="adminContent">
-            
-            <h3 class="header"><h:outputText value="#{userEntryController.current.fullName}"/></h3>
-            
-            <h:form>
-                <fieldset>
-                    <div class="form-field">
-                        <h:outputLabel value="${msg.UserEntryCodeTitle}" for="code"/>
-                        
-                        <h:inputText id="code"
-                                     value="#{userEntryController.current.code}"
-                                     required="true"
-                                     size="30"
-                                     requiredMessage="#{msg.UserEntryCodeRequiredMessage}"
-                                     disabled="true"/>
-                    </div>
+            <h:form id="editForm">
+                <p:messages globalOnly="true"/>
+
+                <h:panelGrid columns="3" style="width: 100%">
+                    <f:facet name="header">
+                        Fuck you
+                    </f:facet>
+                    <p:outputLabel for="code" value="#{msg['user.code']}:"/>
+                    <p:inputText id="code" value="#{userBean.current.code}" disabled="true"/>
+                    <p:message for="code"/>
                     
-                    <div class="form-field">
-                        <h:outputLabel value="${msg.UserEntryFullNameTitle}" for="fullName"/>
-                        
-                        <h:inputText id="fullName"
-                                     value="#{userEntryController.current.fullName}"
-                                     required="true"
-                                     size="50"
-                                     requiredMessage="#{msg.UserEntryFullNameRequiredMessage}"/>
-                    </div>
-                    
-                    <div class="form-field">
-                        <h:outputLabel value="${msg.UserEntryPasswordTitle}" for="password"/>
-                        
-                        <h:inputSecret id="password"
-                                       required="true" 
-                                       size="50"
-                                       requiredMessage="#{msg.UserEntryPasswordRequiredMessage}"
-                                       value="#{userEntryController.current.password}"/>
-                    </div>
-                    
-                    <div class="form-field">
-                        <h:outputLabel value="${msg.UserEntryEmailTitle}" for="email"/>
-                        
-                        <h:inputText id="email"
-                                     required="true"
-                                     size="50"
-                                     requiredMessage="${msg.UserEntryEmailRequiredMessage}"
-                                     value="#{userEntryController.current.email}"
-                                     validatorMessage="${msg.UserEntryEmailInvalidMessage}"
-                                     disabled="true">
-                        </h:inputText>
-                    </div>
-                    
-                    <div class="form-field">
-                        <h:outputLabel value="${msg.UserEntryUserRolesTitle}" for="userRoles"/>
-                        
-                        <h:selectManyListbox id="userRoles"
-                                             converter="enumConverter"
-                                             value="#{userEntryController.current.userRoles}">
-                            <f:selectItems value="#{userEntryController.roleSelectItems}"/>
-                        </h:selectManyListbox>
-                    </div>
-                    
-                    <div class="form-field">
-                        <h:outputLabel value="${msg.UserEntryDescriptionTitle}" for="description"/>
-                        
-                        <h:inputText id="description"
-                                    size="50"
-                                       value="#{userEntryController.current.description}"/>
-                    </div>
-                    
-                </fieldset>
-                
-                <h:commandButton value="#{msg.Save}" 
-                                 action="#{userEntryController.update}"/>
-                <h:commandButton value="#{msg.Cancel}"
-                                 action="list.xhtml" immediate="true"/>  
+                    <p:outputLabel for="fullname" value="#{msg['user.fullname']}:"/>
+                    <p:inputText id="fullname" value="#{userBean.current.fullname}" size="35"/>
+                    <p:message for="fullname"/>
+
+                    <p:outputLabel for="username" value="#{msg['user.username']}:"/>
+                    <p:inputText id="username" value="#{userBean.current.username}" size="35" disabled="true"/>
+                    <p:message for="username"/>
+
+                    <p:outputLabel for="email" value="#{msg['user.email']}:"/>
+                    <p:inputText id="email" value="#{userBean.current.email}" size="35"/>
+                    <p:message for="email"/>
+
+                    <p:outputLabel for="groups" value="#{msg['user.groups']}:"/>
+                    <p:selectManyCheckbox id="groups" value="#{userBean.current.groups}"
+                                          converter="enumConvertor">
+                        <f:selectItems value="#{userBean.userGroups}"/>
+                    </p:selectManyCheckbox>
+                    <p:message for="groups"/>
+
+                    <p:outputLabel for="description" value="#{msg['description']}:"/>
+                    <p:inputTextarea id="description" cols="37" rows="3" value="#{userBean.current.description}"/>
+                    <p:message for="description"/>
+
+                    <f:facet name="footer">
+                        <p:commandButton value="#{msg['update']}" actionListener="#{userBean.update()}" update="editForm :listForm"/>
+                        <p:commandButton value="#{msg['cancel']}" type="button" onclick="PF('editDl').hide();"/>
+                    </f:facet>
+                </h:panelGrid>
             </h:form>
-        </ui:define>
+        </p:dialog>
     </ui:composition>
 </html>

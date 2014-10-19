@@ -125,7 +125,7 @@ public class EipContentResource {
 
         try {
 
-            gameEntries = gameEntryFacade.search(categoryId, keyword, orderTypeEnum, page, range, flatformEnum);
+            //gameEntries = gameEntryFacade.search(categoryId, keyword, orderTypeEnum, page, range, flatformEnum);
         } catch (Exception e) {
 
             LOGGER.log(Level.SEVERE, "Error when searchGameEntries with categoryId = {0}, "

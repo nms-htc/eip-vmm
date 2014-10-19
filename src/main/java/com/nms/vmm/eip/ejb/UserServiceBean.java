@@ -27,4 +27,12 @@ public class UserServiceBean extends AbstractFacadeBean<User> implements UserSer
         int count = q.getSingleResult().intValue();
         return count > 0;
     }
+
+    @Override
+    public void updatePassword(User user) {
+        user.hashPassword();
+        em.merge(user);
+    }
+    
+    
 }

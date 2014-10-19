@@ -13,7 +13,7 @@ import javax.validation.Payload;
 import javax.validation.constraints.Pattern;
 
 @Pattern.List({
-    @Pattern(regexp = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")
+    @Pattern(regexp = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}$", message = "{com.nms.vmm.eip.util.validation.email}")
 })
 @Constraint(validatedBy = {})
 @Documented
@@ -40,6 +40,6 @@ public @interface Email {
     @Documented
     @interface List {
 
-        Email[] value();
+        Url[] value();
     }
 }

@@ -1,11 +1,16 @@
 /**
- * Copyright (C) 2014 Next Generation Mobile Service JSC., (NMS). All rights
- * reserved.
+ * Copyright (C) 2014 Next Generation Mobile Service JSC., (NMS). All rights reserved.
  */
 package com.nms.vmm.eip.entity;
 
 import com.nms.vmm.eip.entity.validation.Email;
+import com.nms.vmm.eip.web.util.StringUtil;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Base64;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
@@ -13,6 +18,7 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -116,5 +122,10 @@ public class User extends BaseEntity {
     public String toString() {
         return "User{" + "username=" + username + ", fullname=" + fullname + ", password="
                 + password + ", email=" + email + '}';
+    }
+
+    @PrePersist
+    public void hashPassword() {
+        password = StringUtil.digest("SHA-256", password);
     }
 }

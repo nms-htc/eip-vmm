@@ -10,7 +10,7 @@ import com.nms.vmm.eip.service.entity.GameCategoryService;
 import javax.ejb.EJB;
 import javax.faces.convert.FacesConverter;
 
-@FacesConverter(forClass = GameCategory.class, value = "gameCategoryConvertor")
+@FacesConverter(forClass = GameCategory.class)
 public class GameCategoryConvertor extends AbstractEntityConvertor<GameCategory> {
     
     @EJB

@@ -1,13 +1,20 @@
 /**
- * Copyright (C) 2014 Next Generation Mobile Service JSC., (NMS). All rights
- * reserved.
+ * Copyright (C) 2014 Next Generation Mobile Service JSC., (NMS). All rights reserved.
  */
 package com.nms.vmm.eip.web.util;
 
+import com.nms.vmm.eip.entity.User;
+import com.nms.vmm.eip.exception.AppException;
+import com.nms.vmm.eip.exception.ErrorInfo;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Base64;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author Nguyen Trong Cuong
@@ -97,5 +104,19 @@ public class StringUtil {
     public static String dateToStr(Date date) {
         Format f = new SimpleDateFormat(DEFAULT_DATE_PATTERN);
         return f.format(date);
+    }
+
+    public static String digest(String algorithm, String value) {
+        if (value != null) {
+            try {
+                MessageDigest md = MessageDigest.getInstance(algorithm);
+                byte[] hash = md.digest(value.getBytes());
+                return Base64.getEncoder().encodeToString(hash);
+            } catch (NoSuchAlgorithmException e) {
+                throw new AppException(ErrorInfo.DIGEST_MESSAGE_ERROR, "algorithm:"
+                        + algorithm + ", value: " + value, e);
+            }
+        }
+        return null;
     }
 }

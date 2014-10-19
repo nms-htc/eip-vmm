@@ -1,6 +1,5 @@
 /**
- * Copyright (C) 2014 Next Generation Mobile Service JSC., (NMS). All rights
- * reserved.
+ * Copyright (C) 2014 Next Generation Mobile Service JSC., (NMS). All rights reserved.
  */
 package com.nms.vmm.eip.entity.validation;
 
@@ -14,7 +13,10 @@ import javax.validation.Payload;
 import javax.validation.constraints.Pattern;
 
 @Pattern.List({
-    @Pattern(regexp = "^(?:ftp|http|https):\\/\\/(?:[\\w\\.\\-\\+]+:{0,1}[\\w\\.\\-\\+]*@)?(?:[a-z0-9\\-\\.]+)(?::[0-9]+)?(?:\\/|\\/(?:[\\w#!:\\.\\?\\+=&%@!\\-\\/\\(\\)]+)|\\?(?:[\\w#!:\\.\\?\\+=&%@!\\-\\/\\(\\)]+))?$")
+    @Pattern(
+            regexp = "^(?:ftp|http|https):\\/\\/(?:[\\w\\.\\-\\+]+:{0,1}[\\w\\.\\-\\+]*@)?(?:[a-z0-9\\-\\.]+)(?::[0-9]+)?(?:\\/|\\/(?:[\\w#!:\\.\\?\\+=&%@!\\-\\/\\(\\)]+)|\\?(?:[\\w#!:\\.\\?\\+=&%@!\\-\\/\\(\\)]+))?$",
+            message = "{com.nms.vmm.eip.util.validation.url}"
+    )
 })
 @Constraint(validatedBy = {})
 @Documented
@@ -40,6 +42,7 @@ public @interface Url {
     @Retention(RetentionPolicy.RUNTIME)
     @Documented
     @interface List {
+
         Url[] value();
     }
 }

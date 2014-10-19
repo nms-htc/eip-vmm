@@ -1,31 +1,41 @@
-body {
-    color: #666666;
-}
+/*Primefaces stylesheet*/
+.ui-widget {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 13px !important; }
+.ui-widget .ui-widget {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 13px !important; }
 
-h3.header {
-    border-bottom: 1px solid #666;
-}
+.ui-panel .ui-panel-titlebar {
+    padding: 5px 15px; }
 
-div#content {
-    min-height: 500px;
-}
-.datatable-pagination {
-    height: 24px;
-    width: 100%;
-    a {
-        border-left: 1px solid #0072dc;
-        line-height: 12px;
-        display: block;
-        float: right;
-        padding: 5px;
-        text-decoration: none;
-        color: #666666;
-        font-size: 12px;
-        font-weight: bold;
-        &:hover {
-            color: #f1f1f1;
-            background: #0072dc;
+.ui-corner-all {
+    /*    border-radius: 1px;*/ }
+
+.ui-chkbox-box {
+    /*    vertical-align: bottom;*/ }
+
+table.form-grid {
+    tbody {
+        tr {
+            margin-bottom: 5px;
         }
     }
 }
 
+html {
+    min-height: 100%;
+}
+
+.container {
+    max-width: 1200px;
+    padding: 0 5px;
+    margin: 0 auto;
+    &>div {
+        margin-bottom: 10px;
+    }
+}
+
+div#header {
+    height: 50px;
+}

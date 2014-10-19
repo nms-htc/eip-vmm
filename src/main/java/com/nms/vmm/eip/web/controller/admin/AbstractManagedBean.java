@@ -2,7 +2,7 @@
  * Copyright (C) 2014 Next Generation Mobile Service JSC., (NMS).
  * All rights reserved.
  */
-package com.nms.vmm.eip.web.controller;
+package com.nms.vmm.eip.web.controller.admin;
 
 import com.nms.vmm.eip.entity.BaseEntity;
 import com.nms.vmm.eip.service.entity.BaseService;
@@ -10,6 +10,8 @@ import com.nms.vmm.eip.web.model.AbstractLazyDataModel;
 import com.nms.vmm.eip.web.util.JsfUtil;
 import com.nms.vmm.eip.web.util.MessageUtil;
 import java.io.Serializable;
+import java.util.function.Consumer;
+import java.util.function.Function;
 import javax.faces.model.SelectItem;
 import org.primefaces.model.LazyDataModel;
 
@@ -25,8 +27,8 @@ import org.primefaces.model.LazyDataModel;
 public abstract class AbstractManagedBean<T extends BaseEntity> implements Serializable {
 
     private static final long serialVersionUID = 8024568564171342875L;
-    private static final String REQUEST_SUCCESS_MESSAGE = "your-request-has-been-successfully-implemented";
-    private static final String REQUEST_FAIL_MESSAGE = "your-request-fails";
+    protected static final String REQUEST_SUCCESS_MESSAGE = "your-request-has-been-successfully-implemented";
+    protected static final String REQUEST_FAIL_MESSAGE = "your-request-fails";
 
     protected T current;
     protected LazyDataModel<T> model;
@@ -240,5 +242,14 @@ public abstract class AbstractManagedBean<T extends BaseEntity> implements Seria
 
     public void setSelectItems(SelectItem[] selectItems) {
         this.selectItems = selectItems;
+    }
+    
+    protected void processEntity(Consumer<T> consumer, T entity, String successMsg, String errorMsg) {
+        try {
+            consumer.accept(entity);
+            MessageUtil.addGlobalInfoMessage(successMsg);
+        } catch (Exception e) {
+            MessageUtil.addGlobalErrorMessage(errorMsg, e);
+        }
     }
 }
