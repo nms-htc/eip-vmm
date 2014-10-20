@@ -1,11 +1,14 @@
 /**
- * Copyright (C) 2014 Next Generation Mobile Service JSC., (NMS). All rights reserved.
+ * Copyright (C) 2014 Next Generation Mobile Service JSC., (NMS). All rights
+ * reserved.
  */
 package com.nms.vmm.eip.web.controller.admin;
 
 import com.nms.vmm.eip.entity.User;
 import com.nms.vmm.eip.service.entity.BaseService;
 import com.nms.vmm.eip.service.entity.UserService;
+import com.nms.vmm.eip.web.util.JsfUtil;
+import com.nms.vmm.eip.web.util.MessageUtil;
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
@@ -29,10 +32,10 @@ public class UserBean extends AbstractManagedBean<User> {
         return userService;
     }
 
-    public void updatePassword(User user) {
-        processEntity(u -> {
+    public void updatePassword() {
+        JsfUtil.processAction(u -> {
             userService.updatePassword(u);
-        }, user, REQUEST_SUCCESS_MESSAGE, REQUEST_FAIL_MESSAGE);
+        }, current, MessageUtil.REQUEST_SUCCESS_MESSAGE, MessageUtil.REQUEST_FAIL_MESSAGE);
     }
 
     public User.Group[] getUserGroups() {

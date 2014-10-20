@@ -9,6 +9,7 @@
         <ui:define name="dialogs">
             <ui:include src="create.xhtml"/>
             <ui:include src="edit.xhtml"/>
+            <ui:include src="password.xhtml"/>
         </ui:define>
 
         <ui:define name="main-content">
@@ -101,11 +102,11 @@
                                          actionListener="#{userBean.prepareEntity(user)}"
                                          oncomplete="PF('editDl').show();"/>
 
-                        <!--                        <p:commandButton icon="ui-icon-key" 
-                                                                 update=":changePassDl" 
-                                                                 immediate="true" 
-                                                                 actionListener="#{userBean.prepareChangePassword(user)}"
-                                                                 oncomplete="PF('changePassDl').show();"/>-->
+                        <p:commandButton icon="ui-icon-key" 
+                                         update=":changePassDl" 
+                                         immediate="true" 
+                                         actionListener="#{userBean.prepareEntity(user)}"
+                                         oncomplete="PF('changePassDl').show();"/>
 
                         <p:commandButton icon="ui-icon-trash" 
                                          actionListener="#{userBean.remove(user)}"

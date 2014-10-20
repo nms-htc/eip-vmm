@@ -27,8 +27,6 @@ import org.primefaces.model.LazyDataModel;
 public abstract class AbstractManagedBean<T extends BaseEntity> implements Serializable {
 
     private static final long serialVersionUID = 8024568564171342875L;
-    protected static final String REQUEST_SUCCESS_MESSAGE = "your-request-has-been-successfully-implemented";
-    protected static final String REQUEST_FAIL_MESSAGE = "your-request-fails";
 
     protected T current;
     protected LazyDataModel<T> model;
@@ -51,38 +49,20 @@ public abstract class AbstractManagedBean<T extends BaseEntity> implements Seria
     /**
      * Call back method persist action
      */
-    protected void onAfterPersist() {
-        current = initEntity();
-    }
-
-    /**
-     * Call back method persist action
-     */
     protected void onPersistSuccess() {
-        MessageUtil.addGlobalInfoMessage(REQUEST_SUCCESS_MESSAGE);
-    }
-
-    /**
-     * Call back method persist action
-     *
-     * @param t
-     */
-    protected void onPersistError(Throwable t) {
-        MessageUtil.addGlobalErrorMessage(REQUEST_FAIL_MESSAGE, t);
+        current = initEntity();
     }
 
     /**
      * Persist entity to db
      */
     public void persist() {
-        try {
+        JsfUtil.processAction(e -> {
             onBeforePersist();
-            getBaseService().persist(current);
+            getBaseService().persist(e);
             onPersistSuccess();
-        } catch (Exception e) {
-            onPersistError(e);
-        }
-        onAfterPersist();
+        }, current, MessageUtil.REQUEST_SUCCESS_MESSAGE, 
+        MessageUtil.REQUEST_FAIL_MESSAGE);
     }
 
     /**
@@ -94,37 +74,18 @@ public abstract class AbstractManagedBean<T extends BaseEntity> implements Seria
     /**
      * Call back method update action
      */
-    protected void onAfterUpdate() {
-    }
-
-    /**
-     * Call back method update action
-     */
-    protected void onSuccessUpdate() {
-        MessageUtil.addGlobalInfoMessage(REQUEST_SUCCESS_MESSAGE);
-    }
-
-    /**
-     * Call back method update action
-     *
-     * @param t
-     */
-    protected void onErrorUpdate(Throwable t) {
-        MessageUtil.addGlobalErrorMessage(REQUEST_FAIL_MESSAGE, t);
+    protected void onUpdateSuccess() {
     }
 
     /**
      * Update entity and save to db
      */
     public void update() {
-        try {
+        JsfUtil.processAction(e -> {
             onBeforeUpdate();
-            getBaseService().update(current);
-            onSuccessUpdate();
-        } catch (Exception e) {
-            onErrorUpdate(e);
-        }
-        onAfterUpdate();
+            getBaseService().update(e);
+            onUpdateSuccess();
+        }, current, MessageUtil.REQUEST_SUCCESS_MESSAGE, MessageUtil.REQUEST_FAIL_MESSAGE);
     }
 
     /**
@@ -140,26 +101,7 @@ public abstract class AbstractManagedBean<T extends BaseEntity> implements Seria
      *
      * @param entity
      */
-    protected void onAfterRemove(T entity) {
-    }
-
-    /**
-     * Call back method remove action
-     *
-     * @param entity
-     */
-    protected void onSuccessRemove(T entity) {
-        MessageUtil.addGlobalInfoMessage(REQUEST_SUCCESS_MESSAGE);
-    }
-
-    /**
-     * Call back method remove action
-     *
-     * @param entity
-     * @param t
-     */
-    protected void onErrorRemove(T entity, Throwable t) {
-        MessageUtil.addGlobalErrorMessage(REQUEST_FAIL_MESSAGE, t);
+    protected void onRemoveSuccess(T entity) {
     }
 
     /**
@@ -168,14 +110,11 @@ public abstract class AbstractManagedBean<T extends BaseEntity> implements Seria
      * @param entity entity instance for removing
      */
     public void remove(T entity) {
-        onBeforeRemove(entity);
-        try {
-            getBaseService().remove(entity);
-            onSuccessRemove(entity);
-        } catch (Exception e) {
-            onErrorRemove(entity, e);
-        }
-        onAfterRemove(entity);
+        JsfUtil.processAction(e -> {
+            onBeforeRemove(e);
+            getBaseService().remove(e);
+            onRemoveSuccess(e);
+        }, entity, MessageUtil.REQUEST_SUCCESS_MESSAGE, MessageUtil.REQUEST_FAIL_MESSAGE);
     }
 
     /**
@@ -244,12 +183,4 @@ public abstract class AbstractManagedBean<T extends BaseEntity> implements Seria
         this.selectItems = selectItems;
     }
     
-    protected void processEntity(Consumer<T> consumer, T entity, String successMsg, String errorMsg) {
-        try {
-            consumer.accept(entity);
-            MessageUtil.addGlobalInfoMessage(successMsg);
-        } catch (Exception e) {
-            MessageUtil.addGlobalErrorMessage(errorMsg, e);
-        }
-    }
 }

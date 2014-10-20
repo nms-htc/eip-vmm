@@ -20,6 +20,8 @@ public class MessageUtil {
 
     public static final String APP_RESOURCE_BUNDLE_NAME = "Bundle";
     private static final Logger LOGGER = Logger.getLogger(MessageUtil.class.getName());
+    public static final String REQUEST_SUCCESS_MESSAGE = "your-request-has-been-successfully-implemented";
+    public static final String REQUEST_FAIL_MESSAGE = "your-request-fails";
 
     public static ResourceBundle getResourceBundle() {
         return ResourceBundle.getBundle(APP_RESOURCE_BUNDLE_NAME);

@@ -1,10 +1,12 @@
 /**
- * Copyright (C) 2014 Next Generation Mobile Service JSC., (NMS). All rights reserved.
+ * Copyright (C) 2014 Next Generation Mobile Service JSC., (NMS). All rights
+ * reserved.
  */
 package com.nms.vmm.eip.web.util;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.function.Consumer;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIInput;
@@ -16,6 +18,7 @@ import javax.faces.model.SelectItem;
 
 /**
  * JsfUtil functionalitis.
+ *
  * @author Nguyen Trong Cuong (cuongnt1987@gmail.com)
  * @since 08/26/2014
  * @version 1.0
@@ -117,8 +120,26 @@ public class JsfUtil {
     }
 
     public static void addErrorMessages(List<String> messages) {
-        for (String message : messages) {
+        messages.stream().forEach((message) -> {
             addErrorMessage(message);
+        });
+    }
+
+    /**
+     * Process action on 
+     * @param <T>
+     * @param consumer
+     * @param t
+     * @param successMessage
+     * @param errorMessage
+     */
+    public static <T> void processAction(Consumer<T> consumer, T t,
+            String successMessage, String errorMessage) {
+        try {
+            consumer.accept(t);
+            MessageUtil.addGlobalInfoMessage(successMessage);
+        } catch (Exception e) {
+            MessageUtil.addGlobalErrorMessage(errorMessage, e);
         }
     }
 
