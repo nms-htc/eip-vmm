@@ -1,5 +1,6 @@
 /**
- * Copyright (C) 2014 Next Generation Mobile Service JSC., (NMS). All rights reserved.
+ * Copyright (C) 2014 Next Generation Mobile Service JSC., (NMS). All rights
+ * reserved.
  */
 package com.nms.vmm.eip.exception;
 
@@ -12,6 +13,7 @@ public class ErrorInfo {
 
     public static final ErrorInfo UNKNOW_ERROR = new ErrorInfo("UNKNOW_ERROR", "Unknow error", Serverity.ERROR, Origin.INTERNAL);
     public static final ErrorInfo DIGEST_MESSAGE_ERROR = new ErrorInfo("DIGEST_MESSAGE_ERROR", "Error when digist object", Serverity.ERROR, Origin.INTERNAL);
+    public static final ErrorInfo UNIQUE_CONSTRAINT_ERROR = new ErrorInfo("UNIQUE_CONSTRAINT_ERROR", "Has more than one recored in db with same uniqui value", Serverity.ERROR, Origin.SERVICE);
 
     public enum Serverity {
 

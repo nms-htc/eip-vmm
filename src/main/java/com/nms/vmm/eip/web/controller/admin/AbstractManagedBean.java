@@ -10,8 +10,6 @@ import com.nms.vmm.eip.web.model.AbstractLazyDataModel;
 import com.nms.vmm.eip.web.util.JsfUtil;
 import com.nms.vmm.eip.web.util.MessageUtil;
 import java.io.Serializable;
-import java.util.function.Consumer;
-import java.util.function.Function;
 import javax.faces.model.SelectItem;
 import org.primefaces.model.LazyDataModel;
 

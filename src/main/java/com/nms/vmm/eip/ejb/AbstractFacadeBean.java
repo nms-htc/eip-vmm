@@ -151,12 +151,11 @@ public abstract class AbstractFacadeBean<T extends BaseEntity> implements BaseSe
     protected List<Predicate> buildConditions(Map<String, Object> filters, Root<T> root, CriteriaBuilder cb) {
         List<Predicate> predicates = new ArrayList<>();
 
-        for (Map.Entry<String, Object> entry : filters.entrySet()) {
-            Predicate predicate = buildCondition(entry, root, cb);
-            if (predicate != null) {
-                predicates.add(predicate);
-            }
-        }
+        filters.entrySet().stream().map((entry) -> buildCondition(entry, root, cb))
+                .filter((predicate) -> (predicate != null))
+                .forEach((predicate) -> {
+                    predicates.add(predicate);
+                });
 
         return predicates;
     }
@@ -168,7 +167,7 @@ public abstract class AbstractFacadeBean<T extends BaseEntity> implements BaseSe
     protected Order[] buildOrder(String sortField, boolean asc, CriteriaBuilder cb, Root<T> root) {
         List<Order> orders = new ArrayList<>();
 
-        if (sortField == null || !sortField.isEmpty()) {
+        if (sortField == null || sortField.isEmpty()) {
             orders.add(cb.desc(root.get(BaseEntity_.modifiedDate)));
         } else {
             if (asc) {

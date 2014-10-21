@@ -5,12 +5,7 @@ package com.nms.vmm.eip.entity;
 
 import com.nms.vmm.eip.entity.validation.Email;
 import com.nms.vmm.eip.web.util.StringUtil;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.Base64;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
@@ -22,9 +17,11 @@ import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Table(name = "EIP_USER")
+@XmlRootElement
 public class User extends BaseEntity {
 
     private static final long serialVersionUID = -6288277621340836690L;
@@ -62,7 +59,7 @@ public class User extends BaseEntity {
 
     @ElementCollection(targetClass = Group.class)
     @Enumerated(EnumType.STRING)
-    @CollectionTable(name = "ML_USERGROUP", joinColumns = {
+    @CollectionTable(name = "EIP_USERGROUP", joinColumns = {
         @JoinColumn(name = "USERNAME", referencedColumnName = "USERNAME")})
     @Column(name = "GROUPNAME")
     protected List<Group> groups;

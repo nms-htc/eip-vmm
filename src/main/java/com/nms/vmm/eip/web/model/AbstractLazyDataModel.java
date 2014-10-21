@@ -38,6 +38,6 @@ public abstract class AbstractLazyDataModel<T extends BaseEntity> extends LazyDa
             asc = true;
         }
         this.setRowCount(getService().countForPFDatatable(filters));
-        return getService().searchForPFDatatable(first, first, sortField, asc, filters);
+        return getService().searchForPFDatatable(first, pageSize, sortField, asc, filters);
     }
 }

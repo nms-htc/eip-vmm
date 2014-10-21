@@ -4,9 +4,11 @@
  */
 package com.nms.vmm.eip.web.util;
 
+import com.nms.vmm.eip.exception.AppException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.function.Consumer;
+import javax.ejb.EJBException;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIInput;
@@ -126,7 +128,8 @@ public class JsfUtil {
     }
 
     /**
-     * Process action on 
+     * Process action on
+     *
      * @param <T>
      * @param consumer
      * @param t
@@ -139,7 +142,7 @@ public class JsfUtil {
             consumer.accept(t);
             MessageUtil.addGlobalInfoMessage(successMessage);
         } catch (Exception e) {
-            MessageUtil.addGlobalErrorMessage(errorMessage, e);
+            handleException(e, errorMessage);
         }
     }
 
@@ -174,5 +177,18 @@ public class JsfUtil {
             }
         }
         return "";
+    }
+
+    public static void handleException(Exception e, String defaultMessage) {
+        if (e instanceof AppException) {
+            MessageUtil.addGlobalErrorMessage(e);
+        } else {
+            Throwable t = getRootCause(e);
+            if (t instanceof EJBException) {
+                MessageUtil.addGlobalErrorMessage(t);
+            } else {
+                MessageUtil.addGlobalErrorMessage(defaultMessage, t);
+            }
+        }
     }
 }
