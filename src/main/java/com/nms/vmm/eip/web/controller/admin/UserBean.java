@@ -9,6 +9,7 @@ import com.nms.vmm.eip.service.entity.BaseService;
 import com.nms.vmm.eip.service.entity.UserService;
 import com.nms.vmm.eip.web.util.JsfUtil;
 import com.nms.vmm.eip.web.util.MessageUtil;
+import java.util.Arrays;
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
@@ -36,6 +37,17 @@ public class UserBean extends AbstractManagedBean<User> {
         JsfUtil.processAction(u -> {
             userService.updatePassword(u);
         }, current, MessageUtil.REQUEST_SUCCESS_MESSAGE, MessageUtil.REQUEST_FAIL_MESSAGE);
+    }
+    
+    public String saveSystemUser() {
+        try {
+            current.setGroups(Arrays.asList(User.Group.Admin));
+            MessageUtil.addGlobalInfoMessage(MessageUtil.REQUEST_SUCCESS_MESSAGE);
+            return "/admin/index.xhtml";
+        } catch (Exception e) {
+            JsfUtil.handleException(e, MessageUtil.REQUEST_FAIL_MESSAGE);
+        }
+        return null;
     }
 
     public User.Group[] getUserGroups() {

@@ -50,15 +50,7 @@ public class AuthenticateBean implements Serializable {
         synchronized (this) {
             // Check admins and create default user
             if (!service.hasAdminUser()) {
-                User user = new User();
-                user.setCode("default");
-                user.setUsername("admin");
-                user.setEmail("admin@nms.com.vn");
-                user.setPassword("admin");
-                user.setFullname("Administrator");
-                user.setGroups(Arrays.asList(User.Group.Admin));
-                user.setDescription("Default Administrator");
-                service.persist(user);
+                
             }
         }
 
@@ -72,6 +64,14 @@ public class AuthenticateBean implements Serializable {
 
             if (originalQuery != null) {
                 originalURL += "?" + originalQuery;
+            }
+        }
+        // Check admins and create default user
+        if (!service.hasAdminUser()) {
+            try {
+                externalContext.redirect(externalContext.getRequestContextPath() + "/admin/configuration.xhtml");
+            } catch (IOException ex) {
+                Logger.getLogger(AuthenticateBean.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
