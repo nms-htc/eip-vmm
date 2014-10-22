@@ -18,7 +18,7 @@ public class EIPApplication extends Application {
     @Override
     public Set<Class<?>> getClasses() {
         Set<Class<?>> classes = new HashSet<>();
-        classes.add(EipContentResource.class);
+        //classes.add(EipContentResource.class);
         return classes;
     }
 }
