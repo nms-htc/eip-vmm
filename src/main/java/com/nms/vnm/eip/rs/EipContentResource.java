@@ -90,19 +90,19 @@ public class EipContentResource {
         // validate flatform
         switch (flatform) {
             case 0:
-                flatformEnum = Game.Flatform.ANDROID;
+                flatformEnum = Game.Flatform.Android;
                 break;
             case 1:
-                flatformEnum = Game.Flatform.IOS;
+                flatformEnum = Game.Flatform.Ios;
                 break;
             case 2:
-                flatformEnum = Game.Flatform.JAVA;
+                flatformEnum = Game.Flatform.Java;
                 break;
             case 3:
-                flatformEnum = Game.Flatform.WINDOW_PHONE;
+                flatformEnum = Game.Flatform.Window_Phone;
                 break;
             case 4:
-                flatformEnum = Game.Flatform.OTHER;
+                flatformEnum = Game.Flatform.Other;
                 break;
         }
 

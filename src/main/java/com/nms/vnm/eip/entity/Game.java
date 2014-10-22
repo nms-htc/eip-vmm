@@ -1,9 +1,9 @@
 /**
- * Copyright (C) 2014 Next Generation Mobile Service JSC., (NMS). All rights
- * reserved.
+ * Copyright (C) 2014 Next Generation Mobile Service JSC., (NMS). All rights reserved.
  */
 package com.nms.vnm.eip.entity;
 
+import com.nms.vnm.eip.web.util.MessageUtil;
 import java.util.Collection;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
@@ -24,13 +24,36 @@ import javax.xml.bind.annotation.XmlTransient;
 @DiscriminatorValue("Game")
 @XmlRootElement
 public class Game extends Product {
-    
+
     private static final long serialVersionUID = -2110867128144045606L;
-    
+
     public enum Flatform {
 
-        ANDROID, IOS, JAVA, WINDOW_PHONE, OTHER;
-    }   
+        Android, Ios, Java, Window_Phone, Other;
+
+        @Override
+        public String toString() {
+            String result = "";
+            switch (this) {
+                case Android:
+                    result =  MessageUtil.getBundleMessage("android");
+                    break;
+                case Ios:
+                    result = MessageUtil.getBundleMessage("ios");
+                    break;
+                case Java:
+                    result = MessageUtil.getBundleMessage("java");
+                    break;
+                case Window_Phone:
+                    result = MessageUtil.getBundleMessage("windowphone");
+                    break;
+                case Other:
+                    result = MessageUtil.getBundleMessage("other");
+                    break;
+            }
+            return result;
+        }
+    }
 
     @Size(max = 2000)
     @Column(name = "DEVICES_SUPPORT", length = 2000)

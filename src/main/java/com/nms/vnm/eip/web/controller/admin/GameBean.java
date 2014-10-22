@@ -29,4 +29,8 @@ public class GameBean extends AbstractManagedBean<Game> {
     protected BaseService<Game> getBaseService() {
         return gameService;
     }
+    
+    public Game.Flatform[] getFlatforms() {
+        return Game.Flatform.values();
+    }
 }

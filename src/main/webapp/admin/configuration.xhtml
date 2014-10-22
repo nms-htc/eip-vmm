@@ -24,11 +24,11 @@
                         <p:message for="username"/>
                         
                         <p:outputLabel for="password" value="#{msg['user.password']}"/>
-                        <p:password id="password" value="#{userBean.current.password}"/>
+                        <p:password id="password" value="#{userBean.current.password}" size="33"/>
                         <p:message for="password"/>
                         
                         <p:outputLabel for="email" value="#{msg['user.email']}"/>
-                        <p:inputText id="email" value="#{userBean.current.email}"/>
+                        <p:inputText id="email" value="#{userBean.current.email}" size="33"/>
                         <p:message for="email"/>
                         
                         <p:outputLabel for="description" value="#{msg['description']}"/>
@@ -39,7 +39,8 @@
                         <p:commandButton value="#{msg['create']}"
                                          icon="ui-icon-plus"
                                          action="#{userBean.saveSystemUser()}"
-                                         update="@form"/>
+                                         update="@form"
+                                         validateClient="true"/>
                     </f:facet>
                 </p:panel>
             </h:form>

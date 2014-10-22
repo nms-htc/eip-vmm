@@ -10,6 +10,7 @@ import com.nms.vnm.eip.web.model.AbstractLazyDataModel;
 import com.nms.vnm.eip.web.util.JsfUtil;
 import com.nms.vnm.eip.web.util.MessageUtil;
 import java.io.Serializable;
+import java.util.List;
 import javax.faces.model.SelectItem;
 import org.primefaces.model.LazyDataModel;
 
@@ -29,6 +30,7 @@ public abstract class AbstractManagedBean<T extends BaseEntity> implements Seria
     protected T current;
     protected LazyDataModel<T> model;
     private SelectItem[] selectItems;
+    private List<T> all;
 
     public void resetEntity() {
         current = null;
@@ -181,4 +183,10 @@ public abstract class AbstractManagedBean<T extends BaseEntity> implements Seria
         this.selectItems = selectItems;
     }
     
+    public List<T> getAll() {
+        if (all == null || all.isEmpty()) {
+            all = getBaseService().findAll();
+        }
+        return all;
+    }
 }

@@ -20,4 +20,9 @@ public class GameCatConvertor extends AbstractEntityConvertor<GameCategory> {
     protected BaseService<GameCategory> getBaseService() {
         return gameCategoryService;
     }
+
+    @Override
+    protected Class<GameCategory> getEntityClass() {
+        return GameCategory.class;
+    }
 }
