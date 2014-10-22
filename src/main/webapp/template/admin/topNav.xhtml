@@ -15,7 +15,8 @@
                 <f:facet name="options">
                     <p:commandButton value="#{msg['sign.out']}" 
                                      icon="ui-icon-extlink" 
-                                     actionListener="#{authenticateBean.logout()}"/>
+                                     actionListener="#{authenticateBean.logout()}"
+                                     rendered="#{request.userPrincipal != null}"/>
                 </f:facet>
             </p:menubar>
         </h:form>

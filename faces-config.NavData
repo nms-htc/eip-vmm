@@ -3,22 +3,14 @@
     <Scope Scope="Faces Configuration Only"/>
     <Scope Scope="Project">
         <Node id="common/base_template.xhtml" x="400" y="300" zoom="true"/>
-        <Node id="resources/eip/list-product.xhtml" x="1400" y="150" zoom="true"/>
         <Node id="resources/eip/table_paginator.xhtml" x="150" y="750" zoom="true"/>
-        <Node id="admin/game_cat/list.xhtml" x="1150" y="300" zoom="true"/>
-        <Node id="admin/game_cat/create.xhtml" x="400" y="450" zoom="true"/>
+        <Node id="resources/eip/list-product.xhtml" x="1400" y="150" zoom="true"/>
         <Node id="admin/index.xhtml" x="150" y="600" zoom="true"/>
         <Node id="resources/eip/admin_nav.xhtml" x="900" y="300" zoom="true"/>
-        <Node id="admin/game_cat/edit.xhtml" x="400" y="150" zoom="true"/>
-        <Node id="admin/game/list.xhtml" x="150" y="300" zoom="true"/>
-        <Node id="admin/game/create.xhtml" x="650" y="150" zoom="true"/>
         <Node id="admin/user/edit.xhtml" x="150" y="150" zoom="true"/>
         <Node id="admin/user/list.xhtml" x="900" y="450" zoom="true"/>
-        <Node id="admin/game/edit.xhtml" x="650" y="450" zoom="true"/>
         <Node id="index.xhtml" x="650" y="300" zoom="true"/>
         <Node id="common/admin_template.xhtml" x="150" y="450" zoom="true"/>
-        <Node id="admin/user/create.xhtml" x="400" y="600" zoom="true"/>
-        <Node id="admin/game/batch_create.xhtml" x="1150" y="150" zoom="true"/>
         <Node id="common/template.xhtml" x="900" y="150" zoom="true"/>
     </Scope>
     <Scope Scope="All Faces Configurations"/>
