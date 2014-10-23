@@ -11,6 +11,7 @@ import com.nms.vnm.eip.web.util.JsfUtil;
 import com.nms.vnm.eip.web.util.MessageUtil;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 import javax.faces.model.SelectItem;
 import org.primefaces.model.LazyDataModel;
 
@@ -137,6 +138,13 @@ public abstract class AbstractManagedBean<T extends BaseEntity> implements Seria
             protected BaseService<T> getService() {
                 return getBaseService();
             }
+
+            @Override
+            protected void modifyModelFilters(Map<String, Object> filters) {
+                super.modifyModelFilters(filters);
+                alterModelFilters(filters);
+            }
+            
         };
     }
 
@@ -183,10 +191,7 @@ public abstract class AbstractManagedBean<T extends BaseEntity> implements Seria
         this.selectItems = selectItems;
     }
     
-    public List<T> getAll() {
-        if (all == null || all.isEmpty()) {
-            all = getBaseService().findAll();
-        }
-        return all;
+    // pre-set criteria for filtering datatable.
+    protected void alterModelFilters(Map<String, Object> filters) {
     }
 }

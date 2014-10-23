@@ -19,6 +19,7 @@ import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -51,7 +52,7 @@ public abstract class Product extends BaseEntity {
 
     @Lob
     @Column(name = "SPEC")
-    protected String specification;
+    protected String specification = "";
 
     @Column(name = "DOWNLOAD_COUNT")
     @Min(0)
@@ -177,5 +178,12 @@ public abstract class Product extends BaseEntity {
 
     public void setUser(User user) {
         this.user = user;
+    }
+    
+    @PrePersist
+    public void fillCpCode() {
+        if (user != null) {
+            setCpCode(user.code);
+        }
     }
 }

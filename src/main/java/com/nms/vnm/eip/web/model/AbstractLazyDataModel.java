@@ -33,6 +33,9 @@ public abstract class AbstractLazyDataModel<T extends BaseEntity> extends LazyDa
 
     @Override
     public List<T> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
+        // modifing filter cirterias.
+        modifyModelFilters(filters);
+
         boolean asc = false;
         if (sortOrder != null && sortOrder == SortOrder.ASCENDING) {
             asc = true;
@@ -40,4 +43,14 @@ public abstract class AbstractLazyDataModel<T extends BaseEntity> extends LazyDa
         this.setRowCount(getService().countForPFDatatable(filters));
         return getService().searchForPFDatatable(first, pageSize, sortField, asc, filters);
     }
+
+    /**
+     * Override this method to add default predicate for query data model.
+     *
+     * @param filters
+     */
+    protected void modifyModelFilters(Map<String, Object> filters) {
+        /* nothing to say. */
+    }
+
 }

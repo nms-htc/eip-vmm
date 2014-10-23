@@ -8,6 +8,6 @@ package com.nms.vnm.eip.service;
  *
  * @author CuongNT
  */
-public interface PhonenumberService {
+public interface MobileCheckerService {
     
 }

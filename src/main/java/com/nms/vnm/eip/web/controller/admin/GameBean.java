@@ -13,7 +13,7 @@ import javax.inject.Named;
 
 @Named
 @ViewScoped
-public class GameBean extends AbstractManagedBean<Game> {
+public class GameBean extends AbstractProductBean<Game> {
 
     private static final long serialVersionUID = -3525845741604139824L;
 
@@ -29,7 +29,7 @@ public class GameBean extends AbstractManagedBean<Game> {
     protected BaseService<Game> getBaseService() {
         return gameService;
     }
-    
+
     public Game.Flatform[] getFlatforms() {
         return Game.Flatform.values();
     }

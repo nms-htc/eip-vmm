@@ -1,0 +1,29 @@
+/**
+ * Copyright (C) 2014 Next Generation Mobile Service JSC., (NMS). All rights
+ * reserved.
+ */
+package com.nms.vnm.eip.web.flows;
+
+import java.io.Serializable;
+import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.inject.Produces;
+import javax.faces.flow.Flow;
+import javax.faces.flow.builder.FlowBuilder;
+import javax.faces.flow.builder.FlowBuilderParameter;
+import javax.faces.flow.builder.FlowDefinition;
+
+//@ApplicationScoped
+public class FlowFactory implements Serializable {
+    private static final long serialVersionUID = -1661000665063975947L;
+    
+//    @Produces @FlowDefinition
+    public Flow gameFlow(@FlowBuilderParameter FlowBuilder f) {
+        String flowId = "gameManagement";
+        f.id("", flowId);
+        f.viewNode("list", "/admin/contents/game/list.xhtml").markAsStartNode();
+        f.viewNode("edit", "/admin/contents/game/edit.xhtml");
+        f.returnNode("returnFlow").fromOutcome("/admin/index.xhtml");
+        return f.getFlow();
+    }
+
+}
