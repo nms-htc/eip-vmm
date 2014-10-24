@@ -13,7 +13,7 @@ import javax.inject.Named;
 
 @Named
 @ViewScoped
-public class VideoBean extends AbstractManagedBean<Video> {
+public class VideoBean extends AbstractProductBean<Video> {
 
     private static final long serialVersionUID = -1514605817248554643L;
     @EJB

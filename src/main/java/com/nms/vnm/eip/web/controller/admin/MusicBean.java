@@ -13,7 +13,7 @@ import javax.inject.Named;
 
 @Named
 @ViewScoped
-public class MusicBean extends AbstractManagedBean<Music> {
+public class MusicBean extends AbstractProductBean<Music> {
 
     private static final long serialVersionUID = 6621902050457501495L;
 

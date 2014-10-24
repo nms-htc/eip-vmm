@@ -187,11 +187,16 @@ public abstract class AbstractManagedBean<T extends BaseEntity> implements Seria
         return selectItems;
     }
 
-    public void setSelectItems(SelectItem[] selectItems) {
+    public void setSelectItems(SelectItem[] selectItems) {  
         this.selectItems = selectItems;
+    }
+    
+    public List<T> getAll() {
+        return getBaseService().findAll();
     }
     
     // pre-set criteria for filtering datatable.
     protected void alterModelFilters(Map<String, Object> filters) {
     }
+    
 }

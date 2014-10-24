@@ -13,7 +13,7 @@ import javax.inject.Named;
 
 @Named
 @ViewScoped
-public class PostBean extends AbstractManagedBean<Post> {
+public class PostBean extends AbstractProductBean<Post> {
 
     private static final long serialVersionUID = 1234824483877206931L;
     @EJB

@@ -44,7 +44,7 @@
 
                     <p:outputLabel for="groups" value="#{msg['user.groups']}:"/>
                     <p:selectManyCheckbox id="groups" value="#{userBean.current.groups}"
-                                          converter="enumConvertor">
+                                          converter="enumConverter">
                         <f:selectItems value="#{userBean.userGroups}"/>
                     </p:selectManyCheckbox>
                     <p:message for="groups"/>

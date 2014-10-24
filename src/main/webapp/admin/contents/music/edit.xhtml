@@ -4,8 +4,7 @@
               xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
               xmlns:p="http://primefaces.org/ui"
               xmlns:h="http://xmlns.jcp.org/jsf/html"
-              xmlns:f="http://xmlns.jcp.org/jsf/core"
-              xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+              xmlns:f="http://xmlns.jcp.org/jsf/core">
     <p:dialog id="#{mode}Dl"
               widgetVar="#{mode}Dl"
               closeOnEscape="true"
@@ -22,7 +21,7 @@
                 <p:row>
                     <p:column><p:outputLabel for="code" value="#{msg['product.code']}"/></p:column>
                     <p:column>
-                        <p:inputText id="code" value="#{musicBean.current.code}"/>
+                        <p:inputText id="code" value="#{musicBean.current.code}" disabled="#{mode == 'edit'}"/>
                         <p:message for="code"/>
                     </p:column>
                     <p:column><p:outputLabel for="title" value="#{msg['product.title']}"/></p:column>
@@ -31,7 +30,79 @@
                         <p:message for="title"/>
                     </p:column>
                 </p:row>
+
+                <p:row>
+                    <p:column><p:outputLabel for="price" value="#{msg['product.price']}"/></p:column>
+                    <p:column>
+                        <p:spinner id="price" value="#{musicBean.current.price}"/>
+                        <p:message for="price"/>
+                    </p:column>
+                    <p:column><p:outputLabel for="category" value="#{msg['category']}"/></p:column>
+                    <p:column>
+                        <p:selectOneMenu id="category" value="#{musicBean.current.category}" converter="musicCatConverter">
+                            <f:selectItems value="#{musicCatBean.selectItems}"/>
+                        </p:selectOneMenu>
+                        <p:message for="category"/>
+                    </p:column>
+                </p:row>
+
+                <p:row>
+                    <p:column><p:outputLabel for="singer" value="#{msg['music.singer']}"/></p:column>
+                    <p:column>
+                        <p:inputText id="singer" value="#{musicBean.current.singer}"/>
+                        <p:message for="singer"/>
+                    </p:column>
+                    <p:column><p:outputLabel for="creator" value="#{msg['music.creator']}"/></p:column>
+                    <p:column>
+                        <p:inputText id="creator" value="#{musicBean.current.creator}"/>
+                        <p:message for="creator"/>
+                    </p:column>
+                </p:row>
+
+                <p:row>
+                    <p:column><p:outputLabel for="thumbnailUrl" value="#{msg['product.thumbnailUrl']}"/></p:column>
+                    <p:column colspan="3">
+                        <p:inputText id="thumbnailUrl" value="#{musicBean.current.thumbnailUrl}" size="80"/>
+                        <p:message for="thumbnailUrl"/>
+                    </p:column>
+                </p:row>
+
+                <p:row>
+                    <p:column><p:outputLabel for="album" value="#{msg['music.album']}"/></p:column>
+                    <p:column>
+                        <p:inputText id="album" value="#{musicBean.current.album}"/>
+                        <p:message for="album"/>
+                    </p:column>
+                    <p:column><p:outputLabel for="albumThumbUrl" value="#{msg['music.albumThumbUrl']}"/></p:column>
+                    <p:column>
+                        <p:inputText id="albumThumbUrl" value="#{musicBean.current.albumThumbUrl}"/>
+                        <p:message for="albumThumbUrl"/>
+                    </p:column>
+                </p:row>
+
+                <p:row>
+                    <p:column><p:outputLabel for="musicUrl" value="#{msg['music.musicUrl']}"/></p:column>
+                    <p:column colspan="3">
+                        <p:inputText id="musicUrl" value="#{musicBean.current.musicUrl}" size="80"/>
+                        <p:message for="musicUrl"/>
+                    </p:column>
+                </p:row>
+
+                <p:row>
+                    <p:column><p:outputLabel for="waitMusicUrl" value="#{msg['music.waitMusicUrl']}"/></p:column>
+                    <p:column colspan="3">
+                        <p:inputText id="waitMusicUrl" value="#{musicBean.current.waitMusicUrl}" size="80"/>
+                        <p:message for="waitMusicUrl"/>
+                    </p:column>
+                </p:row>
                 
+                <p:row>
+                    <p:column><p:outputLabel for="lyric" value="#{msg['music.lyric']}:"/></p:column>
+                    <p:column colspan="3">
+                        <p:editor id="lyric" value="#{musicBean.current.lyric}" width="600"/>
+                        <p:message for="lyric"/>
+                    </p:column>
+                </p:row>
             </p:panelGrid>
             <p:separator/>
             <p:commandButton value="#{msg['create']}"
@@ -52,6 +123,6 @@
                              icon="ui-icon-close"/>
         </h:form>
     </p:dialog>
-    
+
 </ui:component>
 

@@ -35,13 +35,13 @@
                 <p:row>
                     <p:column><p:outputLabel for="price" value="#{msg['product.price']}:"/></p:column>
                     <p:column>
-                        <p:inputText id="price" value="#{gameBean.current.price}"/>
+                        <p:spinner id="price" value="#{gameBean.current.price}"/>
                         <p:message for="price"/>
                     </p:column>
 
                     <p:column><p:outputLabel for="category" value="#{msg['category']}:"/></p:column>
                     <p:column>
-                        <p:selectOneMenu id="category" value="#{gameBean.current.category}" converter="gameCatConvertor">
+                        <p:selectOneMenu id="category" value="#{gameBean.current.category}" converter="gameCatConverter">
                             <f:selectItems value="#{gameCatBean.selectItems}"/>
                         </p:selectOneMenu>
                         <p:message for="category"/>
@@ -51,7 +51,7 @@
                 <p:row>
                     <p:column><p:outputLabel for="flatforms" value="#{msg['game.flatforms']}:"/></p:column>
                     <p:column colspan="3">
-                        <p:selectManyCheckbox id="flatforms" value="#{gameBean.current.flatforms}" converter="enumConvertor">
+                        <p:selectManyCheckbox id="flatforms" value="#{gameBean.current.flatforms}" converter="enumConverter">
                             <f:selectItems value="#{gameBean.flatforms}"/>
                         </p:selectManyCheckbox>
                         <p:message for="flatforms"/>
