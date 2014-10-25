@@ -156,80 +156,80 @@ nav#main-nav {
         position: relative;
         &>div {
             display: none;
-            .product-items {
-                .product-item {
-                    a {
-                        @include transition(all 0.3s);
-                        text-decoration: none;
-                        position: relative;
-                        border: 1px solid #bfbfbf;
-                        border-bottom: none;
-                        display: block;
-                        height: 91px;
-                        padding: 3px;
-                        outline: none;
+        }
+    }
 
-                        .postImg {
-                            position: absolute;
-                            top: 3px;
-                            left: 3px;
-                            img {
-                                width: 85px;
-                            }
-                        }
+    .product-items {
+        .product-item {
+            a {
+                @include transition(all 0.3s);
+                text-decoration: none;
+                position: relative;
+                border: 1px solid #bfbfbf;
+                border-bottom: none;
+                display: block;
+                height: 91px;
+                padding: 3px;
+                outline: none;
 
-                        .postDesc {
-                            padding-left: 91px;
+                .postImg {
+                    position: absolute;
+                    top: 3px;
+                    left: 3px;
+                    img {
+                        width: 85px;
+                    }
+                }
 
-                            h3 {
-                                font-size: 15px;
-                                font-weight: bold;
-                                color: #000;
-                                line-height: 15px;
-                                margin: 8px 0;
-                            }
+                .postDesc {
+                    padding-left: 91px;
 
-                            p {
-                                color: #ff6200;
-                                font-weight: bolder;
-                                font-size: 15px;
-                                margin: 0 0 5px;
-                            }
-
-                            ul {
-                                list-style: none;
-                                margin: 0;
-                                padding: 0;
-                                li {
-                                    display: inline-block;
-                                    width: 40%;
-                                    padding-left: 35px;
-                                    font-size: 13px;
-                                    color: #8d8d8d;
-                                    outline: none;
-                                    cursor: pointer;
-                                    &.view {
-                                        background: url('../image/view.png') no-repeat center left;
-                                        background-size: 30px;
-                                    }
-
-                                    &.download {
-                                        background: url('../image/download1.png') no-repeat center left;
-                                        background-size: 25px;
-                                    }
-                                }
-                            }
-                        }
+                    h3 {
+                        font-size: 15px;
+                        font-weight: bold;
+                        color: #000;
+                        line-height: 15px;
+                        margin: 8px 0;
                     }
 
-                    &:last-child {
-                        a {
-                            border-bottom: 1px solid #bfbfbf;
+                    p {
+                        color: #ff6200;
+                        font-weight: bolder;
+                        font-size: 15px;
+                        margin: 0 0 5px;
+                    }
+
+                    ul {
+                        list-style: none;
+                        margin: 0;
+                        padding: 0;
+                        li {
+                            display: inline-block;
+                            width: 40%;
+                            padding-left: 35px;
+                            font-size: 13px;
+                            color: #8d8d8d;
+                            outline: none;
+                            cursor: pointer;
+                            &.view {
+                                background: url('../image/view.png') no-repeat center left;
+                                background-size: 30px;
+                            }
+
+                            &.download {
+                                background: url('../image/download1.png') no-repeat center left;
+                                background-size: 25px;
+                            }
                         }
                     }
                 }
             }
 
+            &:last-child {
+                a {
+                    border-bottom: 1px solid #bfbfbf;
+                }
+            }
         }
     }
 }

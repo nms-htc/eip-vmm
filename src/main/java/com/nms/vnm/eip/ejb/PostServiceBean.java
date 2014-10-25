@@ -5,11 +5,12 @@
 package com.nms.vnm.eip.ejb;
 
 import com.nms.vnm.eip.entity.Post;
+import com.nms.vnm.eip.entity.PostCategory;
 import com.nms.vnm.eip.service.entity.PostService;
 import javax.ejb.Stateless;
 
 @Stateless
-public class PostServiceBean extends AbstractFacadeBean<Post> implements PostService {
+public class PostServiceBean extends AbstratProductBean<PostCategory, Post> implements PostService {
 
     private static final long serialVersionUID = -857383942536246354L;
 

@@ -5,7 +5,8 @@
 package com.nms.vnm.eip.service.entity;
 
 import com.nms.vnm.eip.entity.Video;
+import com.nms.vnm.eip.entity.VideoCategory;
 
-public interface VideoService extends BaseService<Video> {
+public interface VideoService extends ProductService<Video, VideoCategory> {
 
 }

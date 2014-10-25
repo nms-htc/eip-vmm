@@ -25,13 +25,14 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
 @Table(name = "EIP_PRODUCT")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "TYPE")
 @XmlRootElement
-public abstract class Product extends BaseEntity {
+public abstract class Product<C extends Category> extends BaseEntity {
     
     private static final long serialVersionUID = 1600980462406964970L;
 
@@ -83,6 +84,11 @@ public abstract class Product extends BaseEntity {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "USERID", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     protected User user;
+    
+    @ManyToOne
+    @JoinColumn(name = "CATEGORY_ID", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    @XmlTransient
+    protected C category;
 
     public String getCode() {
         return code;
@@ -178,6 +184,14 @@ public abstract class Product extends BaseEntity {
 
     public void setUser(User user) {
         this.user = user;
+    }
+    
+    public C getCategory() {
+        return category;
+    }
+
+    public void setCategory(C category) {
+        this.category = category;
     }
     
     @PrePersist

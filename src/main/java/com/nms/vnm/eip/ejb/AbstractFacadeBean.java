@@ -26,7 +26,7 @@ public abstract class AbstractFacadeBean<T extends BaseEntity> implements BaseSe
     @PersistenceContext
     protected EntityManager em;
 
-    private final Class<T> entityClass;
+    protected final Class<T> entityClass;
 
     public AbstractFacadeBean(Class<T> entityClass) {
         this.entityClass = entityClass;

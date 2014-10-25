@@ -5,5 +5,28 @@
                 template="/template/wap/main.xhtml">
     <ui:define name="main-content">
         <ui:include src="include/carousel.xhtml"/>
+        
+        <ui:include src="include/product_tabbed.xhtml">
+            <ui:param name="tabbedTitle" value="#{msg['panel.product.hot']}"/>
+            <ui:param name="tabbedName" value="productHots"/>
+            
+            <ui:param name="gameEntities" value="#{gameBean.all}"/>
+            <ui:param name="musicEntities" value=""/>
+            <ui:param name="pictureEntities" value=""/>
+            <ui:param name="videoEntities" value=""/>
+            <ui:param name="postEntities" value=""/>
+        </ui:include>
+        
+        <ui:include src="include/product_tabbed.xhtml">
+            <ui:param name="tabbedTitle" value="#{msg['panel.product.new']}"/>
+            <ui:param name="tabbedName" value="productNews"/>
+            
+            <ui:param name="gameEntities" value="#{gameBean.all}"/>
+            <ui:param name="musicEntities" value=""/>
+            <ui:param name="pictureEntities" value=""/>
+            <ui:param name="videoEntities" value=""/>
+            <ui:param name="postEntities" value=""/>
+        </ui:include>
+        
     </ui:define>
 </ui:composition>
