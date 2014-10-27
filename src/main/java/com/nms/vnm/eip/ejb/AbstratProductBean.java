@@ -32,7 +32,7 @@ public abstract class AbstratProductBean<C extends Category, P extends Product<C
         cq.select(root);
 
         if (category != null) {
-            cq.where(cb.equal(root.get(Product_.category), (C)category));
+            cq.where(cb.equal(root.get(Product_.category), (Category)category));
         }
 
         if (orderField != null && !orderField.trim().isEmpty()) {
