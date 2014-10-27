@@ -74,7 +74,7 @@ public interface BaseService<T extends BaseEntity> extends Serializable {
      * @param filters
      * @return
      */
-    public List<T> searchForPFDatatable(int start, int range, String sortField, boolean asc, Map<String, Object> filters);
+    public List<T> search(int start, int range, String sortField, boolean asc, Map<String, Object> filters);
 
     /**
      * Using in primeface lazy data model.
@@ -82,5 +82,5 @@ public interface BaseService<T extends BaseEntity> extends Serializable {
      * @param filters
      * @return
      */
-    public int countForPFDatatable(Map<String, Object> filters);
+    public int count(Map<String, Object> filters);
 }

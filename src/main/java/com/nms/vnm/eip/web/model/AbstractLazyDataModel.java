@@ -40,8 +40,8 @@ public abstract class AbstractLazyDataModel<T extends BaseEntity> extends LazyDa
         if (sortOrder != null && sortOrder == SortOrder.ASCENDING) {
             asc = true;
         }
-        this.setRowCount(getService().countForPFDatatable(filters));
-        return getService().searchForPFDatatable(first, pageSize, sortField, asc, filters);
+        this.setRowCount(getService().count(filters));
+        return getService().search(first, pageSize, sortField, asc, filters);
     }
 
     /**

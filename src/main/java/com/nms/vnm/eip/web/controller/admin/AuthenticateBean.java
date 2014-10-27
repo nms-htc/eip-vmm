@@ -36,7 +36,7 @@ public class AuthenticateBean implements Serializable {
     private String password;
     private String originalURL;
     private User currentUser;
-
+    
     @EJB
     private UserService service;
 
@@ -45,8 +45,8 @@ public class AuthenticateBean implements Serializable {
 
     @PostConstruct
     public void init() {
-        
-        ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        ExternalContext externalContext = facesContext.getExternalContext();
         originalURL = (String) externalContext.getRequestMap().get(RequestDispatcher.FORWARD_REQUEST_URI);
 
         if (originalURL == null) {
@@ -104,7 +104,7 @@ public class AuthenticateBean implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
-
+    
     @Produces
     public User getCurrentUser() {
         return currentUser;

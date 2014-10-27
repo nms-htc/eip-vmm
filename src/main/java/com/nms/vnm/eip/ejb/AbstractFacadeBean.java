@@ -104,7 +104,7 @@ public abstract class AbstractFacadeBean<T extends BaseEntity> implements BaseSe
     }
 
     @Override
-    public int countForPFDatatable(Map<String, Object> filters) {
+    public int count(Map<String, Object> filters) {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Long> cq = cb.createQuery(Long.class);
         Root<T> root = cq.from(entityClass);
@@ -121,7 +121,7 @@ public abstract class AbstractFacadeBean<T extends BaseEntity> implements BaseSe
     }
 
     @Override
-    public List<T> searchForPFDatatable(int start, int range, String sortField,
+    public List<T> search(int start, int range, String sortField,
             boolean asc, Map<String, Object> filters) {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<T> cq = cb.createQuery(entityClass);

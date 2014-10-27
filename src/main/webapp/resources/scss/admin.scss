@@ -44,4 +44,30 @@ html {
 
 div#header {
     height: 50px;
+    position: relative;
+    
+    .logo {
+        display: block;
+        img {
+            height: 50px;
+            margin-left: 10px;
+        }
+    }
+    
+    .greeting {
+        position: absolute;
+        line-height: 50px;
+        right: 10px;
+        top: 0;
+        font-size: 12px;
+        color: #654b24;
+        font-family: 'Open Sans', sans-serif;
+        span {
+            
+            font-weight: bold;
+            span {
+                color: #f60000;
+            }
+        }
+    }
 }

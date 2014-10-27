@@ -25,8 +25,8 @@
         <message-bundle>com.nms.i18n.Message</message-bundle>
         <!-- default location config -->
         <locale-config>
-            <default-locale>vi_VN</default-locale>
-            <supported-locale>vi_VN</supported-locale>
+            <default-locale>vi</default-locale>
+            <supported-locale>vi</supported-locale>
             <supported-locale>en_US</supported-locale>
         </locale-config>
     </application>

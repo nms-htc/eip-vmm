@@ -3,19 +3,16 @@
  */
 package com.nms.vnm.eip.web.util;
 
+import com.nms.vnm.eip.entity.Product;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.model.DataModel;
 
-/**
- *
- * @author Cuong
- */
-public abstract class PaginationHelper {
+public abstract class PaginationHelper<T extends Product>{
 
     private final int pageSize;
     private int page;
-    private int itemCount;
+    private final int itemCount;
 
     public PaginationHelper(int pageSize, int itemCount) {
         this.pageSize = pageSize;

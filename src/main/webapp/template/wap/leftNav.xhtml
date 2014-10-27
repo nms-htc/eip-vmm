@@ -8,6 +8,7 @@
     <nav id="nav-panel">
         <h1>#{msg['leftNav.title']}</h1>
         <ul>
+            <li class="sub"><h:link outcome="/index.xhtml" value="#{msg['leftNav.homePage']}"/></li>
             <li class="sub"><a href="javascript:void(0);">#{msg['leftNav.game']}</a>
                 <ul>
                     <c:forEach var="cat" items="#{gameCatBean.all}" varStatus="vs">

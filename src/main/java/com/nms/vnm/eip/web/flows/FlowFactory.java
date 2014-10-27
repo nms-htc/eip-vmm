@@ -5,12 +5,9 @@
 package com.nms.vnm.eip.web.flows;
 
 import java.io.Serializable;
-import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.inject.Produces;
 import javax.faces.flow.Flow;
 import javax.faces.flow.builder.FlowBuilder;
 import javax.faces.flow.builder.FlowBuilderParameter;
-import javax.faces.flow.builder.FlowDefinition;
 
 //@ApplicationScoped
 public class FlowFactory implements Serializable {
