@@ -14,7 +14,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @DiscriminatorValue("Music")
 @XmlRootElement
-public class Music extends Product<MusicCategory> {
+public class Music extends Product {
 
     private static final long serialVersionUID = 5149591841140789090L;
 

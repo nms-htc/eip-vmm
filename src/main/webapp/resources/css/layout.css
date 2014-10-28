@@ -1,9 +1,6 @@
-/**
- * Copyright (C) 2014 Next Generation Mobile Service JSC., (NMS).
- * All rights reserved.
- * Created on : Oct 24, 2014, 1:43:10 PM
- * Author     : CuongNT
-*/
+body {
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; }
+
 @media (max-width: 768px) {
   .container {
     padding-right: 5px;

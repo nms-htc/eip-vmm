@@ -41,6 +41,14 @@
             <h:messages globalOnly="true"/>
             <ui:include src="header.xhtml"/>
             <ui:include src="mainNav.xhtml"/>
+            <h:messages id="messages"
+                        tooltip="true"
+                        styleClass="messages"
+                        globalOnly="true" 
+                        errorClass="alert alert-danger"
+                        fatalClass="alert alert-danger"
+                        infoClass="alert alert-success"
+                        warnClass="alert alert-warning"/>
             <ui:insert name="main-content">hellomoto</ui:insert>
             <ui:include src="footer.xhtml"/>
             <ui:include src="leftNav.xhtml"/>

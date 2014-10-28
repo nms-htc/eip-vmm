@@ -32,7 +32,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "TYPE")
 @XmlRootElement
-public abstract class Product<C extends Category> extends BaseEntity {
+public abstract class Product extends BaseEntity {
     
     private static final long serialVersionUID = 1600980462406964970L;
 
@@ -88,7 +88,7 @@ public abstract class Product<C extends Category> extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "CATEGORY_ID", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     @XmlTransient
-    protected C category;
+    protected Category category;
 
     public String getCode() {
         return code;
@@ -186,11 +186,11 @@ public abstract class Product<C extends Category> extends BaseEntity {
         this.user = user;
     }
     
-    public C getCategory() {
+    public Category getCategory() {
         return category;
     }
 
-    public void setCategory(C category) {
+    public void setCategory(Category category) {
         this.category = category;
     }
     

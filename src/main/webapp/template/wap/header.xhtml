@@ -13,7 +13,7 @@
 
             <div class="col-xs-8 col-sm-9 col-md-9 col-lg-9 greeting">
                 
-                <span>#{msg['header.greeting']}<span>0927733776</span></span>
+                <span>#{msg['header.greeting']}<span>#{mobileChecker.phoneNumber == null ? msg['header.guest'] : mobileChecker.phoneNumber}</span></span>
             </div>
         </div>
     </header>

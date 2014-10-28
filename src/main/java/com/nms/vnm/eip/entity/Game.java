@@ -20,7 +20,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @DiscriminatorValue("Game")
 @XmlRootElement
-public class Game extends Product<GameCategory> {
+public class Game extends Product {
 
     private static final long serialVersionUID = -2110867128144045606L;
 

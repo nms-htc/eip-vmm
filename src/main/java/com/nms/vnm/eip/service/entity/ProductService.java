@@ -23,4 +23,8 @@ public interface ProductService<E extends Product, C extends Category> extends B
     public int countFrees(C category);
 
     public int countByCat(C category);
+    
+    public void increaseViewCount(E product);
+    
+    public void increateDownloadCount(E product);
 }

@@ -71,12 +71,12 @@ nav#main-nav {
   .product-tabbed header div h3 {
     line-height: 14px;
     font-size: 14px;
-    font-weight: bold;
-    font-family: Bebas, Arial, sans-serif;
     padding: 5px;
+    margin: 3px 0;
     color: #000;
     text-transform: uppercase;
     background: #ff6300;
+    margin: 10px 0;
     border: 1px solid #919191; }
   .product-tabbed .tabs-label div {
     padding: 0 5px;
@@ -157,13 +157,96 @@ nav#main-nav {
         outline: none;
         cursor: pointer; }
         .product-items .product-item a .postDesc ul li.view {
-          background: url("../image/view.png") no-repeat center left;
+          background: url("#{resource['image:view.png']}") no-repeat center left;
           background-size: 30px; }
         .product-items .product-item a .postDesc ul li.download {
-          background: url("../image/download1.png") no-repeat center left;
+          background: url("#{resource['image:download1.png']}") no-repeat center left;
           background-size: 25px; }
 .product-items .product-item:last-child a {
   border-bottom: 1px solid #bfbfbf; }
+
+header.panel-title div h3 {
+  line-height: 14px;
+  font-size: 14px;
+  padding: 5px;
+  color: #000;
+  margin: 5px 0;
+  text-transform: uppercase;
+  background: #ff6300;
+  border: 1px solid #919191; }
+
+.product-detail {
+  position: relative;
+  border: 1px solid #bfbfbf;
+  display: block;
+  padding: 3px; }
+  .product-detail .postImg {
+    position: absolute;
+    top: 3px;
+    left: 3px; }
+    .product-detail .postImg img {
+      width: 85px;
+      height: 85px;
+      margin-bottom: 5px; }
+  .product-detail .postDesc {
+    padding-left: 91px;
+    height: 130px; }
+    .product-detail .postDesc h3 {
+      font-size: 15px;
+      font-weight: bold;
+      color: #000;
+      line-height: 15px;
+      margin: 8px 0; }
+    .product-detail .postDesc p {
+      color: #ff6200;
+      font-weight: bolder;
+      font-size: 15px;
+      margin: 0 0 5px; }
+    .product-detail .postDesc ul {
+      list-style: none;
+      margin: 0;
+      padding: 0; }
+      .product-detail .postDesc ul li {
+        display: inline-block;
+        width: 40%;
+        padding-left: 35px;
+        font-size: 13px;
+        color: #8d8d8d;
+        outline: none;
+        cursor: pointer; }
+        .product-detail .postDesc ul li.view {
+          background: url("#{resource['image:view.png']}") no-repeat center left;
+          background-size: 30px; }
+        .product-detail .postDesc ul li.download {
+          background: url("#{resource['image:download1.png']}") no-repeat center left;
+          background-size: 25px; }
+    .product-detail .postDesc .sms {
+      margin-top: 13px;
+      background: #e7e7e7;
+      height: 33px;
+      text-align: center; }
+      .product-detail .postDesc .sms span {
+        line-height: 35px;
+        font-weight: bold;
+        font-size: 14px; }
+  .product-detail div.separator {
+    height: 2px;
+    background: #ff6300;
+    margin-bottom: 5px; }
+  .product-detail .spec {
+    font-size: #323232;
+    font-size: 14px;
+    text-justify: auto; }
+
+.messages {
+  list-style: none;
+  margin: 0;
+  padding: 0; }
+  .messages li {
+    margin: 5px 0; }
+
+.breadcrumb {
+  margin-bottom: 5px; }
 
 .product-tabbed input.tab-selector-1:checked ~ .tabs-label div div label.tab-label-1 {
   background: #23ffc7; }

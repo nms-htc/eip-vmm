@@ -1,18 +1,24 @@
 /**
- * Copyright (C) 2014 Next Generation Mobile Service JSC., (NMS). All rights
- * reserved.
+ * Copyright (C) 2014 Next Generation Mobile Service JSC., (NMS). All rights reserved.
  */
 package com.nms.vnm.eip.web.controller;
 
 import com.nms.vnm.eip.entity.Category;
 import com.nms.vnm.eip.entity.Product;
+import com.nms.vnm.eip.service.ChargingService;
+import com.nms.vnm.eip.service.MobileChecker;
 import com.nms.vnm.eip.service.entity.ProductService;
+import com.nms.vnm.eip.web.util.MessageUtil;
 import java.io.Serializable;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.inject.Inject;
 
 public abstract class AbstractProductController<T extends Product, C extends Category> implements Serializable {
 
     private static final long serialVersionUID = -1246504599210472022L;
+    protected static final Logger LOGGER = Logger.getLogger("AbstractProductController");
 
     protected T current;
     protected C category;
@@ -22,10 +28,35 @@ public abstract class AbstractProductController<T extends Product, C extends Cat
     protected int count = 0;
     protected String orderField = "createdDate";
 
+    @Inject
+    protected ChargingService chargingService;
+    @Inject
+    protected MobileChecker mobileChecker;
+
     protected List<T> model;
 
     protected List<T> listByCat;
     protected List<T> listExcludeCurrent;
+
+    public void chargingProduct() {
+        if (mobileChecker.isVnmSubsriber()) {
+            try {
+                int result = chargingService.chargeProduct(current);
+                if (result == 0) {
+                    getProductService().increateDownloadCount(current);
+                    MessageUtil.addGlobalInfoMessage("vnm-purcharse-success");
+                } else {
+                    MessageUtil.addGlobalWarnMessage(String.valueOf(result));
+                }
+            } catch (Exception e) {
+                MessageUtil.addGlobalWarnMessage("charging-system-overloading");
+                LOGGER.log(Level.SEVERE, "charing-service-error", e);
+            }
+            
+        } else {
+            MessageUtil.addGlobalWarnMessage("vnm-subscriber-not-detech");
+        }
+    }
 
     public C getCategory() {
         return category;
@@ -110,6 +141,8 @@ public abstract class AbstractProductController<T extends Product, C extends Cat
 
     public void initData() {
         if (current != null) {
+            // increase view count
+            getProductService().increaseViewCount(current);
             model = getProductService().findExcludeCurrent(page * 10, 10, current);
             count = getProductService().countByCat(category);
 

@@ -1,9 +1,9 @@
 /**
- * Copyright (C) 2014 Next Generation Mobile Service JSC., (NMS). All rights
- * reserved.
+ * Copyright (C) 2014 Next Generation Mobile Service JSC., (NMS). All rights reserved.
  */
 package com.nms.vnm.eip.ejb;
 
+import com.nms.vnm.eip.entity.BaseEntity_;
 import com.nms.vnm.eip.entity.Category;
 import com.nms.vnm.eip.entity.Product;
 import com.nms.vnm.eip.entity.Product_;
@@ -16,7 +16,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
-public abstract class AbstratProductBean<C extends Category, P extends Product<C>> extends AbstractFacadeBean<P> implements ProductService<P, C> {
+public abstract class AbstratProductBean<C extends Category, P extends Product> extends AbstractFacadeBean<P> implements ProductService<P, C> {
 
     private static final long serialVersionUID = -2603765016508854535L;
 
@@ -32,7 +32,7 @@ public abstract class AbstratProductBean<C extends Category, P extends Product<C
         cq.select(root);
 
         if (category != null) {
-            cq.where(cb.equal(root.get(Product_.category), (Category)category));
+            cq.where(cb.equal(root.get(Product_.category), (Category) category));
         }
 
         if (orderField != null && !orderField.trim().isEmpty()) {
@@ -58,9 +58,9 @@ public abstract class AbstratProductBean<C extends Category, P extends Product<C
             Root<P> root = cq.from(entityClass);
             if (category != null) {
                 C cat = (C) category;
-                cq.where(new Predicate[] {
+                cq.where(new Predicate[]{
                     cb.equal(root.get(Product_.category), cat),
-                    cb.notEqual(root.get(Product_.id), ((Product)product).getId())
+                    cb.notEqual(root.get(BaseEntity_.id), ((Product) product).getId())
                 });
             }
             TypedQuery<P> q = em.createQuery(cq);
@@ -77,14 +77,14 @@ public abstract class AbstratProductBean<C extends Category, P extends Product<C
         CriteriaQuery<P> cq = cb.createQuery(entityClass);
         Root<P> root = cq.from(entityClass);
         cq.select(root);
-        
+
         List<Predicate> predicates = new ArrayList<>();
         predicates.add(cb.greaterThan(root.get(Product_.promoPrice), Double.valueOf(0)));
         if (category != null) {
             predicates.add(cb.equal(root.get(Product_.category), category));
         }
 
-        cq.where(predicates.toArray(new Predicate[] {}));
+        cq.where(predicates.toArray(new Predicate[]{}));
 
         if (orderField != null && !orderField.trim().isEmpty()) {
             if (asc) {
@@ -106,14 +106,14 @@ public abstract class AbstratProductBean<C extends Category, P extends Product<C
         CriteriaQuery<P> cq = cb.createQuery(entityClass);
         Root<P> root = cq.from(entityClass);
         cq.select(root);
-        
+
         List<Predicate> predicates = new ArrayList<>();
         predicates.add(cb.equal(root.get(Product_.price), 0));
         if (category != null) {
             predicates.add(cb.equal(root.get(Product_.category), category));
         }
 
-        cq.where(predicates.toArray(new Predicate[] {}));
+        cq.where(predicates.toArray(new Predicate[]{}));
 
         if (orderField != null && !orderField.trim().isEmpty()) {
             if (asc) {
@@ -142,7 +142,7 @@ public abstract class AbstratProductBean<C extends Category, P extends Product<C
             predicates.add(cb.equal(root.get(Product_.category), category));
         }
 
-        cq.where(predicates.toArray(new Predicate[] {}));
+        cq.where(predicates.toArray(new Predicate[]{}));
 
         TypedQuery<Long> q = em.createQuery(cq);
         return q.getSingleResult().intValue();
@@ -161,7 +161,7 @@ public abstract class AbstratProductBean<C extends Category, P extends Product<C
             predicates.add(cb.equal(root.get(Product_.category), category));
         }
 
-        cq.where(predicates.toArray(new Predicate[] {}));
+        cq.where(predicates.toArray(new Predicate[]{}));
 
         TypedQuery<Long> q = em.createQuery(cq);
         return q.getSingleResult().intValue();
@@ -180,6 +180,20 @@ public abstract class AbstratProductBean<C extends Category, P extends Product<C
 
         TypedQuery<Long> q = em.createQuery(cq);
         return q.getSingleResult().intValue();
+    }
+
+    @Override
+    public void increaseViewCount(P product) {
+        int count = product.getViewCount() + 1;
+        product.setViewCount(count);
+        em.merge(product);
+    }
+
+    @Override
+    public void increateDownloadCount(P product) {
+        int count = product.getDownloadCount()+ 1;
+        product.setDownloadCount(count);
+        em.merge(product);
     }
 
 }
