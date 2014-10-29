@@ -100,8 +100,10 @@ nav#main-nav {
             h3 {
                 line-height: 14px;
                 font-size: 14px;
+                font-weight: bold;
                 padding: 5px;
                 margin: 3px 0;
+                text-shadow: 0 1px 0 rgba(255,255,255,.6);
                 color: #000;
                 text-transform: uppercase;
                 background: #ff6300;
@@ -169,10 +171,10 @@ nav#main-nav {
 
             .postImg {
                 position: absolute;
-                top: 3px;
-                left: 3px;
+                top: 10px;
+                left: 10px;
                 img {
-                    width: 85px;
+                    width: 70px;
                 }
             }
 
@@ -182,16 +184,24 @@ nav#main-nav {
                 h3 {
                     font-size: 15px;
                     font-weight: bold;
-                    color: #000;
+                    color: #333;
                     line-height: 15px;
-                    margin: 8px 0;
+                    margin: 4px 0;
+                    text-shadow: 0 1px 0 rgba(255,255,255,.6);
+                }
+
+                span.singer {
+                    color: #555;
+                    font-size: 12px;
+                    text-shadow: 0 1px 0 rgba(255,255,255,.6);
                 }
 
                 p {
                     color: #ff6200;
-                    font-weight: bolder;
-                    font-size: 15px;
+                    font-weight: bold;
+                    font-size: 12px;
                     margin: 0 0 5px;
+                    text-shadow: 0 1px 0 rgba(255,255,255,.6);
                 }
 
                 ul {
@@ -202,8 +212,9 @@ nav#main-nav {
                         display: inline-block;
                         width: 40%;
                         padding-left: 35px;
-                        font-size: 13px;
+                        font-size: 12px;
                         color: #8d8d8d;
+                        text-shadow: 0 1px 0 rgba(255,255,255,.6);
                         outline: none;
                         cursor: pointer;
                         &.view {
@@ -233,9 +244,11 @@ header.panel-title {
         h3 {
             line-height: 14px;
             font-size: 14px;
+            font-weight: bold;
             padding: 5px;
             color: #000;
             margin: 5px 0;
+            text-shadow: 0 1px 0 rgba(255,255,255,.6);
             text-transform: uppercase;
             background: #ff6300;
             border: 1px solid $box-border;
@@ -247,7 +260,7 @@ header.panel-title {
     position: relative;
     border: 1px solid #bfbfbf;
     display: block;
-    padding: 3px;
+    padding: 3px !important;
 
     .postImg {
         position: absolute;
@@ -262,19 +275,26 @@ header.panel-title {
 
     .postDesc {
         padding-left: 91px;
-        height: 130px;
+        height: 72px;
         h3 {
             font-size: 15px;
             font-weight: bold;
-            color: #000;
+            color: #333;
             line-height: 15px;
-            margin: 8px 0;
+            margin: 4px 0;
+            text-shadow: 0 1px 0 rgba(255,255,255,.6);
+        }
+
+        span.singer {
+            color: #555;
+            font-size: 12px;
+            text-shadow: 0 1px 0 rgba(255,255,255,.6);
         }
 
         p {
             color: #ff6200;
             font-weight: bolder;
-            font-size: 15px;
+            font-size: 12px;
             margin: 0 0 5px;
         }
 
@@ -286,9 +306,10 @@ header.panel-title {
                 display: inline-block;
                 width: 40%;
                 padding-left: 35px;
-                font-size: 13px;
+                font-size: 12px;
                 color: #8d8d8d;
                 outline: none;
+                text-shadow: 0 1px 0 rgba(255,255,255,.6);
                 cursor: pointer;
                 &.view {
                     background: url('../image/view.png') no-repeat center left;
@@ -311,6 +332,29 @@ header.panel-title {
                 line-height: 35px;
                 font-weight: bold;
                 font-size: 14px;
+            }   
+        }
+    }
+
+    .payment-scope {
+        position: relative;
+        .direct {
+            position: absolute;
+            top: 0px;
+            left: 3px;
+        }
+
+        .sms {
+            margin-top: 13px;
+            display: block;
+            text-align:center;
+            span {
+                margin-left: 90px;
+                display: block;
+                background: #e7e7e7;
+                line-height: 35px;
+                font-weight: bold;
+                font-size: 14px;
             }
         }
     }
@@ -318,10 +362,11 @@ header.panel-title {
     div.separator {
         height: 2px;
         background: #ff6300;
-        margin-bottom: 5px;
+        margin: 5px 0;
     }
 
     .spec {
+        padding: 5px;
         font-size: #323232;
         font-size: 14px;
         text-justify: auto;
@@ -332,13 +377,13 @@ header.panel-title {
     list-style: none;
     margin: 0;
     padding: 0;
-    
+
     li {
         margin: 5px 0;
     }
 }
 .breadcrumb {
-    margin-bottom: 5px;
+    margin-bottom: 5px !important;
 }
 
 @for $i from 1 through 10 {

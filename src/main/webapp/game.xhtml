@@ -3,9 +3,7 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 template="/template/wap/main.xhtml"
-                xmlns:f="http://xmlns.jcp.org/jsf/core"
-                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-                xmlns:h="http://xmlns.jcp.org/jsf/html">
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
     <f:metadata>
         <f:viewParam name="id" value="#{gameController.current}" converter="gameConverter"/>
         <f:viewParam name="cat" value="#{gameController.category}" converter="gameCatConverter"/>
@@ -13,61 +11,10 @@
         <f:viewAction action="#{gameController.initData()}"/>
     </f:metadata>
     <ui:define name="main-content">
-        <c:if test="#{gameController.current != null}">
-            <ol class="breadcrumb">
-                <li><h:link value="#{msg['leftNav.homePage']}" outcome="/index.xhtml"/></li>
-                <li><h:link value="#{msg['game']}" outcome="/game.xhtml"/></li>
-                <li class="active">#{gameController.current.title}</li>
-            </ol>
-            <ui:include src="/include/detail_game.xhtml">
-                <ui:param name="game" value="#{gameController.current}"/>
-            </ui:include>
-        </c:if>
-        <c:if test="#{gameController.category != null or gameController.current != null}">
-            <header class="row panel-title">
-                <div class="col-xs-12 col-ms-8 col-md-6 col-lg-4">
-                    <h3>
-                        <h:outputText value="Game Cung Loai" rendered="#{gameController.current != null}"/>
-
-                        <h:outputText value="#{gameController.category.title}" rendered="#{gameController.category != null}"/>
-                    </h3>
-                </div>
-            </header>
-
-            <ui:include src="/include/product_list.xhtml">
-                <ui:param name="productEntities" value="#{gameController.model}"/>
-                <ui:param name="type" value="game"/>
-            </ui:include>
-        </c:if>
-
-        <c:if test="#{gameController.category == null and gameController.current == null}">
-            <ol class="breadcrumb">
-                <li><h:link value="#{msg['leftNav.homePage']}" outcome="/index.xhtml"/></li>
-                <li class="active">#{msg['game']}</li>
-            </ol>
-            
-            <header class="row panel-title">
-                <div class="col-xs-12 col-ms-8 col-md-6 col-lg-4">
-                    <h3>#{msg['panel.product.hot']}</h3>
-                </div>
-            </header>
-            
-            <ui:include src="/include/product_list.xhtml">
-                <ui:param name="productEntities" value="#{gameController.hots}"/>
-                <ui:param name="type" value="game"/>
-            </ui:include>
-            
-            <header class="row panel-title">
-                <div class="col-xs-12 col-ms-8 col-md-6 col-lg-4">
-                    <h3>#{msg['panel.product.new']}</h3>
-                </div>
-            </header>
-            
-            <ui:include src="/include/product_list.xhtml">
-                <ui:param name="productEntities" value="#{gameController.news}"/>
-                <ui:param name="type" value="game"/>
-            </ui:include>
-            
-        </c:if>
+        <ui:include src="/include/detail_product.xhtml">
+            <ui:param name="controller" value="#{gameController}"/>
+            <ui:param name="productType" value="game"/>
+            <ui:param name="referenceLabel" value="#{msg['panel.referenceLabel.game']}"/>
+        </ui:include>
     </ui:define>
 </ui:composition>

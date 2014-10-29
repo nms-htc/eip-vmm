@@ -1,15 +1,3 @@
-/**
- * Copyright (C) 2014 Next Generation Mobile Service JSC., (NMS).
- * All rights reserved.
- * Created on : Oct 24, 2014, 1:43:10 PM
- * Author     : CuongNT
-*/
-/**
- * Copyright (C) 2014 Next Generation Mobile Service JSC., (NMS).
- * All rights reserved.
- * Created on : Oct 24, 2014, 1:43:10 PM
- * Author     : CuongNT
-*/
 /*----- header -----*/
 header#header:before {
   content: '';
@@ -71,8 +59,10 @@ nav#main-nav {
   .product-tabbed header div h3 {
     line-height: 14px;
     font-size: 14px;
+    font-weight: bold;
     padding: 5px;
     margin: 3px 0;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
     color: #000;
     text-transform: uppercase;
     background: #ff6300;
@@ -127,23 +117,29 @@ nav#main-nav {
   outline: none; }
   .product-items .product-item a .postImg {
     position: absolute;
-    top: 3px;
-    left: 3px; }
+    top: 10px;
+    left: 10px; }
     .product-items .product-item a .postImg img {
-      width: 85px; }
+      width: 70px; }
   .product-items .product-item a .postDesc {
     padding-left: 91px; }
     .product-items .product-item a .postDesc h3 {
       font-size: 15px;
       font-weight: bold;
-      color: #000;
+      color: #333;
       line-height: 15px;
-      margin: 8px 0; }
+      margin: 4px 0;
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6); }
+    .product-items .product-item a .postDesc span.singer {
+      color: #555;
+      font-size: 12px;
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6); }
     .product-items .product-item a .postDesc p {
       color: #ff6200;
-      font-weight: bolder;
-      font-size: 15px;
-      margin: 0 0 5px; }
+      font-weight: bold;
+      font-size: 12px;
+      margin: 0 0 5px;
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6); }
     .product-items .product-item a .postDesc ul {
       list-style: none;
       margin: 0;
@@ -152,15 +148,16 @@ nav#main-nav {
         display: inline-block;
         width: 40%;
         padding-left: 35px;
-        font-size: 13px;
+        font-size: 12px;
         color: #8d8d8d;
+        text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
         outline: none;
         cursor: pointer; }
         .product-items .product-item a .postDesc ul li.view {
-          background: url("#{resource['image:view.png']}") no-repeat center left;
+          background: url("../image/view.png") no-repeat center left;
           background-size: 30px; }
         .product-items .product-item a .postDesc ul li.download {
-          background: url("#{resource['image:download1.png']}") no-repeat center left;
+          background: url("../image/download1.png") no-repeat center left;
           background-size: 25px; }
 .product-items .product-item:last-child a {
   border-bottom: 1px solid #bfbfbf; }
@@ -168,9 +165,11 @@ nav#main-nav {
 header.panel-title div h3 {
   line-height: 14px;
   font-size: 14px;
+  font-weight: bold;
   padding: 5px;
   color: #000;
   margin: 5px 0;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
   text-transform: uppercase;
   background: #ff6300;
   border: 1px solid #919191; }
@@ -179,7 +178,7 @@ header.panel-title div h3 {
   position: relative;
   border: 1px solid #bfbfbf;
   display: block;
-  padding: 3px; }
+  padding: 3px !important; }
   .product-detail .postImg {
     position: absolute;
     top: 3px;
@@ -190,17 +189,22 @@ header.panel-title div h3 {
       margin-bottom: 5px; }
   .product-detail .postDesc {
     padding-left: 91px;
-    height: 130px; }
+    height: 72px; }
     .product-detail .postDesc h3 {
       font-size: 15px;
       font-weight: bold;
-      color: #000;
+      color: #333;
       line-height: 15px;
-      margin: 8px 0; }
+      margin: 4px 0;
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6); }
+    .product-detail .postDesc span.singer {
+      color: #555;
+      font-size: 12px;
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6); }
     .product-detail .postDesc p {
       color: #ff6200;
       font-weight: bolder;
-      font-size: 15px;
+      font-size: 12px;
       margin: 0 0 5px; }
     .product-detail .postDesc ul {
       list-style: none;
@@ -210,15 +214,16 @@ header.panel-title div h3 {
         display: inline-block;
         width: 40%;
         padding-left: 35px;
-        font-size: 13px;
+        font-size: 12px;
         color: #8d8d8d;
         outline: none;
+        text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
         cursor: pointer; }
         .product-detail .postDesc ul li.view {
-          background: url("#{resource['image:view.png']}") no-repeat center left;
+          background: url("../image/view.png") no-repeat center left;
           background-size: 30px; }
         .product-detail .postDesc ul li.download {
-          background: url("#{resource['image:download1.png']}") no-repeat center left;
+          background: url("../image/download1.png") no-repeat center left;
           background-size: 25px; }
     .product-detail .postDesc .sms {
       margin-top: 13px;
@@ -229,11 +234,29 @@ header.panel-title div h3 {
         line-height: 35px;
         font-weight: bold;
         font-size: 14px; }
+  .product-detail .payment-scope {
+    position: relative; }
+    .product-detail .payment-scope .direct {
+      position: absolute;
+      top: 0px;
+      left: 3px; }
+    .product-detail .payment-scope .sms {
+      margin-top: 13px;
+      display: block;
+      text-align: center; }
+      .product-detail .payment-scope .sms span {
+        margin-left: 90px;
+        display: block;
+        background: #e7e7e7;
+        line-height: 35px;
+        font-weight: bold;
+        font-size: 14px; }
   .product-detail div.separator {
     height: 2px;
     background: #ff6300;
-    margin-bottom: 5px; }
+    margin: 5px 0; }
   .product-detail .spec {
+    padding: 5px;
     font-size: #323232;
     font-size: 14px;
     text-justify: auto; }
@@ -246,7 +269,7 @@ header.panel-title div h3 {
     margin: 5px 0; }
 
 .breadcrumb {
-  margin-bottom: 5px; }
+  margin-bottom: 5px !important; }
 
 .product-tabbed input.tab-selector-1:checked ~ .tabs-label div div label.tab-label-1 {
   background: #23ffc7; }

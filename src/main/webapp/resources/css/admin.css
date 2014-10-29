@@ -56,4 +56,4 @@ div#header {
       div#header .greeting span span {
         color: #f60000; }
 
-/*# sourceMappingURL=admin.css.map */
+/*# sourceMappingURL=#{resource['css/admin.css.map']} */

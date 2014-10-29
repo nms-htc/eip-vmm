@@ -10,7 +10,7 @@ import com.nms.vnm.eip.service.entity.MusicService;
 import javax.ejb.EJB;
 import javax.faces.convert.FacesConverter;
 
-@FacesConverter("musicConvertor")
+@FacesConverter("musicConverter")
 public class MusicConverter extends AbstractEntityConverter<Music> {
 
     @EJB

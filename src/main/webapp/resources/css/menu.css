@@ -4,18 +4,6 @@
  * Created on : Oct 24, 2014, 1:43:10 PM
  * Author     : CuongNT
 */
-/**
- * Copyright (C) 2014 Next Generation Mobile Service JSC., (NMS).
- * All rights reserved.
- * Created on : Oct 24, 2014, 1:43:10 PM
- * Author     : CuongNT
-*/
-/**
- * Copyright (C) 2014 Next Generation Mobile Service JSC., (NMS).
- * All rights reserved.
- * Created on : Oct 24, 2014, 1:43:10 PM
- * Author     : CuongNT
-*/
 /*---- Sidr ----*/
 .sidr {
   display: none;
@@ -89,9 +77,9 @@ nav#nav-panel {
 /*-- (Right) Search Panel--*/
 section#search-panel {
   background: white;
-  border-left: 1px solid #9b9b9b; }
+  border-left: 1px solid #336ca6; }
   section#search-panel h1 {
-    background: #d7d7d7;
+    background: #336ca6;
     text-align: center;
     border-bottom: 1px solid #9b9b9b;
     font-size: 16px;

@@ -10,10 +10,6 @@
             <div class="col-xs-12 product-detail clearfix">
                 <div class="postImg">
                     <img src="#{game.thumbnailUrl}" alt="#{game.title}" class="img-responsive" width="100px"/>
-
-                    <h:commandButton value="Tải ngay" styleClass="btn btn-warning" actionListener="#{gameController.chargingProduct()}">
-                        <f:ajax render=":messages"/>
-                    </h:commandButton>
                 </div>
 
                 <div class="postDesc">
@@ -27,19 +23,25 @@
                         <li class="view">#{game.viewCount}</li>
                         <li class="download">#{game.downloadCount}</li>
                     </ul>
+                </div>
 
+                <div class="payment-scope">
+                    <div class="direct">
+                        <h:commandButton value="#{msg['download-now']}" styleClass="btn btn-warning" actionListener="#{gameController.chargingProduct()}">
+                            <f:ajax render=":messages"/>
+                        </h:commandButton>
+                    </div>
                     <div class="sms">
                         <span>TG #{game.code} gui 8973</span>
                     </div>
                 </div>
 
                 <div class="separator"></div>
+                
                 <div class="spec">
                     <h:outputText escape="false" value="#{game.specification}"/>
                 </div>
-
             </div>
         </h:form>
     </c:if>
 </ui:component>
-
