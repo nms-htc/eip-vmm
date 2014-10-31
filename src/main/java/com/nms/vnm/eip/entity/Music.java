@@ -8,6 +8,7 @@ import com.nms.vnm.eip.entity.validation.Url;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.Lob;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -20,13 +21,8 @@ public class Music extends Product {
 
     @Url
     @Size(max = 500)
-    @Column(name = "MUSIC_URL", length = 500)
+    @Column(name = "REVIEW_URL", length = 500)
     protected String musicUrl;
-
-    @Url
-    @Size(max = 500)
-    @Column(name = "WAIT_MUSIC_URL", length = 500)
-    protected String waitMusicUrl;
 
     @Size(max = 150)
     @Column(name = "SINGER", length = 150)
@@ -45,8 +41,8 @@ public class Music extends Product {
     @Column(name = "ALBUM_THUMB_URL", length = 500)
     protected String albumThumbUrl;
 
-    @Size(max = 2000)
-    @Column(name = "LYRIC", length = 2000)
+    @Lob
+    @Column(name = "LYRIC")
     protected String lyric;
 
     public Music() {
@@ -58,14 +54,6 @@ public class Music extends Product {
 
     public void setMusicUrl(String musicUrl) {
         this.musicUrl = musicUrl;
-    }
-
-    public String getWaitMusicUrl() {
-        return waitMusicUrl;
-    }
-
-    public void setWaitMusicUrl(String waitMusicUrl) {
-        this.waitMusicUrl = waitMusicUrl;
     }
 
     public String getSinger() {

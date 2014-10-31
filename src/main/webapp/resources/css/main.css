@@ -124,15 +124,14 @@ nav#main-nav {
   .product-items .product-item a .postDesc {
     padding-left: 91px; }
     .product-items .product-item a .postDesc h3 {
-      font-size: 15px;
+      font-size: 13px;
       font-weight: bold;
       color: #333;
-      line-height: 15px;
-      margin: 4px 0;
+      margin: 4px 0 0;
       text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6); }
     .product-items .product-item a .postDesc span.singer {
       color: #555;
-      font-size: 12px;
+      font-size: 11px;
       text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6); }
     .product-items .product-item a .postDesc p {
       color: #ff6200;
@@ -154,10 +153,10 @@ nav#main-nav {
         outline: none;
         cursor: pointer; }
         .product-items .product-item a .postDesc ul li.view {
-          background: url("../image/view.png") no-repeat center left;
+          background: url("#{resource['image/view.png']}") no-repeat center left;
           background-size: 30px; }
         .product-items .product-item a .postDesc ul li.download {
-          background: url("../image/download1.png") no-repeat center left;
+          background: url("#{resource['image/download1.png']}") no-repeat center left;
           background-size: 25px; }
 .product-items .product-item:last-child a {
   border-bottom: 1px solid #bfbfbf; }
@@ -191,11 +190,10 @@ header.panel-title div h3 {
     padding-left: 91px;
     height: 72px; }
     .product-detail .postDesc h3 {
-      font-size: 15px;
+      font-size: 13px;
       font-weight: bold;
       color: #333;
-      line-height: 15px;
-      margin: 4px 0;
+      margin: 4px 0 0;
       text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6); }
     .product-detail .postDesc span.singer {
       color: #555;
@@ -220,10 +218,10 @@ header.panel-title div h3 {
         text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
         cursor: pointer; }
         .product-detail .postDesc ul li.view {
-          background: url("../image/view.png") no-repeat center left;
+          background: url("#{resource['image/view.png']}") no-repeat center left;
           background-size: 30px; }
         .product-detail .postDesc ul li.download {
-          background: url("../image/download1.png") no-repeat center left;
+          background: url("#{resource['image/download1.png']}") no-repeat center left;
           background-size: 25px; }
     .product-detail .postDesc .sms {
       margin-top: 13px;

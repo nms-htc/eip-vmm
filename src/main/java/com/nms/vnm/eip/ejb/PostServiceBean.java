@@ -10,7 +10,7 @@ import com.nms.vnm.eip.service.entity.PostService;
 import javax.ejb.Stateless;
 
 @Stateless
-public class PostServiceBean extends AbstratProductBean<PostCategory, Post> implements PostService {
+public class PostServiceBean extends AbstractProductBean<PostCategory, Post> implements PostService {
 
     private static final long serialVersionUID = -857383942536246354L;
 

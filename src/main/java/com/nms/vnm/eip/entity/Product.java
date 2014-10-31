@@ -33,7 +33,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @DiscriminatorColumn(name = "TYPE")
 @XmlRootElement
 public abstract class Product extends BaseEntity {
-    
+
     private static final long serialVersionUID = 1600980462406964970L;
 
     @NotNull
@@ -58,7 +58,7 @@ public abstract class Product extends BaseEntity {
     @Column(name = "DOWNLOAD_COUNT")
     @Min(0)
     protected int downloadCount;
-    
+
     @Column(name = "VIEW_COUNT")
     @Min(0)
     protected int viewCount;
@@ -71,7 +71,7 @@ public abstract class Product extends BaseEntity {
 
     @Column(name = "PRICE")
     protected double price;
-    
+
     @Url
     @Column(name = "THUMBNAIL_URL")
     protected String thumbnailUrl;
@@ -80,11 +80,11 @@ public abstract class Product extends BaseEntity {
     @CollectionTable(name = "EIP_SCREENSHORT", joinColumns = @JoinColumn(name = "PRODUCT_ID"))
     @Column(name = "SCREENSHORT_URL")
     protected List<String> screenShorts;
-    
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "USERID", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     protected User user;
-    
+
     @ManyToOne
     @JoinColumn(name = "CATEGORY_ID", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     @XmlTransient
@@ -185,7 +185,7 @@ public abstract class Product extends BaseEntity {
     public void setUser(User user) {
         this.user = user;
     }
-    
+
     public Category getCategory() {
         return category;
     }
@@ -193,7 +193,7 @@ public abstract class Product extends BaseEntity {
     public void setCategory(Category category) {
         this.category = category;
     }
-    
+
     @PrePersist
     public void fillCpCode() {
         if (user != null) {

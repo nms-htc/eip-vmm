@@ -25,6 +25,13 @@
                         <li class="download">#{music.downloadCount}</li>
                     </ul>
                 </div>
+                <div class="mp3-player" style="width: 100%;margin: 20px 5px 0px 5px;">                                       
+                    <audio controls="true">
+                        <source src="#{music.musicUrl}" type="audio/mpeg"/>
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+
                 <div class="payment-scope">
                     <div class="direct">
                         <h:commandButton value="#{msg['download-now']}" styleClass="btn btn-warning" actionListener="#{musicController.chargingProduct()}">
@@ -38,7 +45,7 @@
 
                 <div class="separator"></div>
                 <div class="spec">
-                    <h:outputText escape="false" value="#{music.specification}"/>
+                    <h:outputText escape="false" value="#{music.lyric}"/>
                 </div>
             </div>
         </h:form>

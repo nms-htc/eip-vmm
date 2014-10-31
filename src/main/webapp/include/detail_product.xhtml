@@ -56,7 +56,7 @@
                         rendered="#{controller.current != null}"
                         disabled="#{!controller.hasNext}">
                     <f:param name="id" value="#{controller.current.id}"/>
-                    <f:param name="page" value="#{controller.page - 1}"/>
+                    <f:param name="page" value="#{controller.page + 1}"/>
                 </h:link>
                 
                 <h:link outcome="/#{productType}.xhtml" 
@@ -64,7 +64,7 @@
                         rendered="#{controller.category != null}"
                         disabled="#{!controller.hasNext}">
                     <f:param name="cat" value="#{controller.category.id}"/>
-                    <f:param name="page" value="#{controller.page - 1}"/>
+                    <f:param name="page" value="#{controller.page + 1}"/>
                 </h:link>
             </li>
         </ul>

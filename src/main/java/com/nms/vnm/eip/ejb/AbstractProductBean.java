@@ -10,17 +10,18 @@ import com.nms.vnm.eip.entity.Product_;
 import com.nms.vnm.eip.service.entity.ProductService;
 import java.util.ArrayList;
 import java.util.List;
+import javax.ejb.EJBException;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
-public abstract class AbstratProductBean<C extends Category, P extends Product> extends AbstractFacadeBean<P> implements ProductService<P, C> {
+public abstract class AbstractProductBean<C extends Category, P extends Product> extends AbstractFacadeBean<P> implements ProductService<P, C> {
 
     private static final long serialVersionUID = -2603765016508854535L;
 
-    public AbstratProductBean(Class<P> entityClass) {
+    public AbstractProductBean(Class<P> entityClass) {
         super(entityClass);
     }
 
@@ -196,4 +197,24 @@ public abstract class AbstratProductBean<C extends Category, P extends Product> 
         em.merge(product);
     }
 
+    @Override
+    protected void onBeforePersist(P entity) {
+        super.onBeforePersist(entity);
+        Product testEntity = null; 
+        try {
+            CriteriaBuilder cb = em.getCriteriaBuilder();
+            CriteriaQuery<Product> cq = cb.createQuery(Product.class);
+            Root<Product> root = cq.from(Product.class);
+            cq.select(root);
+            cq.where(cb.equal(root.get(Product_.code), entity.getCode()));
+            TypedQuery<Product> q = em.createQuery(cq);
+            testEntity = q.getSingleResult();
+        } catch (Exception e) {
+            // valid ok?
+        }
+        if (testEntity != null) {
+            throw new EJBException("product.code.error.duplicate");
+        }
+    }
+    
 }

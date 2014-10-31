@@ -69,12 +69,12 @@
                 <p:row>
                     <p:column><p:outputLabel for="description" value="#{msg['description']}:"/></p:column>
                     <p:column>
-                        <p:inputTextarea id="description" cols="32" rows="3" value="#{gameBean.current.description}"/>
+                        <p:inputTextarea id="description" cols="32" rows="3" value="#{gameBean.current.description}" autoResize="false"/>
                         <p:message for="description"/>
                     </p:column>
                     <p:column><p:outputLabel for="devicesSupport" value="#{msg['game.devicesSupport']}:"/></p:column>
                     <p:column>
-                        <p:inputTextarea id="devicesSupport" cols="32" rows="3" value="#{gameBean.current.devicesSupport}"/>
+                        <p:inputTextarea id="devicesSupport" cols="32" rows="3" value="#{gameBean.current.devicesSupport}" autoResize="false"/>
                         <p:message for="devicesSupport"/>
                     </p:column>
                 </p:row>

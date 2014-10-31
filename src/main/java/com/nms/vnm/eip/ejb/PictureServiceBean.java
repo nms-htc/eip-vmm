@@ -10,7 +10,7 @@ import com.nms.vnm.eip.service.entity.PictureService;
 import javax.ejb.Stateless;
 
 @Stateless
-public class PictureServiceBean extends AbstratProductBean<PictureCategory, Picture> implements PictureService {
+public class PictureServiceBean extends AbstractProductBean<PictureCategory, Picture> implements PictureService {
 
     private static final long serialVersionUID = -1752966518637682180L;
 
