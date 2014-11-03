@@ -169,6 +169,70 @@ nav#main-nav {
             padding: 3px;
             outline: none;
 
+            &.post {
+                height: auto;
+                img {
+                    position: relative;
+                    width: 110px;
+                    margin: 3px;
+                    margin-right: 5px;
+                    padding: 0; 
+                    float: left;
+                }
+
+                .description {
+                    margin: 3px;
+                    color: #8d8d8d;
+                    font-size: 13px;
+                    text-align: justify;
+                }
+                .separator {
+                    margin: 3px;
+                    clear: both;
+                    height: 1px;
+                    background: #ff6300;
+                    @include box-shadow(1px 0 0 rgba(255,255,255, .6));
+                }
+
+                ul {
+                    list-style: none;
+                    margin: 0;
+                    padding: 0;
+                    li {
+                        display: inline-block;
+                        width: 40%;
+                        padding-left: 35px;
+                        font-size: 12px;
+                        color: #8d8d8d;
+                        text-shadow: 0 1px 0 rgba(255,255,255,.6);
+                        outline: none;
+                        cursor: pointer;
+                        &.view {
+                            background: url('../image/view.png') no-repeat center left;
+                            background-size: 30px;
+                        }
+                        
+                        &.download {
+                            background: url('../image/download1.png') no-repeat center left;
+                            background-size: 25px;
+                        }
+
+                        &.createDate {
+                            background: url('../image/time.png') no-repeat center left;
+                            background-size: 25px;
+                        }
+                    }
+                }
+            }
+
+            h3 {
+                font-size: 14px;
+                font-weight: bold;
+                color: #333;
+                margin: 4px;
+                text-shadow: 0 1px 0 rgba(255,255,255,.6);
+            }
+
             .postImg {
                 position: absolute;
                 top: 10px;
@@ -176,6 +240,7 @@ nav#main-nav {
                 img {
                     width: 70px;
                 }
+
             }
 
             .postDesc {
@@ -194,7 +259,7 @@ nav#main-nav {
                     text-shadow: 0 1px 0 rgba(255,255,255,.6);
                 }
 
-                p {
+                p, p.price {
                     color: #ff6200;
                     font-weight: bold;
                     font-size: 12px;
@@ -202,7 +267,7 @@ nav#main-nav {
                     text-shadow: 0 1px 0 rgba(255,255,255,.6);
                 }
 
-                ul {
+                ul, ul.viewDownload {
                     list-style: none;
                     margin: 0;
                     padding: 0;
@@ -288,37 +353,14 @@ header.panel-title {
             text-shadow: 0 1px 0 rgba(255,255,255,.6);
         }
 
-        p {
+        p, p.price {
             color: #ff6200;
             font-weight: bolder;
             font-size: 12px;
             margin: 0 0 5px;
         }
 
-        ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            li {
-                display: inline-block;
-                width: 40%;
-                padding-left: 35px;
-                font-size: 12px;
-                color: #8d8d8d;
-                outline: none;
-                text-shadow: 0 1px 0 rgba(255,255,255,.6);
-                cursor: pointer;
-                &.view {
-                    background: url('../image/view.png') no-repeat center left;
-                    background-size: 30px;
-                }
 
-                &.download {
-                    background: url('../image/download1.png') no-repeat center left;
-                    background-size: 25px;
-                }
-            }
-        }
 
         .sms {
             margin-top: 13px;
@@ -330,6 +372,30 @@ header.panel-title {
                 font-weight: bold;
                 font-size: 14px;
             }   
+        }
+    }
+    ul, ul.viewDownload {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        li {
+            display: inline-block;
+            width: 40%;
+            padding-left: 35px;
+            font-size: 12px;
+            color: #8d8d8d;
+            outline: none;
+            text-shadow: 0 1px 0 rgba(255,255,255,.6);
+            cursor: pointer;
+            &.view {
+                background: url('../image/view.png') no-repeat center left;
+                background-size: 30px;
+            }
+
+            &.createDate {
+                background: url('../image/time.png') no-repeat center left;
+                background-size: 25px;
+            }
         }
     }
 
@@ -367,6 +433,55 @@ header.panel-title {
         font-size: #323232;
         font-size: 14px;
         text-justify: auto;
+    }
+
+    .picture-detail {
+        h3 {
+            font-size: 13px;
+            font-weight: bold;
+            color: #333;
+            margin: 4px;
+            text-shadow: 0 1px 0 rgba(255,255,255,.6);
+        }
+
+        img {
+            max-height: 300px;
+            display: block;
+            margin: 0 auto;
+            margin-bottom: 10px;
+        }
+    }
+
+    p.price {
+        color: #ff6200;
+        font-weight: bolder;
+        font-size: 12px;
+        margin: 0 0 5px 10px;
+    }
+
+    ul.viewDownload {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        li {
+            display: inline-block;
+            width: 40%;
+            padding-left: 35px;
+            font-size: 12px;
+            color: #8d8d8d;
+            outline: none;
+            text-shadow: 0 1px 0 rgba(255,255,255,.6);
+            cursor: pointer;
+            &.view {
+                background: url('../image/view.png') no-repeat center left;
+                background-size: 30px;
+            }
+
+            &.download {
+                background: url('../image/download1.png') no-repeat center left;
+                background-size: 25px;
+            }
+        }
     }
 }
 

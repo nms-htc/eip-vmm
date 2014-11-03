@@ -144,7 +144,7 @@ public abstract class AbstractProductController<T extends Product, C extends Cat
             // increase view count
             getProductService().increaseViewCount(current);
             model = getProductService().findExcludeCurrent(page * 10, 10, current);
-            count = getProductService().countByCat(category);
+            count = getProductService().countByCat(category) - 1;
 
         } else if (category != null) {
             model = getProductService().findByCat(page * 10, 10, category, orderField, false);

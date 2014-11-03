@@ -7,36 +7,38 @@
               xmlns:f="http://xmlns.jcp.org/jsf/core">
     <c:if test="#{picture != null}">
         <h:form>
-            <div class="col-xs-12 product-detail clearfix">
-                <div class="postImg">
-                    <img src="#{picture.thumbnailUrl}" alt="#{picture.title}" class="img-responsive" width="100px"/>
-
-                    <h:commandButton value="#{msg['download-now']}" styleClass="btn btn-warning" actionListener="#{pictureController.chargingProduct()}">
-                        <f:ajax render=":messages"/>
-                    </h:commandButton>
-                </div>
-
-                <div class="postDesc">
+            <div class="product-detail clearfix">
+                <div class="picture-detail">
                     <h3>#{picture.title}</h3>
-                    <p>
-                        <h:outputText value="#{picture.price}">
-                            <f:convertNumber currencyCode="VND" locale="vi_VN"/>
-                        </h:outputText> VND
-                    </p>
-                    <ul>
-                        <li class="view">#{picture.viewCount}</li>
-                        <li class="download">#{picture.downloadCount}</li>
-                    </ul>
 
+                    <img src="#{picture.thumbnailUrl}" 
+                         alt="#{picture.title}" 
+                         class="img-responsive"/>
+                </div>
+                
+                <p class="price">
+                    <h:outputText value="#{picture.price}">
+                        <f:convertNumber currencyCode="VND" locale="vi_VN"/>
+                    </h:outputText> VND
+                </p>
+                
+                <ul class="viewDownload">
+                    <li class="view">#{picture.viewCount}</li>
+                    <li class="download">#{picture.downloadCount}</li>
+                </ul>
+
+                <div class="payment-scope">
+                    <div class="direct">
+                        <h:commandButton value="#{msg['download-now']}" styleClass="btn btn-warning" actionListener="#{pictureController.chargingProduct()}">
+                            <f:ajax render=":messages"/>
+                        </h:commandButton>
+                    </div>
                     <div class="sms">
                         <span>TG #{picture.code} gui 8973</span>
                     </div>
                 </div>
 
                 <div class="separator"></div>
-                <div class="spec">
-                    <h:outputText escape="false" value="#{picture.specification}"/>
-                </div>
             </div>
         </h:form>
     </c:if>

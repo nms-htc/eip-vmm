@@ -10,7 +10,7 @@ import com.nms.vnm.eip.service.entity.PostService;
 import javax.ejb.EJB;
 import javax.faces.convert.FacesConverter;
 
-@FacesConverter("postConvertor")
+@FacesConverter("postConverter")
 public class PostConverter extends AbstractEntityConverter<Post> {
 
     @EJB

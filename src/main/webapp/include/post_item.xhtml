@@ -4,23 +4,21 @@
              xmlns:h="http://xmlns.jcp.org/jsf/html"
              xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
              xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <h:link outcome="/post.xhtml">
+    <h:link outcome="/post.xhtml" styleClass="post"> 
         <f:param name="id" value="#{productEntity.id}"/>
-        <div class="postImg">
-            <img src="#{productEntity.thumbnailUrl}" alt="#{productEntity.title}" class="img-responsive" />
+        <h3 class="post-title">#{productEntity.title}</h3>
+        <img src="#{productEntity.thumbnailUrl}" alt="#{productEntity.title}"/>
+        <div class="description">
+            <h:outputText escape="false" value="#{productEntity.description}"/>
         </div>
-
-        <div class="postDesc">
-            <h3>#{productEntity.title}</h3>
-            <p>
-                <h:outputText value="#{productEntity.price}">
-                    <f:convertNumber currencyCode="VND" locale="vi_VN"/>
-                </h:outputText> VND
-            </p>
-            <ul>
-                <li class="view">#{productEntity.viewCount}</li>
-                <li class="download">productEntity.downloadCount</li>
-            </ul>
-        </div>
+        <div class="separator clearfix"></div>
+        <ul class="clearfix">
+            <li class="view">#{productEntity.viewCount}</li>
+            <li class="createDate">
+                <h:outputText value="#{productEntity.createdDate}">
+                    <f:convertDateTime parent="dd/MM/yyyy" locale="vi"/>
+                </h:outputText>
+            </li>
+        </ul>
     </h:link>
 </ui:fragment>

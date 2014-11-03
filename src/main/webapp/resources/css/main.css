@@ -115,6 +115,56 @@ nav#main-nav {
   height: 91px;
   padding: 3px;
   outline: none; }
+  .product-items .product-item a.post {
+    height: auto; }
+    .product-items .product-item a.post img {
+      position: relative;
+      width: 110px;
+      margin: 3px;
+      margin-right: 5px;
+      padding: 0;
+      float: left; }
+    .product-items .product-item a.post .description {
+      margin: 3px;
+      color: #8d8d8d;
+      font-size: 13px;
+      text-align: justify; }
+    .product-items .product-item a.post .separator {
+      margin: 3px;
+      clear: both;
+      height: 1px;
+      background: #ff6300;
+      -webkit-box-shadow: 1px 0 0 rgba(255, 255, 255, 0.6);
+      -moz-box-shadow: 1px 0 0 rgba(255, 255, 255, 0.6);
+      box-shadow: 1px 0 0 rgba(255, 255, 255, 0.6); }
+    .product-items .product-item a.post ul {
+      list-style: none;
+      margin: 0;
+      padding: 0; }
+      .product-items .product-item a.post ul li {
+        display: inline-block;
+        width: 40%;
+        padding-left: 35px;
+        font-size: 12px;
+        color: #8d8d8d;
+        text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
+        outline: none;
+        cursor: pointer; }
+        .product-items .product-item a.post ul li.view {
+          background: url("../image/view.png") no-repeat center left;
+          background-size: 30px; }
+        .product-items .product-item a.post ul li.download {
+          background: url("../image/download1.png") no-repeat center left;
+          background-size: 25px; }
+        .product-items .product-item a.post ul li.createDate {
+          background: url("../image/time.png") no-repeat center left;
+          background-size: 25px; }
+  .product-items .product-item a h3 {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    margin: 4px;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6); }
   .product-items .product-item a .postImg {
     position: absolute;
     top: 10px;
@@ -133,17 +183,17 @@ nav#main-nav {
       color: #555;
       font-size: 11px;
       text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6); }
-    .product-items .product-item a .postDesc p {
+    .product-items .product-item a .postDesc p, .product-items .product-item a .postDesc p.price {
       color: #ff6200;
       font-weight: bold;
       font-size: 12px;
       margin: 0 0 5px;
       text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6); }
-    .product-items .product-item a .postDesc ul {
+    .product-items .product-item a .postDesc ul, .product-items .product-item a .postDesc ul.viewDownload {
       list-style: none;
       margin: 0;
       padding: 0; }
-      .product-items .product-item a .postDesc ul li {
+      .product-items .product-item a .postDesc ul li, .product-items .product-item a .postDesc ul.viewDownload li {
         display: inline-block;
         width: 40%;
         padding-left: 35px;
@@ -152,11 +202,11 @@ nav#main-nav {
         text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
         outline: none;
         cursor: pointer; }
-        .product-items .product-item a .postDesc ul li.view {
-          background: url("#{resource['image/view.png']}") no-repeat center left;
+        .product-items .product-item a .postDesc ul li.view, .product-items .product-item a .postDesc ul.viewDownload li.view {
+          background: url("../image/view.png") no-repeat center left;
           background-size: 30px; }
-        .product-items .product-item a .postDesc ul li.download {
-          background: url("#{resource['image/download1.png']}") no-repeat center left;
+        .product-items .product-item a .postDesc ul li.download, .product-items .product-item a .postDesc ul.viewDownload li.download {
+          background: url("../image/download1.png") no-repeat center left;
           background-size: 25px; }
 .product-items .product-item:last-child a {
   border-bottom: 1px solid #bfbfbf; }
@@ -199,30 +249,11 @@ header.panel-title div h3 {
       color: #555;
       font-size: 12px;
       text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6); }
-    .product-detail .postDesc p {
+    .product-detail .postDesc p, .product-detail .postDesc p.price {
       color: #ff6200;
       font-weight: bolder;
       font-size: 12px;
       margin: 0 0 5px; }
-    .product-detail .postDesc ul {
-      list-style: none;
-      margin: 0;
-      padding: 0; }
-      .product-detail .postDesc ul li {
-        display: inline-block;
-        width: 40%;
-        padding-left: 35px;
-        font-size: 12px;
-        color: #8d8d8d;
-        outline: none;
-        text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
-        cursor: pointer; }
-        .product-detail .postDesc ul li.view {
-          background: url("#{resource['image/view.png']}") no-repeat center left;
-          background-size: 30px; }
-        .product-detail .postDesc ul li.download {
-          background: url("#{resource['image/download1.png']}") no-repeat center left;
-          background-size: 25px; }
     .product-detail .postDesc .sms {
       margin-top: 13px;
       background: #e7e7e7;
@@ -232,6 +263,25 @@ header.panel-title div h3 {
         line-height: 35px;
         font-weight: bold;
         font-size: 14px; }
+  .product-detail ul, .product-detail ul.viewDownload {
+    list-style: none;
+    margin: 0;
+    padding: 0; }
+    .product-detail ul li, .product-detail ul.viewDownload li {
+      display: inline-block;
+      width: 40%;
+      padding-left: 35px;
+      font-size: 12px;
+      color: #8d8d8d;
+      outline: none;
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
+      cursor: pointer; }
+      .product-detail ul li.view, .product-detail ul.viewDownload li.view {
+        background: url("../image/view.png") no-repeat center left;
+        background-size: 30px; }
+      .product-detail ul li.createDate, .product-detail ul.viewDownload li.createDate {
+        background: url("../image/time.png") no-repeat center left;
+        background-size: 25px; }
   .product-detail .payment-scope {
     position: relative; }
     .product-detail .payment-scope .direct {
@@ -258,6 +308,41 @@ header.panel-title div h3 {
     font-size: #323232;
     font-size: 14px;
     text-justify: auto; }
+  .product-detail .picture-detail h3 {
+    font-size: 13px;
+    font-weight: bold;
+    color: #333;
+    margin: 4px;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6); }
+  .product-detail .picture-detail img {
+    max-height: 300px;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 10px; }
+  .product-detail p.price {
+    color: #ff6200;
+    font-weight: bolder;
+    font-size: 12px;
+    margin: 0 0 5px 10px; }
+  .product-detail ul.viewDownload {
+    list-style: none;
+    margin: 0;
+    padding: 0; }
+    .product-detail ul.viewDownload li {
+      display: inline-block;
+      width: 40%;
+      padding-left: 35px;
+      font-size: 12px;
+      color: #8d8d8d;
+      outline: none;
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
+      cursor: pointer; }
+      .product-detail ul.viewDownload li.view {
+        background: url("../image/view.png") no-repeat center left;
+        background-size: 30px; }
+      .product-detail ul.viewDownload li.download {
+        background: url("../image/download1.png") no-repeat center left;
+        background-size: 25px; }
 
 .messages {
   list-style: none;

@@ -17,7 +17,7 @@
             <ui:param name="#{productType}" value="#{controller.current}"/>
         </ui:include>
     </c:if>
-    <c:if test="#{controller.category != null or controller.current != null}">
+    <c:if test="#{(controller.category != null or controller.current != null) and controller.model.size() > 0}">
         <header class="row panel-title">
             <div class="col-xs-12 col-ms-8 col-md-6 col-lg-4">
                 <h3>
@@ -58,7 +58,7 @@
                     <f:param name="id" value="#{controller.current.id}"/>
                     <f:param name="page" value="#{controller.page + 1}"/>
                 </h:link>
-                
+
                 <h:link outcome="/#{productType}.xhtml" 
                         value="#{msg['pager.next']}" 
                         rendered="#{controller.category != null}"
@@ -69,7 +69,6 @@
             </li>
         </ul>
     </c:if>
-
     <c:if test="#{controller.category == null and controller.current == null}">
         <ol class="breadcrumb">
             <li><h:link value="#{msg['leftNav.homePage']}" outcome="/index.xhtml"/></li>
