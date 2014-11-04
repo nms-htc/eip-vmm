@@ -17,7 +17,7 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "ChargingWebserviceImplService", targetNamespace = "http://chargingwebservice.nms.com/", wsdlLocation = "http://192.168.88.44:8080/EntertainmentWS/ChargingWebserviceImplService?wsdl")
+@WebServiceClient(name = "ChargingWebserviceImplService", targetNamespace = "http://chargingwebservice.nms.com/", wsdlLocation = "http://192.168.88.44:8181/EntertainmentWS/ChargingWebserviceImpl?wsdl")
 public class ChargingWebserviceImplService
     extends Service
 {
@@ -30,7 +30,7 @@ public class ChargingWebserviceImplService
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("http://192.168.88.44:8080/EntertainmentWS/ChargingWebserviceImplService?wsdl");
+            url = new URL("http://192.168.88.44:8181/EntertainmentWS/ChargingWebserviceImpl?wsdl");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }

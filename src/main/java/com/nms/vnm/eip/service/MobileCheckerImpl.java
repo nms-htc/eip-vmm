@@ -14,7 +14,6 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
-import javax.xml.ws.WebServiceRef;
 
 @Named("mobileChecker")
 @SessionScoped
@@ -26,9 +25,6 @@ public class MobileCheckerImpl implements MobileChecker {
     private static final Logger LOGGER = Logger.getLogger(MobileCheckerImpl.class.getName());
     private UserAgentInfo agentInfo;
     private String phoneNumber;
-
-    @WebServiceRef(CHARGING.class)
-    private CHARGINGSoap charginService;
 
     @PostConstruct
     public void init() {
@@ -48,6 +44,8 @@ public class MobileCheckerImpl implements MobileChecker {
 
             if (ipAddress != null && !ipAddress.trim().isEmpty()) {
                 try {
+                    CHARGING service = new CHARGING();
+                    CHARGINGSoap charginService = service.getCHARGINGSoap();
                     phoneNumber = charginService.getmsisdn("cuongnt", "thanhlong", ipAddress);
                 } catch (Exception e) {
                     LOGGER.log(Level.WARNING, "MobileCheckerImpl:getPhoneNumber() Error when check phonenumber by ip", e);
