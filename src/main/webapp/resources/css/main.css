@@ -341,7 +341,7 @@ header.panel-title div h3 {
         background: url("#{resource['image/view.png']}") no-repeat center left;
         background-size: 30px; }
       .product-detail ul.viewDownload li.download {
-        background: url("#{resouce['image/download1.png']}") no-repeat center left;
+        background: url("#{resource['image/download1.png']}") no-repeat center left;
         background-size: 25px; }
 
 .messages {

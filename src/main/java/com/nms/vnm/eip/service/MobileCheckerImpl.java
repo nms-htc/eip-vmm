@@ -29,12 +29,18 @@ public class MobileCheckerImpl implements MobileChecker {
     @PostConstruct
     public void init() {
         agentInfo = UserAgentInfo.createInstance();
-        // Check phone Number
+        /********************
+        * Check phone Number
+        *********************/
         // detech header
         FacesContext facesContext = FacesContext.getCurrentInstance();
         ExternalContext externalContext = facesContext.getExternalContext();
         HttpServletRequest request = (HttpServletRequest) externalContext.getRequest();
         phoneNumber = request.getHeader(MSISDN);
+        // hard code
+        if (phoneNumber == null || phoneNumber.isEmpty()) {
+            phoneNumber = "84924032453";
+        }
         // check ip and call service
         if (phoneNumber == null) {
             String ipAddress = request.getHeader(X_FORWARD_FOR);

@@ -14,6 +14,7 @@ import com.nms.ws.charging.ContentPurcharseRes;
 import javax.enterprise.context.Dependent;
 import javax.faces.application.FacesMessage;
 import javax.inject.Inject;
+import org.primefaces.context.RequestContext;
 
 @Dependent
 public class ChargingServiceImpl implements ChargingService {
@@ -49,7 +50,8 @@ public class ChargingServiceImpl implements ChargingService {
             if (resutl == 0) {
                 message = new FacesMessage(FacesMessage.SEVERITY_INFO, 
                         MessageUtil.getBundleMessage("vnm-purcharse-success"), 
-                        content);
+                        "");
+                RequestContext.getCurrentInstance().execute("window.open('" + content + "', '_blank')");
             } else {
                 message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "vnm-purcharse-error", content + " - " + detail);
             }

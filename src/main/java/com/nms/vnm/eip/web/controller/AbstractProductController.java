@@ -8,7 +8,6 @@ import com.nms.vnm.eip.entity.Product;
 import com.nms.vnm.eip.service.ChargingService;
 import com.nms.vnm.eip.service.MobileChecker;
 import com.nms.vnm.eip.service.entity.ProductService;
-import com.nms.vnm.eip.web.util.JsfUtil;
 import com.nms.vnm.eip.web.util.MessageUtil;
 import java.io.Serializable;
 import java.util.List;

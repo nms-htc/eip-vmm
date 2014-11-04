@@ -70,7 +70,7 @@ public class MessageUtil {
     }
 
     public static void addGlobalMessage(FacesMessage.Severity severity, String message) {
-        FacesMessage msg = new FacesMessage(severity, getBundleMessage(message), null);
+        FacesMessage msg = new FacesMessage(severity, getBundleMessage(message), "");
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
 
