@@ -11,6 +11,7 @@ import com.nms.ws.charging.ChargingWebserviceImpl;
 import com.nms.ws.charging.ChargingWebserviceImplService;
 import com.nms.ws.charging.ContentPurcharseReq;
 import com.nms.ws.charging.ContentPurcharseRes;
+import java.util.logging.Logger;
 import javax.enterprise.context.Dependent;
 import javax.faces.application.FacesMessage;
 import javax.inject.Inject;
@@ -20,6 +21,8 @@ import org.primefaces.context.RequestContext;
 public class ChargingServiceImpl implements ChargingService {
 
     private static final long serialVersionUID = 8077722183941509246L;
+    private static final String CHARGING_SERVICE_URL = "http://10.8.224.37:8080/EntertainmentWS/ChargingWebserviceImpl?wsdl";
+    private static final Logger LOGGER = Logger.getLogger(ChargingServiceImpl.class.getName());
 
     @Inject
     private MobileChecker mobileChecker;
@@ -29,6 +32,7 @@ public class ChargingServiceImpl implements ChargingService {
         
         if (product != null) {
             FacesMessage message = null;
+            
             ChargingWebserviceImplService chargingServicePort = new ChargingWebserviceImplService();
             ChargingWebserviceImpl chargingService = chargingServicePort.getChargingWebserviceImplPort();
             ContentPurcharseReq request = new ContentPurcharseReq();

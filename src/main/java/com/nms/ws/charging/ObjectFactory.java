@@ -24,22 +24,14 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _ChargeItemsResponse_QNAME = new QName("http://chargingwebservice.nms.com/", "ChargeItemsResponse");
     private final static QName _ChargeItems_QNAME = new QName("http://chargingwebservice.nms.com/", "ChargeItems");
+    private final static QName _ChargeItemsResponse_QNAME = new QName("http://chargingwebservice.nms.com/", "ChargeItemsResponse");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: com.nms.ws.charging
      * 
      */
     public ObjectFactory() {
-    }
-
-    /**
-     * Create an instance of {@link ChargeItemsResponse }
-     * 
-     */
-    public ChargeItemsResponse createChargeItemsResponse() {
-        return new ChargeItemsResponse();
     }
 
     /**
@@ -51,27 +43,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ContentPurcharseRes }
+     * Create an instance of {@link ChargeItemsResponse }
      * 
      */
-    public ContentPurcharseRes createContentPurcharseRes() {
-        return new ContentPurcharseRes();
-    }
-
-    /**
-     * Create an instance of {@link RequestBase }
-     * 
-     */
-    public RequestBase createRequestBase() {
-        return new RequestBase();
-    }
-
-    /**
-     * Create an instance of {@link ContentPurcharseReq }
-     * 
-     */
-    public ContentPurcharseReq createContentPurcharseReq() {
-        return new ContentPurcharseReq();
+    public ChargeItemsResponse createChargeItemsResponse() {
+        return new ChargeItemsResponse();
     }
 
     /**
@@ -83,12 +59,27 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ChargeItemsResponse }{@code >}}
+     * Create an instance of {@link RequestBase }
      * 
      */
-    @XmlElementDecl(namespace = "http://chargingwebservice.nms.com/", name = "ChargeItemsResponse")
-    public JAXBElement<ChargeItemsResponse> createChargeItemsResponse(ChargeItemsResponse value) {
-        return new JAXBElement<ChargeItemsResponse>(_ChargeItemsResponse_QNAME, ChargeItemsResponse.class, null, value);
+    public RequestBase createRequestBase() {
+        return new RequestBase();
+    }
+
+    /**
+     * Create an instance of {@link ContentPurcharseRes }
+     * 
+     */
+    public ContentPurcharseRes createContentPurcharseRes() {
+        return new ContentPurcharseRes();
+    }
+
+    /**
+     * Create an instance of {@link ContentPurcharseReq }
+     * 
+     */
+    public ContentPurcharseReq createContentPurcharseReq() {
+        return new ContentPurcharseReq();
     }
 
     /**
@@ -98,6 +89,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://chargingwebservice.nms.com/", name = "ChargeItems")
     public JAXBElement<ChargeItems> createChargeItems(ChargeItems value) {
         return new JAXBElement<ChargeItems>(_ChargeItems_QNAME, ChargeItems.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ChargeItemsResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://chargingwebservice.nms.com/", name = "ChargeItemsResponse")
+    public JAXBElement<ChargeItemsResponse> createChargeItemsResponse(ChargeItemsResponse value) {
+        return new JAXBElement<ChargeItemsResponse>(_ChargeItemsResponse_QNAME, ChargeItemsResponse.class, null, value);
     }
 
 }

@@ -27,7 +27,7 @@ nav#main-nav {
     nav#main-nav div.row div {
       padding: 5px;
       text-align: center; }
-      nav#main-nav div.row div a {
+      nav#main-nav div.row div a, nav#main-nav div.row div span {
         outline: none;
         display: block;
         width: 100%;
@@ -35,13 +35,13 @@ nav#main-nav {
         border: 1px solid #919191; }
         nav#main-nav div.row div a.togger {
           background: #23ffc7; }
-        nav#main-nav div.row div a.game {
+        nav#main-nav div.row div .game {
           background: #ff6300; }
-        nav#main-nav div.row div a.music {
+        nav#main-nav div.row div .music {
           background: #ffa500; }
-        nav#main-nav div.row div a.video {
+        nav#main-nav div.row div .video {
           background: #14cc69; }
-        nav#main-nav div.row div a.picture {
+        nav#main-nav div.row div .picture {
           background: #ffa500; }
         nav#main-nav div.row div a.search {
           background: #23ffc7; }
@@ -281,6 +281,9 @@ header.panel-title div h3 {
         background-size: 30px; }
       .product-detail ul li.createDate, .product-detail ul.viewDownload li.createDate {
         background: url("#{resource['image/time.png']}") no-repeat center left;
+        background-size: 25px; }
+      .product-detail ul li.download {
+        background: url("#{resource['image/download1.png']}") no-repeat center left;
         background-size: 25px; }
   .product-detail .payment-scope {
     position: relative; }

@@ -6,8 +6,14 @@ package com.nms.vnm.eip.ejb;
 
 import com.nms.vnm.eip.entity.Post;
 import com.nms.vnm.eip.entity.PostCategory;
+import com.nms.vnm.eip.service.MobileChecker;
 import com.nms.vnm.eip.service.entity.PostService;
+import java.util.LinkedList;
+import java.util.List;
 import javax.ejb.Stateless;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 
 @Stateless
 public class PostServiceBean extends AbstractProductBean<PostCategory, Post> implements PostService {
@@ -16,6 +22,11 @@ public class PostServiceBean extends AbstractProductBean<PostCategory, Post> imp
 
     public PostServiceBean() {
         super(Post.class);
+    }
+
+    @Override
+    protected List<Predicate> buildPredicates(CriteriaBuilder cd, Root<Post> root, MobileChecker mobileChecker) {
+        return new LinkedList<>();
     }
 
 }

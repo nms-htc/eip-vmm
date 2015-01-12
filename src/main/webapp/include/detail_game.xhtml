@@ -27,12 +27,13 @@
 
                 <div class="payment-scope">
                     <div class="direct">
-                        <h:commandButton value="#{msg['download-now']}" styleClass="btn btn-warning" actionListener="#{gameController.chargingProduct()}">
-                            <f:ajax render=":messages"/>
+                        <h:commandButton value="#{msg['download-now']}" 
+                                         styleClass="btn btn-warning" 
+                                         action="#{gameController.chargingProduct()}">
                         </h:commandButton>
                     </div>
                     <div class="sms">
-                        <span>TG #{game.code} gui 8973</span>
+                        <span>TG #{game.code} gửi 989</span>
                     </div>
                 </div>
 

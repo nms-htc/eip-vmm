@@ -86,25 +86,29 @@ public abstract class AbstractProductController<T extends Product, C extends Cat
 
     public List<T> getListExcludeCurrent() {
         if (current != null) {
-            listExcludeCurrent = getProductService().findExcludeCurrent(0, 4, current);
+            listExcludeCurrent = getProductService().findExcludeCurrent(0, 4, current, mobileChecker);
         }
         return listExcludeCurrent;
     }
 
     public List<T> getHots() {
-        return getProductService().findByCat(0, 5, category, "downloadCount", false);
+        if (hots == null) {
+            hots = getProductService().search(null, category, mobileChecker, "downloadCount", false, 0, 5);
+        }
+        return hots;
     }
 
     public List<T> getTops() {
         if (tops == null) {
-            tops = getProductService().findByCat(0, 5, category, "downloadCount", false);
+            news = getProductService().search(null, category, mobileChecker, "downloadCount", false, 0, 5);
         }
         return tops;
     }
 
     public List<T> getNews() {
         if (news == null) {
-            news = getProductService().findByCat(0, 5, category, "createdDate", false);
+            
+            news = getProductService().search(null, category, mobileChecker, "createdDate", false, 0, 5);
         }
         return news;
     }
@@ -118,7 +122,7 @@ public abstract class AbstractProductController<T extends Product, C extends Cat
 
     public List<T> getPromos() {
         if (promos == null) {
-            promos = getProductService().getPromotions(0, 5, category, "createdDate", false);
+            promos = getProductService().getPromotions(0, 5, category, "createdDate", false); 
         }
         return promos;
     }
@@ -143,15 +147,16 @@ public abstract class AbstractProductController<T extends Product, C extends Cat
         if (current != null) {
             // increase view count
             getProductService().increaseViewCount(current);
-            model = getProductService().findExcludeCurrent(page * 10, 10, current);
-            count = getProductService().countByCat(category) - 1;
+            model = getProductService().findExcludeCurrent(page * 10, 10, current, mobileChecker);
+            category = (C) current.getCategory();
+            count = getProductService().count( null, category, mobileChecker) - 1;
 
         } else if (category != null) {
             model = getProductService().findByCat(page * 10, 10, category, orderField, false);
-            count = getProductService().countByCat(category);
+            count = getProductService().count( null, category, mobileChecker);
         }
         if (current != null || category != null) {
-            if ((page + 1) * 10 <= count) {
+            if ((page + 1) * 10 < count) {
                 hasNext = true;
             }
             if (page > 0) {

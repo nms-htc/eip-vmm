@@ -44,7 +44,7 @@
                 </h:link>
                 <h:link outcome="/#{productType}.xhtml" 
                         value="#{msg['pager.back']}" 
-                        rendered="#{controller.category != null}"
+                        rendered="#{controller.category != null and controller.current == null}"
                         disabled="#{!controller.hasPreview}">
                     <f:param name="cat" value="#{controller.category.id}" />
                     <f:param name="page" value="#{controller.page - 1}"/>
@@ -61,7 +61,7 @@
 
                 <h:link outcome="/#{productType}.xhtml" 
                         value="#{msg['pager.next']}" 
-                        rendered="#{controller.category != null}"
+                        rendered="#{controller.category != null and controller.current == null}"
                         disabled="#{!controller.hasNext}">
                     <f:param name="cat" value="#{controller.category.id}"/>
                     <f:param name="page" value="#{controller.page + 1}"/>

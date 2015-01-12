@@ -1,5 +1,6 @@
 /**
- * Copyright (C) 2014 Next Generation Mobile Service JSC., (NMS). All rights reserved.
+ * Copyright (C) 2014 Next Generation Mobile Service JSC., (NMS). All rights
+ * reserved.
  */
 package com.nms.vnm.eip.ejb;
 
@@ -7,8 +8,10 @@ import com.nms.vnm.eip.entity.BaseEntity_;
 import com.nms.vnm.eip.entity.Category;
 import com.nms.vnm.eip.entity.Product;
 import com.nms.vnm.eip.entity.Product_;
+import com.nms.vnm.eip.service.MobileChecker;
 import com.nms.vnm.eip.service.entity.ProductService;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import javax.ejb.EJBException;
 import javax.persistence.TypedQuery;
@@ -51,19 +54,24 @@ public abstract class AbstractProductBean<C extends Category, P extends Product>
     }
 
     @Override
-    public List<P> findExcludeCurrent(int start, int range, P product) {
+    public List<P> findExcludeCurrent(int start, int range, P product, MobileChecker mobileChecker) {
         if (product != null) {
-            Category category = product.getCategory();
+            C category = (C) product.getCategory();
             CriteriaBuilder cb = em.getCriteriaBuilder();
             CriteriaQuery<P> cq = cb.createQuery(entityClass);
             Root<P> root = cq.from(entityClass);
-            if (category != null) {
-                C cat = (C) category;
-                cq.where(new Predicate[]{
-                    cb.equal(root.get(Product_.category), cat),
-                    cb.notEqual(root.get(BaseEntity_.id), ((Product) product).getId())
-                });
+            
+            List<Predicate> predicates = buildPredicates(cb, root, category, null);
+            List<Predicate> mobilePredicates = buildPredicates(cb, root, mobileChecker);
+
+            predicates.addAll(mobilePredicates);
+            // exclude current product.
+            predicates.add(cb.notEqual(root.get(BaseEntity_.id), ((Product) product).getId()));
+
+            if (!predicates.isEmpty()) {
+                cq.where(predicates.toArray(new Predicate[] {})); 
             }
+            
             TypedQuery<P> q = em.createQuery(cq);
             q.setFirstResult(start);
             q.setMaxResults(range);
@@ -192,7 +200,7 @@ public abstract class AbstractProductBean<C extends Category, P extends Product>
 
     @Override
     public void increateDownloadCount(P product) {
-        int count = product.getDownloadCount()+ 1;
+        int count = product.getDownloadCount() + 1;
         product.setDownloadCount(count);
         em.merge(product);
     }
@@ -200,7 +208,7 @@ public abstract class AbstractProductBean<C extends Category, P extends Product>
     @Override
     protected void onBeforePersist(P entity) {
         super.onBeforePersist(entity);
-        Product testEntity = null; 
+        Product testEntity = null;
         try {
             CriteriaBuilder cb = em.getCriteriaBuilder();
             CriteriaQuery<Product> cq = cb.createQuery(Product.class);
@@ -216,5 +224,88 @@ public abstract class AbstractProductBean<C extends Category, P extends Product>
             throw new EJBException("product.code.error.duplicate");
         }
     }
-    
+
+    @Override
+    public List<P> search(String keywords, C category, MobileChecker mobileChecker,
+            String orderField, boolean asc, int start, int range) {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<P> cq = cb.createQuery(entityClass);
+        Root<P> root = cq.from(entityClass);
+        cq.select(root);
+
+        List<Predicate> predicates = buildPredicates(cb, root, category, keywords);
+        List<Predicate> mobilePredicates = buildPredicates(cb, root, mobileChecker);
+
+        predicates.addAll(mobilePredicates);
+
+        if (!predicates.isEmpty()) {
+            cq.where(predicates.toArray(new Predicate[]{}));
+        }
+
+        if (orderField != null && !orderField.trim().isEmpty()) {
+            if (asc) {
+                cq.orderBy(cb.asc(root.get(orderField)));
+            } else {
+                cq.orderBy(cb.desc(root.get(orderField)));
+            }
+        }
+
+        TypedQuery<P> q = em.createQuery(cq);
+        q.setFirstResult(start);
+        q.setMaxResults(range);
+        return q.getResultList();
+    }
+
+    @Override
+    public int count(String keywords, C category, MobileChecker mobileChecker) {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Long> cq = cb.createQuery(Long.class);
+        Root<P> root = cq.from(entityClass);
+        cq.select(cb.count(root));
+
+        List<Predicate> predicates = buildPredicates(cb, root, category, keywords);
+        List<Predicate> mobilePredicates = buildPredicates(cb, root, mobileChecker);
+
+        predicates.addAll(mobilePredicates);
+
+        if (!predicates.isEmpty()) {
+            cq.where(predicates.toArray(new Predicate[]{}));
+        }
+
+        TypedQuery<Long> q = em.createQuery(cq);
+        return q.getSingleResult().intValue();
+    }
+
+    /**
+     * Build predicates for search
+     *
+     * @param cb
+     * @param root
+     * @param category
+     * @param keywords
+     * @return
+     */
+    protected List<Predicate> buildPredicates(CriteriaBuilder cb, Root<P> root, C category, String keywords) {
+        List<Predicate> predicates = new LinkedList<>();
+
+        if (category != null) {
+            predicates.add(cb.equal(root.get(Product_.category), category));
+        }
+
+        if (keywords != null && !keywords.trim().isEmpty()) {
+            predicates.add(cb.like(cb.upper(root.get(Product_.title)), '%' + keywords + '%'));
+        }
+
+        return predicates;
+    }
+
+    /**
+     * Build predicats for search on Wap
+     *
+     * @param cd
+     * @param root
+     * @param mobileChecker
+     * @return
+     */
+    protected abstract List<Predicate> buildPredicates(CriteriaBuilder cd, Root<P> root, MobileChecker mobileChecker);
 }
