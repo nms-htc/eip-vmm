@@ -38,9 +38,10 @@ public class MobileCheckerImpl implements MobileChecker {
         HttpServletRequest request = (HttpServletRequest) externalContext.getRequest();
         phoneNumber = request.getHeader(MSISDN);
         // hard code
-        if (phoneNumber == null || phoneNumber.isEmpty()) {
-            phoneNumber = "84924032453";
-        }
+//        if (phoneNumber == null || phoneNumber.isEmpty()) {
+//            phoneNumber = "84924032453";
+//        }
+        
         // check ip and call service
         if (phoneNumber == null) {
             String ipAddress = request.getHeader(X_FORWARD_FOR);
@@ -68,7 +69,7 @@ public class MobileCheckerImpl implements MobileChecker {
 
     @Override
     public boolean isVnmSubsriber() {
-        return phoneNumber != null;
+        return phoneNumber != null && !phoneNumber.trim().isEmpty();
     }
 
     @Override
