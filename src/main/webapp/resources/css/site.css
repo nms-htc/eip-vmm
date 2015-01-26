@@ -119,9 +119,9 @@ px      68    160    252    */
         -webkit-border-radius: 10px;
         -ms-border-radius: 10px;
         border: 2px solid #fff;
-        box-shadow: 0px 0px 1px #999999;
-        -moz-box-shadow: 0px 0px 1px #999999;
-        -webkit-box-shadow: 0px 0px 1px #999999; }
+        box-shadow: 0px 0px 1px #999;
+        -moz-box-shadow: 0px 0px 1px #999;
+        -webkit-box-shadow: 0px 0px 1px #999; }
       div.list-product .list-product-item-url .list-product-item .list-product-item-data {
         display: block;
         padding-left: 80px; }
@@ -157,9 +157,9 @@ px      68    160    252    */
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
     -ms-border-radius: 10px;
-    box-shadow: 0 0 1px #999999;
-    -moz-box-shadow: 0 0 1px #999999;
-    -webkit-box-shadow: 0 0 1px #999999;
+    box-shadow: 0 0 1px #999;
+    -moz-box-shadow: 0 0 1px #999;
+    -webkit-box-shadow: 0 0 1px #999;
     border: 2px solid #fff;
     margin: 10px; }
   .product-item .downloadButton {
@@ -167,10 +167,10 @@ px      68    160    252    */
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     -ms-border-radius: 5px;
-    box-shadow: 0 0 1px #999999;
-    -moz-box-shadow: 0 0 1px #999999;
-    -webkit-box-shadow: 0 0 1px #999999;
-    background: #f78b31;
+    box-shadow: 0 0 1px #999;
+    -moz-box-shadow: 0 0 1px #999;
+    -webkit-box-shadow: 0 0 1px #999;
+    background: #F78B31;
     color: #222;
     border: 1px solid #f1f1f1;
     font-size: 16px;
@@ -191,7 +191,7 @@ px      68    160    252    */
     background: #4c4c4c;
     text-align: center;
     text-transform: uppercase;
-    color: #f78b31; }
+    color: #F78B31; }
     .product-item .product-item-buy-area h4 {
       color: #f1f1f1;
       font-size: 14px; }
@@ -212,7 +212,7 @@ px      68    160    252    */
     .product-item .product-item-specification h4 {
       height: 30px;
       line-height: 30px;
-      background: #f78b31;
+      background: #F78B31;
       text-align: left;
       text-indent: 10px;
       color: #000;
@@ -227,7 +227,7 @@ px      68    160    252    */
     bottom: 0;
     background: white; }
     div#footer span {
-      color: orange; } }
+      color: #FFA500; } }
 /*		Wide Mobile Layout: 480px.
                 Gutters: 24px.
                 Outer margins: 22px.

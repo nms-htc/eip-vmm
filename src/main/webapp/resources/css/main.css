@@ -27,7 +27,7 @@ nav#main-nav {
     nav#main-nav div.row div {
       padding: 5px;
       text-align: center; }
-      nav#main-nav div.row div a, nav#main-nav div.row div span {
+      nav#main-nav div.row div a {
         outline: none;
         display: block;
         width: 100%;
@@ -35,13 +35,13 @@ nav#main-nav {
         border: 1px solid #919191; }
         nav#main-nav div.row div a.togger {
           background: #23ffc7; }
-        nav#main-nav div.row div .game {
+        nav#main-nav div.row div a.game {
           background: #ff6300; }
-        nav#main-nav div.row div .music {
+        nav#main-nav div.row div a.music {
           background: #ffa500; }
-        nav#main-nav div.row div .video {
+        nav#main-nav div.row div a.video {
           background: #14cc69; }
-        nav#main-nav div.row div .picture {
+        nav#main-nav div.row div a.picture {
           background: #ffa500; }
         nav#main-nav div.row div a.search {
           background: #23ffc7; }
@@ -151,13 +151,13 @@ nav#main-nav {
         outline: none;
         cursor: pointer; }
         .product-items .product-item a.post ul li.view {
-          background: url("#{resource['image/view.png']}") no-repeat center left;
+          background: url("../image/view.png") no-repeat center left;
           background-size: 30px; }
         .product-items .product-item a.post ul li.download {
-          background: url("#{resource['image/download1.png']}") no-repeat center left;
+          background: url("../image/download1.png") no-repeat center left;
           background-size: 25px; }
         .product-items .product-item a.post ul li.createDate {
-          background: url("#{resource['image/time.png']}") no-repeat center left;
+          background: url("../image/time.png") no-repeat center left;
           background-size: 25px; }
   .product-items .product-item a h3 {
     font-size: 14px;
@@ -203,10 +203,10 @@ nav#main-nav {
         outline: none;
         cursor: pointer; }
         .product-items .product-item a .postDesc ul li.view, .product-items .product-item a .postDesc ul.viewDownload li.view {
-          background: url("#{resource['image/view.png']}") no-repeat center left;
+          background: url("../image/view.png") no-repeat center left;
           background-size: 30px; }
         .product-items .product-item a .postDesc ul li.download, .product-items .product-item a .postDesc ul.viewDownload li.download {
-          background: url("#{resource['image/download1.png']}") no-repeat center left;
+          background: url("../image/download1.png") no-repeat center left;
           background-size: 25px; }
 .product-items .product-item:last-child a {
   border-bottom: 1px solid #bfbfbf; }
@@ -277,13 +277,10 @@ header.panel-title div h3 {
       text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
       cursor: pointer; }
       .product-detail ul li.view, .product-detail ul.viewDownload li.view {
-        background: url("#{resource['image/view.png']}") no-repeat center left;
+        background: url("../image/view.png") no-repeat center left;
         background-size: 30px; }
       .product-detail ul li.createDate, .product-detail ul.viewDownload li.createDate {
-        background: url("#{resource['image/time.png']}") no-repeat center left;
-        background-size: 25px; }
-      .product-detail ul li.download {
-        background: url("#{resource['image/download1.png']}") no-repeat center left;
+        background: url("../image/time.png") no-repeat center left;
         background-size: 25px; }
   .product-detail .payment-scope {
     position: relative; }
@@ -341,10 +338,10 @@ header.panel-title div h3 {
       text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
       cursor: pointer; }
       .product-detail ul.viewDownload li.view {
-        background: url("#{resource['image/view.png']}") no-repeat center left;
+        background: url("../image/view.png") no-repeat center left;
         background-size: 30px; }
       .product-detail ul.viewDownload li.download {
-        background: url("#{resource['image/download1.png']}") no-repeat center left;
+        background: url("../image/download1.png") no-repeat center left;
         background-size: 25px; }
 
 .messages {

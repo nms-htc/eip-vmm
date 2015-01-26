@@ -53,7 +53,7 @@ public class MobileCheckerImpl implements MobileChecker {
                 try {
                     CHARGING service = new CHARGING();
                     CHARGINGSoap charginService = service.getCHARGINGSoap();
-                    phoneNumber = charginService.getmsisdn("cuongnt", "thanhlong", ipAddress);
+                    phoneNumber = charginService.getmsisdn("STK", "92x@x93", ipAddress);
                 } catch (Exception e) {
                     LOGGER.log(Level.WARNING, "MobileCheckerImpl:getPhoneNumber() Error when check phonenumber by ip", e);
                 }
