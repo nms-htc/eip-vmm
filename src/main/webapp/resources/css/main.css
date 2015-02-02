@@ -282,6 +282,9 @@ header.panel-title div h3 {
       .product-detail ul li.createDate, .product-detail ul.viewDownload li.createDate {
         background: url("#{resource['image/time.png']}") no-repeat center left;
         background-size: 25px; }
+      .product-detail ul li.download, .product-detail ul.viewDownload li.download {
+        background: url("#{resource['image/download1.png']}") no-repeat center left;
+        background-size: 25px; }
   .product-detail .payment-scope {
     position: relative; }
     .product-detail .payment-scope .direct {
