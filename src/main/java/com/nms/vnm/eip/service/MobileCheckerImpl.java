@@ -60,7 +60,16 @@ public class MobileCheckerImpl implements MobileChecker {
             }
 
             if (phoneNumber != null && !phoneNumber.matches("^\\+?[0-9]{10,12}$")) {
-                LOGGER.log(Level.WARNING, "Error code when call CHARGING WS, errorCode: {0}", phoneNumber);
+                
+                LOGGER.log(Level.WARNING, "Error code when call CHARGING WS, "
+                        + "response: {0}, ipAddress: {1}, user: {2}, password: {3}",
+                        new Object[] {
+                            phoneNumber,
+                            ipAddress,
+                            "STK",
+                            "92x@x93"
+                    }
+                );
                 phoneNumber = null;
 
             }
