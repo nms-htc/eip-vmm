@@ -60,9 +60,13 @@
 
                 <p:row>
                     <p:column><p:outputLabel for="thumbnailUrl" value="#{msg['thumbnail']}"/></p:column>
-                    <p:column colspan="3">
+                    <p:column colspan="2">
                         <p:inputText id="thumbnailUrl" size="50" value="#{gameBean.current.thumbnailUrl}"/>
                         <p:message for="thumbnailUrl"/>
+                    </p:column>
+                    <p:column>
+                        <p:outputLabel value="Enable: " for="enable"/>
+                        <p:selectBooleanCheckbox id="enable" value="#{gameBean.current.enable}"/>
                     </p:column>
                 </p:row>
                 
@@ -78,6 +82,19 @@
                         <p:message for="devicesSupport"/>
                     </p:column>
                 </p:row>
+                
+<!--                <p:row>
+                    <p:column><p:outputLabel for="description" value="#{msg['description']}:"/></p:column>
+                    <p:column>
+                        <p:inputTextarea id="description" cols="32" rows="3" value="#{gameBean.current.description}" autoResize="false"/>
+                        <p:message for="description"/>
+                    </p:column>
+                    <p:column><p:outputLabel for="devicesSupport" value="#{msg['game.devicesSupport']}:"/></p:column>
+                    <p:column>
+                        <p:inputTextarea id="devicesSupport" cols="32" rows="3" value="#{gameBean.current.devicesSupport}" autoResize="false"/>
+                        <p:message for="devicesSupport"/>
+                    </p:column>
+                </p:row>-->
                 
                 <p:row>
                     <p:column><p:outputLabel for="specification" value="#{msg['product.specification']}:"/></p:column>

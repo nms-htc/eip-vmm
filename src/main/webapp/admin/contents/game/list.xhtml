@@ -83,11 +83,21 @@
                         </h:outputText>
                     </p:column>
 
-                    <p:column headerText="#{msg['description']}" 
+<!--                    <p:column headerText="#{msg['description']}" 
                               sortBy="#{game.description}"
                               filterBy="#{game.description}"
                               filterStyle="width: 90%">
                         <h:outputText value="#{game.description}"/>
+                    </p:column>-->
+                    
+                    <p:column headerText="Enable"
+                              sortBy="#{game.enable}"
+                              filterBy="#{game.enable}"
+                              filterStyle="width: 90%">
+                        <f:facet name="filter">
+                            <p:selectBooleanCheckbox onchange="PF('listTable').filter();" converter="javax.faces.Boolean"/>
+                        </f:facet>
+                        <p:selectBooleanCheckbox value="#{game.enable}" disabled="true"/>
                     </p:column>
 
                     <p:column style="width: 90px" toggleable="false" >

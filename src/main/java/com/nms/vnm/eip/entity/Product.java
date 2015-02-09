@@ -71,6 +71,9 @@ public abstract class Product extends BaseEntity {
 
     @Column(name = "PRICE")
     protected double price;
+    
+    @Column(name = "ENABLE")
+    protected boolean enable = true;
 
     @Url
     @Column(name = "THUMBNAIL_URL")
@@ -186,6 +189,14 @@ public abstract class Product extends BaseEntity {
         this.user = user;
     }
 
+    public boolean isEnable() {
+        return enable;
+    }
+
+    public void setEnable(boolean enable) {
+        this.enable = enable;
+    }
+    
     public Category getCategory() {
         return category;
     }

@@ -287,6 +287,8 @@ public abstract class AbstractProductBean<C extends Category, P extends Product>
      */
     protected List<Predicate> buildPredicates(CriteriaBuilder cb, Root<P> root, C category, String keywords) {
         List<Predicate> predicates = new LinkedList<>();
+        
+        predicates.add(cb.isTrue(root.get(Product_.enable)));
 
         if (category != null) {
             predicates.add(cb.equal(root.get(Product_.category), category));
