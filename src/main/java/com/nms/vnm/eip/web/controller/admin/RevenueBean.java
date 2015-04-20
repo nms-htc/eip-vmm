@@ -96,7 +96,7 @@ public class RevenueBean implements Serializable {
     public void setTotalAmount(double totalAmount) {
         this.totalAmount = totalAmount;
     }
-    
+
     public SelectItem[] getCpCodeSelectItem() {
         if (cpCodeSelectItem == null) {
             List<User> users = userService.findAll();
@@ -127,7 +127,12 @@ public class RevenueBean implements Serializable {
                 @Override
                 public List<SubscriberOrder> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
                     setRowCount(subscriberOrderService.count(getCpCode(), getStartOrderDate(), getEndOrderDate(), filters));
-                    setTotalAmount(subscriberOrderService.calculateTotalAmount(getCpCode(), getStartOrderDate(), getEndOrderDate(), filters));
+                    try {
+                        setTotalAmount(subscriberOrderService.calculateTotalAmount(getCpCode(), getStartOrderDate(), getEndOrderDate(), filters));
+                    } catch (Exception e) {
+                        setTotalAmount(0);
+                    }
+
                     boolean asc = false;
                     if (sortOrder != null && sortOrder == SortOrder.ASCENDING) {
                         asc = true;

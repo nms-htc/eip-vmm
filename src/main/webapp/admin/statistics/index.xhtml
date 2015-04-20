@@ -26,6 +26,19 @@
 
                         <f:facet name="footer">
                             <p:commandButton icon="ui-icon-search" value="Search" update="@form"/>
+
+
+                            <h:commandLink value="Excel">
+                                <p:dataExporter type="xls" target="listTable" fileName="orderReport"/>
+                            </h:commandLink>
+                            <p:spacer width="10"/>
+                            <h:commandLink value="CSV">
+                                <p:dataExporter type="csv" target="listTable" fileName="orderReport" />
+                            </h:commandLink>
+                            <p:spacer width="10"/>
+                            <h:commandLink value="XML">
+                                <p:dataExporter type="xml" target="listTable" fileName="orderReport" />
+                            </h:commandLink>
                         </f:facet>
                     </p:panelGrid>
 
@@ -82,9 +95,13 @@
                             <div style="text-align: right">
                                 Total Amount: 
                                 <h:outputText value="#{revenueBean.totalAmount} VND">
-                                    <f:convertNumber pattern="###.###,##"/>
+                                    <f:convertNumber locale="fr_FR"/>
                                 </h:outputText>
                             </div>
+                        </f:facet>
+
+                        <f:facet name="{Exporters}">
+
                         </f:facet>
 
                     </p:dataTable>
