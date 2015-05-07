@@ -12,6 +12,9 @@ import com.nms.vnm.eip.service.MobileChecker;
 import com.nms.vnm.eip.service.entity.GameService;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.ejb.EJBException;
 import javax.ejb.Stateless;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -23,6 +26,7 @@ import javax.persistence.criteria.Root;
 public class GameServiceBean extends AbstractProductBean<GameCategory, Game> implements GameService {
 
     private static final long serialVersionUID = 4734878632483200574L;
+    private static final Logger logger = Logger.getLogger(GameServiceBean.class.getName());
 
     public GameServiceBean() {
         super(Game.class);
@@ -61,6 +65,15 @@ public class GameServiceBean extends AbstractProductBean<GameCategory, Game> imp
             try {
                 category = em.find(GameCategory.class, categoryId);
             } catch (Exception e) {
+                logger.log(Level.SEVERE, "Game category not found with categoryId = {0}, Error Message: {1}",
+                        new Object[]{
+                            categoryId, 
+                            e.getMessage()
+                        });
+            }
+            
+            if (category == null) {
+                throw new EJBException("GameCategory can not found with id = " + categoryId);
             }
         }
 
@@ -93,9 +106,13 @@ public class GameServiceBean extends AbstractProductBean<GameCategory, Game> imp
 
             }
         }
-        
-        if (page < 0) page = 0;
-        if (range <= 0) range = 10;
+
+        if (page < 0) {
+            page = 0;
+        }
+        if (range <= 0) {
+            range = 10;
+        }
 
         TypedQuery<Game> q = em.createQuery(cq);
         q.setFirstResult(page * range);
