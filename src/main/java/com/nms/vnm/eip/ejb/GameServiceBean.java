@@ -57,7 +57,7 @@ public class GameServiceBean extends AbstractProductBean<GameCategory, Game> imp
 
         GameCategory category = null;
 
-        if (category != null) {
+        if (categoryId != null) {
             try {
                 category = em.find(GameCategory.class, categoryId);
             } catch (Exception e) {
