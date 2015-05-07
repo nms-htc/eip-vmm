@@ -74,7 +74,7 @@ public class EipContentResource {
     }
 
     @GET
-    @Path("game/search")
+    @Path("search/game")
     public List<Game> searchGameEntries(
             @QueryParam("categoryId") Long categoryId,
             @QueryParam("keyword") String keyword,

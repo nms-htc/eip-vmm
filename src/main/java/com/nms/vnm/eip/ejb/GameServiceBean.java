@@ -11,7 +11,6 @@ import com.nms.vnm.eip.search.OrderType;
 import com.nms.vnm.eip.service.MobileChecker;
 import com.nms.vnm.eip.service.entity.GameService;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.TypedQuery;
@@ -99,7 +98,7 @@ public class GameServiceBean extends AbstractProductBean<GameCategory, Game> imp
         if (range <= 0) range = 10;
 
         TypedQuery<Game> q = em.createQuery(cq);
-        q.setFirstResult((page - 1) * range);
+        q.setFirstResult(page * range);
         q.setMaxResults(range);
         return q.getResultList();
     }

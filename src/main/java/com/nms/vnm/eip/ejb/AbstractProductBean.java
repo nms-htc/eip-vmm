@@ -295,7 +295,7 @@ public abstract class AbstractProductBean<C extends Category, P extends Product>
         }
 
         if (keywords != null && !keywords.trim().isEmpty()) {
-            predicates.add(cb.like(cb.upper(root.get(Product_.title)), '%' + keywords + '%'));
+            predicates.add(cb.like(cb.upper(root.get(Product_.title)), '%' + keywords.trim().toUpperCase() + '%'));
         }
 
         return predicates;
