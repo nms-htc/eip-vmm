@@ -1,5 +1,6 @@
 /**
- * Copyright (C) 2014 Next Generation Mobile Service JSC., (NMS). All rights reserved.
+ * Copyright (C) 2014 Next Generation Mobile Service JSC., (NMS). All rights
+ * reserved.
  */
 package com.nms.vnm.eip.rs;
 
@@ -40,7 +41,7 @@ public class EipContentResource {
     private GameService gameEntryFacade;
 
     @GET
-    @Path("game/categories")
+    @Path("category/game")
     public List<GameCategory> getCategories() {
 
         List<GameCategory> categories = null;
@@ -78,7 +79,7 @@ public class EipContentResource {
             @QueryParam("categoryId") Long categoryId,
             @QueryParam("keyword") String keyword,
             @QueryParam("flatform") @DefaultValue("0") int flatform,
-            @QueryParam("page") @DefaultValue("0") int page, 
+            @QueryParam("page") @DefaultValue("0") int page,
             @QueryParam("range") @DefaultValue("10") int range,
             @QueryParam("orderType") String orderType) {
 
@@ -120,12 +121,15 @@ public class EipContentResource {
                 case "NEW":
                     orderTypeEnum = OrderType.TOP_NEW;
                     break;
+                case "VIEW":
+                    orderTypeEnum = OrderType.TOP_VIEW;
+                    break;
             }
         }
 
         try {
 
-            //gameEntries = gameEntryFacade.search(categoryId, keyword, orderTypeEnum, page, range, flatformEnum);
+            gameEntries = gameEntryFacade.search(categoryId, keyword, orderTypeEnum, page, range, flatformEnum);
         } catch (Exception e) {
 
             LOGGER.log(Level.SEVERE, "Error when searchGameEntries with categoryId = {0}, "

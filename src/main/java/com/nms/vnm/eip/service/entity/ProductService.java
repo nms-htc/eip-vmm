@@ -6,6 +6,7 @@ package com.nms.vnm.eip.service.entity;
 
 import com.nms.vnm.eip.entity.Category;
 import com.nms.vnm.eip.entity.Product;
+import com.nms.vnm.eip.search.OrderType;
 import com.nms.vnm.eip.service.MobileChecker;
 import java.util.List;
 
@@ -31,6 +32,6 @@ public interface ProductService<E extends Product, C extends Category> extends B
 
     public List<E> search(String keywords, C category, MobileChecker mobileChecker, 
             String orderField, boolean asc, int start, int ranger);
-
+    
     public int count(String keywords, C category, MobileChecker mobileChecker);
 }

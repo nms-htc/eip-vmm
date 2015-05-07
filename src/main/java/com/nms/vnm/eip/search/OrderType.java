@@ -8,5 +8,5 @@ package com.nms.vnm.eip.search;
  * @author Cuong
  */
 public enum OrderType {
-    TOP_DOWNLOAD, TOP_HOT, TOP_NEW;
+    TOP_DOWNLOAD, TOP_HOT, TOP_NEW, TOP_VIEW;
 }
