@@ -136,6 +136,7 @@ public class EipContentResource {
                     + " keyword = {1}, flatform = {2}, page = {3}, range = {4},"
                     + "orderType = {5}, Exception message = {6}", new Object[]{
                         categoryId, keyword, flatform, page, range, orderType, e.toString()});
+            throw new WebApplicationException(Response.Status.BAD_REQUEST);
         }
 
         return gameEntries;
