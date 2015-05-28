@@ -9,6 +9,8 @@ import com.nms.vnm.eip.entity.Game;
 import com.nms.vnm.eip.search.OrderType;
 import com.nms.vnm.eip.service.entity.GameCategoryService;
 import com.nms.vnm.eip.service.entity.GameService;
+import com.nms.ws.checksubscriber.CHARGING;
+import com.nms.ws.checksubscriber.CHARGINGSoap;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -140,5 +142,28 @@ public class EipContentResource {
         }
 
         return gameEntries;
+    }
+
+    @GET
+    @Path("checkPhoneNumber/{ipAddress}")
+    @Produces({MediaType.TEXT_PLAIN + ";" + MediaType.CHARSET_PARAMETER + "=UTF-8"})
+    public String checkPhoneNumberWithIpAddress(@PathParam("ipAddress") String ipAddress) {
+        String phoneNumber = null;
+        if (ipAddress != null && !ipAddress.trim().isEmpty()) {
+            try {
+                CHARGING service = new CHARGING();
+                CHARGINGSoap charginService = service.getCHARGINGSoap();
+                phoneNumber = charginService.getmsisdn("STK", "92x@x93", ipAddress);
+            } catch (Exception e) {
+                LOGGER.log(Level.WARNING, "MobileCheckerImpl:getPhoneNumber() Error when check phonenumber by ip", e);
+                throw new WebApplicationException(Response.Status.NOT_FOUND);
+            }
+        }
+        
+        if (phoneNumber == null || !phoneNumber.matches("^\\+?[0-9]{10,12}$")) {
+            throw new WebApplicationException(Response.Status.NOT_FOUND);
+        }
+        
+        return phoneNumber;
     }
 }

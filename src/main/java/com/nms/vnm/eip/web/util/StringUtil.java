@@ -3,7 +3,6 @@
  */
 package com.nms.vnm.eip.web.util;
 
-import com.nms.vnm.eip.entity.User;
 import com.nms.vnm.eip.exception.AppException;
 import com.nms.vnm.eip.exception.ErrorInfo;
 import java.security.MessageDigest;
@@ -13,8 +12,6 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Base64;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * @author Nguyen Trong Cuong
