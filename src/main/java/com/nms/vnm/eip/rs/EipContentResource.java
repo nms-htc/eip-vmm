@@ -16,6 +16,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -23,6 +26,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -145,10 +149,13 @@ public class EipContentResource {
     }
 
     @GET
-    @Path("checkPhoneNumber/{ipAddress}")
+    @Path("checkPhoneNumber")
     @Produces({MediaType.TEXT_PLAIN + ";" + MediaType.CHARSET_PARAMETER + "=UTF-8"})
-    public String checkPhoneNumberWithIpAddress(@PathParam("ipAddress") String ipAddress) {
+    public String checkPhoneNumberWithIpAddress(@Context HttpServletRequest request) {
+        // Get ip Address
+        String ipAddress = getIpAddress(request);
         String phoneNumber = null;
+        
         if (ipAddress != null && !ipAddress.trim().isEmpty()) {
             try {
                 CHARGING service = new CHARGING();
@@ -165,5 +172,16 @@ public class EipContentResource {
         }
         
         return phoneNumber;
+    }
+    
+    private String getIpAddress(HttpServletRequest request) {
+        String ipAddress = null;
+        if (request != null) {
+            ipAddress = request.getHeader("X-FORWARDED-FOR");
+            if (ipAddress == null || ipAddress.trim().isEmpty()) {
+                ipAddress = request.getRemoteAddr();
+            }
+        }
+        return ipAddress;
     }
 }
