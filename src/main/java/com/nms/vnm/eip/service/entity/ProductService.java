@@ -6,7 +6,6 @@ package com.nms.vnm.eip.service.entity;
 
 import com.nms.vnm.eip.entity.Category;
 import com.nms.vnm.eip.entity.Product;
-import com.nms.vnm.eip.search.OrderType;
 import com.nms.vnm.eip.service.MobileChecker;
 import java.util.List;
 

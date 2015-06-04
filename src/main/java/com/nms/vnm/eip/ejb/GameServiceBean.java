@@ -4,6 +4,7 @@
  */
 package com.nms.vnm.eip.ejb;
 
+import com.nms.vnm.eip.entity.BaseEntity_;
 import com.nms.vnm.eip.entity.Game;
 import com.nms.vnm.eip.entity.GameCategory;
 import com.nms.vnm.eip.entity.Game_;
@@ -96,7 +97,7 @@ public class GameServiceBean extends AbstractProductBean<GameCategory, Game> imp
                     cq.orderBy(cb.desc(root.get(Game_.viewCount)));
                     break;
                 case TOP_NEW:
-                    cq.orderBy(cb.desc(root.get(Game_.createdDate)));
+                    cq.orderBy(cb.desc(root.get(BaseEntity_.createdDate)));
                     break;
                 case TOP_VIEW:
                     cq.orderBy(cb.desc(root.get(Game_.viewCount)));

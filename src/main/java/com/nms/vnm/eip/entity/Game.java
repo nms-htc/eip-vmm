@@ -61,9 +61,9 @@ public class Game extends Product {
     @Enumerated(EnumType.STRING)
     @CollectionTable(name = "EIP_FLATFORM", joinColumns = @JoinColumn(name = "PRODUCT_ID"))
     @Column(name = "FLATFORM")
-    @XmlTransient
     private Collection<Flatform> flatforms;
 
+    @XmlTransient
     public String getDevicesSupport() {
         return devicesSupport;
     }
@@ -72,6 +72,7 @@ public class Game extends Product {
         this.devicesSupport = devicesSupport;
     }
 
+    @XmlTransient
     public Collection<Flatform> getFlatforms() {
         return flatforms;
     }

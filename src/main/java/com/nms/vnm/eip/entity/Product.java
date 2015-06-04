@@ -71,7 +71,7 @@ public abstract class Product extends BaseEntity {
 
     @Column(name = "PRICE")
     protected double price;
-    
+
     @Column(name = "ENABLE")
     protected boolean enable = true;
 
@@ -90,7 +90,6 @@ public abstract class Product extends BaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "CATEGORY_ID", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
-    @XmlTransient
     protected Category category;
 
     public String getCode() {
@@ -181,6 +180,7 @@ public abstract class Product extends BaseEntity {
         this.viewCount = viewCount;
     }
 
+    @XmlTransient
     public User getUser() {
         return user;
     }
@@ -196,7 +196,8 @@ public abstract class Product extends BaseEntity {
     public void setEnable(boolean enable) {
         this.enable = enable;
     }
-    
+
+    @XmlTransient
     public Category getCategory() {
         return category;
     }
