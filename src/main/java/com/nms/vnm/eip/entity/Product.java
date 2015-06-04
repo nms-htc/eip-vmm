@@ -197,7 +197,6 @@ public abstract class Product extends BaseEntity {
         this.enable = enable;
     }
 
-    @XmlTransient
     public Category getCategory() {
         return category;
     }
