@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="template/wap/main.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+ <f:metadata>
+  <f:viewParam name="id" value="#{gameController.current}" converter="gameConverter"/>
+  <f:viewParam name="cat" value="#{gameController.category}" converter="gameCatConverter"/>
+  <f:viewParam name="page" value="#{gameController.page}"/>
+  <f:viewParam name="keyword" value="#{gameController.keyword}"/>
+  <f:viewAction action="#{gameController.initData()}"/>
+ </f:metadata>
+
+ <ui:define name="main-content">
+  <c:if test="#{!(gameController.model.size() > 0)}">
+   <div class="box_r">
+    <div class="rbroundbox all_bat">
+     <span class="rbtop">Không tìm thấy kết quả với từ khóa "#{gameController.keyword}".</span>
+     <div class="logo_vnm"> </div>
+    </div>
+   </div>
+   <span>Vui lòng tìm kiếm với từ khóa khác hoặc quay lại <a href="index.xhtml" title="trang chủ">Trang chủ</a></span>
+   <div class="clearfix"></div>
+  </c:if>
+  <c:if test="#{gameController.model.size() > 0}">
+   <div class="box_r">
+    <div class="rbroundbox all_bat">
+     <span class="rbtop">Kết quả tìm kiếm từ khóa "#{gameController.keyword}" có "#{gameController.count}" kết quả.</span>
+     <div class="logo_vnm"> </div>
+    </div>
+    <div class="boxcontent">
+     <ui:include src="include/product_list.xhtml">
+      <ui:param name="productEntities" value="#{gameController.model}"/>
+      <ui:param name="productType" value="game"/>
+     </ui:include>
+    </div>
+   </div>
+   <div class="clearfix"></div>
+
+   <ul class="pager">
+    <!--Back-->
+    <li class="previous #{gameController.hasPreview ? '' : 'disabled'}">
+     <h:link outcome="search.xhtml"
+             value="#{msg['pager.back']}  |"
+             disabled="#{!gameController.hasPreview}">
+      <f:param name="keyword" value="#{gameController.keyword}" />
+      <f:param name="page" value="#{gameController.page - 1}"/>
+     </h:link>
+    </li>
+    <!--Number-->
+    <c:forEach var="pageNumber" items="#{gameController.listPagging}" varStatus="vs">
+     <li class="fotter-menu">
+      <h:link outcome="search.xhtml" value="#{pageNumber+1}" style="#{gameController.page == pageNumber?'font-weight:bold;color:#0C77D0;':''}">
+       <f:param name="keyword" value="#{gameController.keyword}" />
+       <f:param name="page" value="#{pageNumber}"/>
+      </h:link> &nbsp;|
+     </li>
+    </c:forEach>
+    <!--Next-->
+    <li class="next #{gameController.hasNext ? '' : 'disabled'}">
+     <h:link outcome="search.xhtml"
+             value="#{msg['pager.next']}"
+             disabled="#{!gameController.hasNext}">
+      <f:param name="keyword" value="#{gameController.keyword}" />
+      <f:param name="page" value="#{gameController.page + 1}"/>
+     </h:link>
+    </li>
+   </ul>
+
+   <ul class="cat_list tab" style="display: block;">
+    <li class="rbroundbox all_bat" style="padding-left: 5px; font-weight: bold">Thể loại game</li>
+    <c:forEach var="cat" items="#{gameCatBean.all}" varStatus="vs">
+     <li class="fotter-menu"><h:link outcome="game.xhtml" value="#{cat.title}">
+       <f:param name="cat" value="#{cat.id}"/>
+      </h:link>
+     </li>
+    </c:forEach>
+   </ul>
+  </c:if>
+ </ui:define>
+</ui:composition>

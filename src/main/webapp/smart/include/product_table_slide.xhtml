@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+              xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+              xmlns:h="http://xmlns.jcp.org/jsf/html">
+ <div class="horiz_container_outer">
+  <div class="swiper-container thumbs-cotnainer">
+   <div class="swiper-wrapper">
+    <ui:include src="product_items.xhtml">
+     <ui:param name="productType" value="game"/>
+     <ui:param name="productEntities" value="#{gameEntities}"/>
+    </ui:include>
+   </div>
+  </div>
+ </div>
+</ui:component>
+

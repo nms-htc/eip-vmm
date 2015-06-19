@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+              xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+              xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+              xmlns:h="http://xmlns.jcp.org/jsf/html"
+              xmlns:f="http://xmlns.jcp.org/jsf/core">
+ <c:if test="#{game != null}">
+  <h:form>
+   <div class="game_details">
+    <div class="icon_gameDetails">
+     <img src="#{game.thumbnailUrl}"/>
+    </div>
+    <div class="list_gameDetails">
+     <span><strong>#{game.title}</strong> </span><br/>
+     <span>Thể loại: Trí tuệ </span><br/>
+     <span>Giá: #{game.price}(vnđ) </span><br/>
+     <span>Lượt xem: #{game.viewCount} </span><br/>
+    </div>
+   </div>
+   <div class="btn_tst">
+    <h:commandButton value="Tải ứng dụng"
+                     styleClass="downloadAPPs"
+                     action="#{gameController.chargingProduct()}" onclick="return checkPhoneNumber();">
+    </h:commandButton>
+    <a href="sms:989?body=DK #{game.code}">Soạn tin: DK #{game.code} gửi 989</a>
+   </div>
+   <div class="textlink">
+    <h:outputText escape="false" value="#{game.specification}"/>
+   </div></h:form>
+ </c:if>
+</ui:component>

@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+              xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+              xmlns:h="http://xmlns.jcp.org/jsf/html"
+              xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+              xmlns:f="http://xmlns.jcp.org/jsf/core">
+ <ul class="cat_list tab" style="display: none;">
+  <li><h:link outcome="index.xhtml" value="#{msg['leftNav.homePage']}"/></li>
+  <li ><a href="javascript:void(0);" style="font-weight: bold">#{msg['leftNav.game']}</a></li>
+  <c:forEach var="cat" items="#{gameCatBean.all}" varStatus="vs">
+   <li><h:link outcome="game.xhtml" value="#{cat.title}">
+     <f:param name="cat" value="#{cat.id}"/>
+    </h:link></li>
+  </c:forEach>
+  <!--
+  <li ><a href="javascript:void(0);" style="font-weight: bold">#{msg['leftNav.music']}</a></li>
+  <c:forEach var="cat" items="#{musicCatBean.all}" varStatus="vs">
+   <li><h:link outcome="music.xhtml" value="#{cat.title}">
+     <f:param name="cat" value="#{cat.id}"/>
+    </h:link></li>
+  </c:forEach>
+
+  <li ><a href="javascript:void(0);" style="font-weight: bold">#{msg['leftNav.video']}</a></li>
+  <c:forEach var="cat" items="#{videoCatBean.all}" varStatus="vs">
+   <li><h:link outcome="video.xhtml" value="#{cat.title}">
+     <f:param name="cat" value="#{cat.id}"/>
+    </h:link></li>
+  </c:forEach>
+
+  <li ><a href="javascript:void(0);" style="font-weight: bold">#{msg['leftNav.image']}</a></li>
+  <c:forEach var="cat" items="#{pictureCatBean.all}" varStatus="vs">
+   <li><h:link outcome="picture.xhtml" value="#{cat.title}">
+     <f:param name="cat" value="#{cat.id}"/>
+    </h:link></li>
+  </c:forEach>
+
+  <li ><a href="javascript:void(0);" style="font-weight: bold">#{msg['leftNav.post']}</a></li>
+  <c:forEach var="cat" items="#{postCatBean.all}" varStatus="vs">
+   <li><h:link outcome="post.xhtml" value="#{cat.title}">
+     <f:param name="cat" value="#{cat.id}"/>
+    </h:link></li>
+  </c:forEach>
+  -->
+ </ul>
+</ui:component>

@@ -1,0 +1,85 @@
+var Z = {
+    baseUrl: null,
+    goToPage: function (e) {
+        (function (t) {
+            var n = {
+                tmpl: "component",
+                page: e.page
+            };
+            var u = e.url.replace(/\/+$/, "") + '/' + e.page;
+            ga("send", "pageview", {
+                page: u,
+                title: u
+            });
+
+            t("#newapps-list").hide();
+            t.ajax({
+                url: e.url,
+                data: n,
+                success: function (e) {
+                    t("#newapps-list").html(t("#newapps-list", e).html());
+                },
+                complete: function () {
+                    t("#newapps-list").show();
+                }
+            });
+        })(jQuery);
+    },
+    initTab: function(){
+        var tabIndex = 0;
+        if(localStorage && localStorage.getItem('home.tabindex')){
+            tabIndex = parseInt(localStorage.getItem('home.tabindex'));
+        }
+        
+        $('#tabs .tab').hide();
+        $('#tabs .tab:eq('+ tabIndex +')').show();
+        $('#tabs #tab_nav li a').removeClass('active');
+        $('#tabs #tab_nav li:eq('+ tabIndex +') a').addClass('active');
+        if(tabIndex == 0){
+            $('#wbnr').hide();
+        } else {
+            $('#wbnr').show();
+        }
+        $('#tabs #tab_nav li a').click(function(e){
+            e.preventDefault();
+            $('#tabs #tab_nav li a').removeClass('active');
+            $(this).addClass('active');
+            var currentTabIndex = $(this).parent().index();
+            if(localStorage)
+                localStorage.setItem('home.tabindex', currentTabIndex);
+            $('#tabs .tab').hide();
+            $('#tabs .tab:eq('+ currentTabIndex +')').show();
+            
+            if(typeof ga != undefined){
+                ga('send', 'pageview', {
+                    'page': '/home/tab ' + $(this).text(),
+                    'title': 'tab ' + $(this).text()
+                });
+            }
+            
+            if(currentTabIndex == 0){
+                $('#wbnr').hide();
+            } else {
+                $('#wbnr').show();
+            }
+            
+            return false;
+        });
+        
+        $('#lnk_hotmore').click(function(e){
+            e.preventDefault();
+            $('#tab_nav li a:eq(1)').click();
+            $('html, body').animate({
+                scrollTop: $("#tab_hot li:eq(15)").offset().top
+            }, 100);
+        });
+        
+        $('#lnk_newmore').click(function(e){
+            e.preventDefault();
+            $('#tab_nav li a:eq(2)').click();
+            $('html, body').animate({
+                scrollTop: $("#newapps-list li:eq(3)").offset().top
+            }, 100);
+        });
+    }
+}

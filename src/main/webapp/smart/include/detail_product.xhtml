@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+              xmlns:h="http://xmlns.jcp.org/jsf/html"
+              xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+              xmlns:f="http://xmlns.jcp.org/jsf/core"
+              xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+              xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions">
+ <div class="mob_wrapper downapk_cat_list_app">
+  <div class="green_bar"> <a href="index.xhtml" class="logo_back">#{controller.current.title}</a></div>
+ </div>
+ <!-- TITLE-->
+ <c:if test="#{controller.current != null}">
+  <ui:include src="detail_#{productType}.xhtml">
+   <ui:param name="#{productType}" value="#{controller.current}"/>
+  </ui:include>
+ </c:if>
+
+ <!-- DETAIL-->
+ <c:if test="#{(controller.category != null or controller.current != null) and controller.model.size() > 0}">
+  <div class="box-application">
+   <h1>
+    <font style="text-transform: capitalize;">#{productType}</font> cùng thể loại #{controller.category.title}
+   </h1>
+   <ui:include src="product_list.xhtml">
+    <ui:param name="productEntities" value="#{controller.model}"/>
+    <ui:param name="productType" value="#{productType}"/>
+   </ui:include>
+  </div>
+
+  <ul class="pager">
+   <li class="previous #{controller.hasPreview ? '' : 'disabled'}">
+    <h:link outcome="#{productType}.xhtml"
+            value="#{msg['pager.back']}"
+            rendered="#{controller.current != null}"
+            disabled="#{!controller.hasPreview}">
+     <f:param name="id" value="#{controller.current.id}" />
+     <f:param name="page" value="#{controller.page - 1}"/>
+    </h:link>
+    <h:link outcome="#{productType}.xhtml"
+            value="#{msg['pager.back']}"
+            rendered="#{controller.category != null and controller.current == null}"
+            disabled="#{!controller.hasPreview}">
+     <f:param name="cat" value="#{controller.category.id}" />
+     <f:param name="page" value="#{controller.page - 1}"/>
+    </h:link>
+   </li>
+   <li class="next #{controller.hasNext ? '' : 'disabled'}">
+    <h:link outcome="#{productType}.xhtml"
+            value="#{msg['pager.next']}"
+            rendered="#{controller.current != null}"
+            disabled="#{!controller.hasNext}">
+     <f:param name="id" value="#{controller.current.id}"/>
+     <f:param name="page" value="#{controller.page + 1}"/>
+    </h:link>
+
+    <h:link outcome="#{productType}.xhtml"
+            value="#{msg['pager.next']}"
+            rendered="#{controller.category != null and controller.current == null}"
+            disabled="#{!controller.hasNext}">
+     <f:param name="cat" value="#{controller.category.id}"/>
+     <f:param name="page" value="#{controller.page + 1}"/>
+    </h:link>
+   </li>
+  </ul>
+ </c:if>
+
+ <!-- VIEW CATEGORY-->
+ <c:if test="#{controller.category == null and controller.current == null}">
+  <div class="box-application">
+   <h1>Đang HOT</h1>
+   <ui:include src="product_list.xhtml">
+    <ui:param name="productEntities" value="#{controller.hots}"/>
+    <ui:param name="productType" value="#{productType}"/>
+   </ui:include>
+   <ui:include src="product_list.xhtml">
+    <ui:param name="productEntities" value="#{controller.hots20}"/>
+    <ui:param name="productType" value="#{productType}"/>
+   </ui:include>
+  </div>
+
+  <div class="box-application">
+   <h1>Mới nhất</h1>
+   <ui:include src="product_list.xhtml">
+    <ui:param name="productEntities" value="#{controller.news}"/>
+    <ui:param name="productType" value="#{productType}"/>
+   </ui:include>
+   <ui:include src="product_list.xhtml">
+    <ui:param name="productEntities" value="#{controller.news20}"/>
+    <ui:param name="productType" value="#{productType}"/>
+   </ui:include>
+  </div>
+ </c:if>
+ <!--FOOTER MENU-->
+ <ul class="cat_list tab" style="display: block;">
+   <li ><a href="javascript:void(0);" style="font-weight: bold">#{msg['leftNav.game']}</a></li>
+   <c:forEach var="cat" items="#{gameCatBean.all}" varStatus="vs">
+    <li><h:link outcome="game.xhtml" value="#{cat.title}">
+      <f:param name="cat" value="#{cat.id}"/>
+     </h:link>
+    </li>
+   </c:forEach>
+  </ul>
+</ui:component>
+

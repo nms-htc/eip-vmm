@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+              xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+              xmlns:h="http://xmlns.jcp.org/jsf/html"
+              xmlns:f="http://xmlns.jcp.org/jsf/core">
+ <div class="top-box">
+  <h3><a href="#" title="Top Miễn Phí">Top Miễn Phí &gt;</a></h3>
+  <ul>
+   <ui:repeat value="#{gameController.frees}" var="product" varStatus="vs">
+    <li>
+     <h:link outcome="/smart/game.xhtml"><f:param name="id" value="#{product.id}"/>
+      <h:graphicImage value="#{product.thumbnailUrl}" rendered="#{vs.index==0}"/>
+      #{product.title}</h:link>
+     <span>#{product.category}</span>
+    </li>
+   </ui:repeat>
+  </ul>
+ </div>
+</ui:component>
+

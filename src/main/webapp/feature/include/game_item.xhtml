@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:fragment xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:h="http://xmlns.jcp.org/jsf/html"
+             xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+             xmlns:f="http://xmlns.jcp.org/jsf/core">
+ <div class="item">
+  <h:link outcome="/feature/game.xhtml" styleClass="thumb-b">
+   <f:param name="id" value="#{productEntity.id}"/>
+   <img style="width:60px;border-width:0px;" src="#{productEntity.thumbnailUrl}" alt="#{productEntity.title}"/></h:link>
+  <div class="item-info">
+   <h:link outcome="/feature/game.xhtml">
+    <f:param name="id" value="#{productEntity.id}"/>
+    <span class="bold">#{productEntity.title} <img src="images/hot_icon.gif" /></span>
+   </h:link>
+   <p>Thể loại: #{productEntity.category}</p>
+   <h:form>
+    <h:commandButton value="Tải" action="#{gameController.chargingProduct(productEntity)}" onclick="return checkPhoneNumber();">
+    </h:commandButton>
+   </h:form>&nbsp;|&nbsp;
+   <a href="#" class="orange bold">Tặng</a>
+  </div>
+  <div class="clearfix"></div>
+ </div>
+</ui:fragment>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="template/wap/main.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+ <f:metadata>
+  <f:viewParam name="id" value="#{gameController.current}" converter="gameConverter"/>
+  <f:viewParam name="cat" value="#{gameController.category}" converter="gameCatConverter"/>
+  <f:viewParam name="page" value="#{gameController.page}"/>
+  <f:viewParam name="keyword" value="#{gameController.keyword}"/>
+  <f:viewAction action="#{gameController.initData()}"/>
+ </f:metadata>
+
+ <ui:define name="main-content">
+  <style>
+   .class-col-one {min-height: 1000px}
+  </style>
+  <!--Khong thay ket qua-->
+  <c:if test="#{!(gameController.model.size() > 0)}">
+   <div class="box-application">
+    <h1>
+     Không tìm thấy kết quả với từ khóa "#{gameController.keyword}".
+    </h1><br/>
+    <span>Vui lòng tìm kiếm với từ khóa khác hoặc quay lại <a href="index.xhtml" title="trang chủ">Trang chủ</a></span>
+   </div>
+  </c:if>
+  <!--Co ket qua tra ve-->
+  <c:if test="#{gameController.model.size() > 0}">
+   <div class="box-application">
+    <h1>
+     Kết quả tìm kiếm từ khóa "#{gameController.keyword}" có "#{gameController.count}" kết quả.
+    </h1>
+    <ui:include src="include/product_list.xhtml">
+     <ui:param name="productEntities" value="#{gameController.model}"/>
+     <ui:param name="productType" value="game"/>
+    </ui:include>
+   </div>
+
+   <ul class="pager">
+    <li class="previous #{gameController.hasPreview ? '' : 'disabled'}">
+     <h:link outcome="search.xhtml"
+             value="#{msg['pager.back']}"
+             disabled="#{!gameController.hasPreview}">
+      <f:param name="keyword" value="#{gameController.keyword}" />
+      <f:param name="page" value="#{gameController.page - 1}"/>
+     </h:link>
+    </li>
+    <li class="next #{gameController.hasNext ? '' : 'disabled'}">
+     <h:link outcome="search.xhtml"
+             value="#{msg['pager.next']}"
+             disabled="#{!gameController.hasNext}">
+      <f:param name="keyword" value="#{gameController.keyword}"/>
+      <f:param name="page" value="#{gameController.page + 1}"/>
+     </h:link>
+    </li>
+   </ul>
+  </c:if>
+ </ui:define>
+</ui:composition>

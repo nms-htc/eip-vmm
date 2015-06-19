@@ -1,0 +1,57 @@
+@charset "UTF-8";
+.s_bar { height: 46px; background: #252525; width: 100%; clear: both; }
+.s_list { list-style: none; margin: 0; }
+ .s_list li { float: left; display: block; height: 46px; line-height: 46px; padding: 0 10px; border-right: 1px solid #2c2c2b; width: 30%; }
+  .s_list li a:before { margin-left: 2px }
+ .s_list li:nth-child(1) a:before { content: "Gái xinh" }
+ .s_list li:nth-child(2) a:before { content: "Nghe Nhạc" }
+ .s_list li:nth-child(3) a:before { content: "Đọc Truyện" }
+ .s_list li:nth-child(4) a:before { content: "Tải Game" }
+ .s_list li:last-child {border:none;}
+ .s_list li a { color: #8f8f8f; font-weight: bold; display: block; text-transform: uppercase; }
+.s_icon { width: 32px; height: 32px; background-size: 32px 32px !important; display: block; margin-top: 6px; float: left; -webkit-background-size: 32px 32px !important; -moz-background-size: 32px 32px !important; -o-background-size: 32px 32px !important; }
+.s_ic_link { display: block; float: left; margin-left: 6px; }
+.s_ic_game { background: url(../images/s_ic_game.png) }
+.s_ic_music { background: url(../images/s_ic_music.png) }
+.s_ic_book { background: url(../images/s_ic_book.png) }
+.s_ic_tv { background: url(../images/s_ic_tv.png) }
+.s_ic_ngam { background: url(../images/s_ic_ngam.png) }
+@media screen and (min-width:0px) and (max-width:359px) { 
+	.s_list li { width: 24% }
+	.s_list li:nth-child(1) a:before { content: "" }
+	.s_list li:nth-child(2) a:before { content: "" }
+	.s_list li:nth-child(3) a:before { content: "" }
+	.s_list li:nth-child(4) a:before { content: "" }
+}
+@media screen and (min-width:360px) and (max-width:479px) { 
+	.s_list li { width: 24% }
+	 .s_list li a:before { margin-left: 2px; font-size:10px }
+	.s_list li:nth-child(1) a:before { content: "Gái" }
+	.s_list li:nth-child(2) a:before { content: "Nhạc" }
+	.s_list li:nth-child(3) a:before { content: "Đọc" }
+	.s_list li:nth-child(4) a:before { content: "Game" }
+}
+@media screen and (min-width:480px) { 
+	.s_list li { width: 24% }
+	 .s_list li a:before { margin-left: 4px }
+	.s_list li:nth-child(1) a:before { content: "Gái" }
+	.s_list li:nth-child(2) a:before { content: "Nhạc" }
+	.s_list li:nth-child(3) a:before { content: "Truyện" }
+	.s_list li:nth-child(4) a:before { content: "Game" }
+}
+@media screen and (min-width:640px) { 
+	.s_list li { width: 30% }
+	.s_list li:nth-child(1) a:before { content: "Clip" }
+	.s_list li:nth-child(2) a:before { content: "Nghe Nhạc" }
+	.s_list li:nth-child(3) a:before { content: "Đọc Truyện" }
+	.s_list li:nth-child(4) a:before { content: "Tải Game" }
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2) { 
+	.s_list li { width: 24% }
+	.s_list li:nth-child(1) a:before { content: "Gái" }
+	.s_list li:nth-child(2) a:before { content: "Nhạc" }
+	.s_list li:nth-child(3) a:before { content: "Đọc" }
+	.s_list li:nth-child(4) a:before { content: "Game" }
+	
+}

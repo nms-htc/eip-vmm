@@ -12,17 +12,19 @@ import java.io.Serializable;
 public interface MobileChecker extends Serializable {
 
     public boolean isVnmSubsriber();
-    
+
     public String getPhoneNumber();
-    
+
     public boolean isMobile();
-    
+
     public boolean isIos();
-    
+
     public boolean isAndroid();
-    
+
     public boolean isWindowPhone();
-    
+
     public int getOsCode();
-    
+
+    public boolean isSmartPhone();
+
 }

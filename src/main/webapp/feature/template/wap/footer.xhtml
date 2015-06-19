@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+              xmlns:h="http://xmlns.jcp.org/jsf/html"
+              xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+              xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+              xmlns:f="http://xmlns.jcp.org/jsf/core">
+ <div class="footer">
+  <p><a href="#">Đầu trang </a><span>l Hỗ trợ: 19001255 </span><br />
+   <strong>Bản quyền Vietnammobile.</strong>
+  </p>
+ </div>
+ <nav id="menu">
+  <ul id="description">
+   <li class="fone"><a href="#"><span class="phoneIcon"> </span><strong>#{mobileChecker.phoneNumber == null ? msg['header.guest'] : mobileChecker.phoneNumber}</strong></a></li>
+   <li><span class="homeIcon"> </span><a href="index.xhtml">Trang chủ</a></li>
+   <c:forEach var="cat" items="#{gameCatBean.all}" varStatus="vs">
+    <li><h:link outcome="game.xhtml" value="#{cat.title}">
+      <f:param name="cat" value="#{cat.id}"/>
+     </h:link></li>
+   </c:forEach>
+  </ul>
+ </nav>
+ <script type="text/javascript">
+  var current = document.getElementById('default');
+
+  function highlite(el)
+  {
+   if (current != null)
+   {
+    current.className = "";
+   }
+   el.className = "highlite";
+   current = el;
+  }
+ </script>
+</ui:component>
+

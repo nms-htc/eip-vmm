@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="template/wap/main.xhtml">
+ <ui:define name="main-content">
+  <div class="mob_wrapper downapk_home" id="tabs">
+   <header>
+    <ul class="menu_bar" id="tab_nav">
+     <li><a href="index.htm#" class="active"><span class="hidden">Trang chủ</span></a></li>
+     <li><a href="index.htm#" class=""><span class="hidden">Thể loại</span></a></li>
+     <li><a href="index.htm#"><span class="hidden">Top HOT</span></a></li>
+     <li><a href="index.htm#"><span class="hidden">Top NEW</span></a></li>
+    </ul>
+   </header>
+   <div class="mob_content" id="tab_content">
+   </div>
+   <div id="tab-home" class="tab" style="display: block;">
+    <!-- begin #container -->
+    <!-- begin #content -->
+    <div class="content-inter">
+     <!-- begin Slide -->
+     <ui:include src="include/home_slide.xhtml"/>
+     <!-- end Slide -->
+     <!-- begin .main-content -->
+     <div class="class-row">
+      <div class="class-col-one">
+       <div class="main-content">
+        <!-- begin TOP GAME HOT-->
+        <div class="box-application">
+         <h1>Top HOT <a href="#" title="Xem thêm">Xem thêm &gt;</a></h1>
+         <ui:include src="include/product_table_slide.xhtml">
+          <ui:param name="gameEntities" value="#{gameController.hots}"/>
+         </ui:include>
+         <ui:include src="include/product_table_slide.xhtml">
+          <ui:param name="gameEntities" value="#{gameController.hots20}"/>
+         </ui:include>
+         <ui:include src="include/product_thumbnail_slide.xhtml">
+          <ui:param name="gameEntities" value="#{gameController.hots}"/>
+         </ui:include>
+        </div>
+        <!-- end TOP GAME HOT-->
+        <div class="clearfix"></div>
+        <!-- begin TOP GAME NEW-->
+        <div class="box-application">
+         <h1>Top NEW <a href="#" title="Xem thêm">Xem thêm &gt;</a></h1>
+         <ui:include src="include/product_table_slide.xhtml">
+          <ui:param name="gameEntities" value="#{gameController.news}"/>
+         </ui:include>
+         <ui:include src="include/product_table_slide.xhtml">
+          <ui:param name="gameEntities" value="#{gameController.news20}"/>
+         </ui:include>
+         <ui:include src="include/product_thumbnail_slide.xhtml">
+          <ui:param name="gameEntities" value="#{gameController.news}"/>
+         </ui:include>
+        </div>
+        <!-- end TOP GAME NEW-->
+        <div class="clearfix"></div>
+       </div>
+       <!-- end .main-content (TOP FREE - TOP PRICE)-->
+      </div>
+      <div class="class-col-two visible-lg">
+       <!-- begin .side -->
+       <div class="aside">
+        <div class="aside-inter">
+         <div>
+          <!-- Single button -->
+          <div class="btn-group ds">
+           <button type="button" class="btn btn-default btn-default-ds dropdown-toggle" data-toggle="dropdown" style="font-weight:bold"> CHỌN CHUYÊN MỤC<span class="caret"></span> </button>
+           <ui:include src="include/right_menu.xhtml" />
+          </div>
+         </div>
+         <ui:include src="include/top_frees.xhtml" />
+         <ui:include src="include/top_no_free.xhtml" />
+        </div>
+       </div>
+       <!-- end .side -->
+       <!-- begin #footer -->
+      </div>
+     </div>
+     <!-- end #content -->
+    </div>
+   </div>
+   <!-- end container -->
+   <!-- end container -->
+   <!--   TAB TOP HOT-->
+   <ui:include src="include/product_row.xhtml">
+    <ui:param name="products" value="#{gameController.hots}"/>
+   </ui:include>
+   <ui:include src="include/product_row.xhtml">
+    <ui:param name="products" value="#{gameController.news}"/>
+   </ui:include>
+   <ui:include src="include/tab_menu.xhtml" />
+  </div>
+ </ui:define>
+</ui:composition>

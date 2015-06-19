@@ -1,0 +1,519 @@
+/* CSS Document
+   ================================================== */
+@charset "UTF-8";
+body { background: #e5e5e5; padding: 0; margin: 0; color: #7a7979; }
+.block { display: table }
+.left { float: left }
+.right { float: right }
+a { -webkit-transition: color 0.4s ease-in; -moz-transition: color 0.4s ease-in; -o-transition: color 0.4s ease-in; transition: color 0.4s ease-in; outline: none; -webkit-tap-highlight-color: rgba(0,0,0,0); }
+.hidden, .none { display: none !important }
+.clearfix { display: block; clear: both; }
+.padding8 { padding: 8px }
+/* header green bar  */
+.green_bar { background: url(../images/bg_greenbar.png) repeat-x; height: 54px; width: 100%; background-size: 320px 54px; position: relative; z-index: 999; }
+.grey_bar { background: url(../images/bg_greybar.png) repeat-x; height: 54px; width: 100%; background-size: 320px 54px; position: relative; z-index: 999; }
+.logo_home, .logo_back { float: left }
+.logo_home { background: url(../images/bg_logo_home.png) no-repeat; height: 46px; width: 196px; background-size: 196px 46px; margin-left: 14px; display: block; }
+.logo_back { background: url(../images/bg_logo_back.png) no-repeat; color: #fff; font-size: 20px; line-height: 46px; height: 46px; background-size: 46px 46px; display: block; padding-left: 54px; }
+.grey_bar .logo_back {background:url(../images/bg_logo_back_grey.png) no-repeat;background-size: 46px 46px;}
+.logo_back:hover, .logo_back:active { color: #fff; text-decoration: none; }
+/* menu bar  */
+.menu_bar { background: url(../images/bg_menubar.png) repeat-x; height: 48px; width: 100%; background-size: 320px 48px; position: relative; z-index: 990; top: -6px; margin: 0; padding: 0; list-style: none; }
+.menu_bar li { float: left; width: 25%; height: 48px; line-height: 48px; }
+.menu_bar li  a { width: 100%; display: block; text-align: center; height: 48px; line-height: 48px; font-size: 12px; text-transform: uppercase; font-weight: bold; color: #505050; }
+.menu_bar li:nth-child(1) a:before { content: "Trang chủ" }
+.menu_bar li:nth-child(2) a:before { content: "Top hot" }
+.menu_bar li:nth-child(3) a:before { content: "Top new" }
+.menu_bar li:nth-child(4) a:before { content: "Thể loại" }
+.menu_bar li a:hover, .menu_bar li a:active, .menu_bar li a.active { background: url(../images/bg_menubar_active.png) repeat-x; text-decoration: none; background-size: 60px 48px; }
+/* app list  */
+.app_list { padding: 8px; margin: 0; }
+.app_list li { /*min-width: 304px;*/ background: #fff; height: 80px; -webkit-box-shadow: 0px 2px 0px rgba(150, 150, 150, 0.15); -moz-box-shadow: 0px 2px 0px rgba(150, 150, 150, 0.15); box-shadow: 0px 2px 0px rgba(150, 150, 150, 0.15); margin-bottom: 6px; -webkit-border-radius: 2px; -moz-border-radius: 2px; border-radius: 2px; display: block; position: relative; }
+.app_list li .li_container { padding: 3px; display: table !important; width: 99.99%; color: #7a7979; }
+.app_list li table { padding: 0 }
+.app_icon72 { display: block; width: 72px; height: 72px; }
+.app_icon72 img { width: 72px; height: 72px; }
+.app_txt16 { font-size: 16px; color: #7a7979; font-weight: bold; }
+.app_txt12 { font-size: 12px }
+.app_list li .li_container .app_txt16  {color:#333; white-space:normal; text-overflow: ellipsis;}
+.app_list li .li_container .app_txt12 {color:#999}
+
+.app_btndown_hot, .app_btndown { position: absolute; right: 9px; display: block; float: right; bottom: 0px; padding-left: 18px; text-transform: uppercase; font-weight: bold; font-size: 12px; }
+.app_btndown_hot { color: #ff4800; background: url(../images/icon_down_hot.png) no-repeat; background-size: 16px 16px; }
+.app_btndown { color: #96aa39; background: url(../images/icon_down.png) no-repeat; background-size: 16px 16px; }
+/* cat list  */
+.cat_list { padding: 0; margin: 0; }
+.cat_list li { height: 56px; line-height: 56px; border-bottom: 1px solid #cfcfcf; padding-left: 16px; }
+.cat_list li a { width: 100%; display: block; height: 56px; line-height: 56px; color: #96aa39; font-size: 20px; }
+.cat_list li a:hover, .cat_list li a:active, .cat_list li a.active { text-decoration: none }
+/* app detail  */
+.app_box { height: 104px; border-bottom: 3px solid #b3cb3c; }
+.app_box .li_container { padding: 3px; display: table !important; width: 98.99%; color: #7a7979; }
+.app_icon96 { display: block; width: 96px; height: 96px; }
+.app_icon96 img { width: 96px; height: 96px; }
+.app_btndown_big { min-width: 200px; height: 26px; display: block; position: relative; right: 9px; float: right; top: -40px; text-transform: uppercase; font-weight: bold; font-size: 12px; color: #fff; background: #8da80b; text-align: center; line-height: 26px; border-bottom:2px solid #617406 }
+.li_btn_download_hot, .li_btn_download {display:block;  position: absolute; right: 9px; display: block; float: right;}
+.li_btn_download_hot .app_btndown_big { min-width: 110px; height: 26px; display: block; position: relative; right: 9px; float: right; top: -20px; text-transform: uppercase; font-weight: bold; font-size: 12px; color: #fff; background: #ad0000; text-align: center; line-height: 26px; border-bottom:2px solid #7c0404 }
+.li_btn_download .app_btndown_big { min-width: 84px; height: 26px; display: block; position: relative; padding-right:8px ; right: 9px; float: right; top: -20px; text-transform: uppercase; font-weight: bold; font-size: 12px; color: #fff; background: #8da80b; text-align: center; line-height: 28px; border-bottom:2px solid #617406 }
+.app_txt16_up { font-size: 16px; color: #333; font-weight: bold; text-transform: uppercase; }
+/* app about  */
+.app_about { border-bottom: 2px solid #c3c3c3 }
+.app_about .li_container, .app_grid .li_container { padding: 10px; display: table !important; color: #7a7979; }
+.app_about .app_txt16, .app_grid .app_txt16 { text-transform: uppercase; font-style: italic; font-weight: normal; margin-bottom: 16px; }
+.app_about .app_txt12 { text-align: justify }
+/* app grid  */
+.app_icon84 { display: block; width: 84px; height: 84px; margin: 6px 0 0 6px; }
+.app_icon84 img { width: 84px; height: 84px; }
+.app_grid a:hover, .app_grid a:active { text-decoration: none }
+.app_grid { padding-bottom: 10px; border-bottom: 2px solid #c3c3c3; }
+.app_grid .li_container { padding: 0; width: 99.99%; }
+.app_grid .li_container .more { width: 44px; height: 18px; background: #b2cb39; position: relative; right: 9px; display: block; float: right; color: #fff; font-size: 10px; font-style: italic; text-align: center; line-height: 18px; margin-top: 10px; }
+.app_grid .li_container .more:hover, .app_grid .li_container .more:active { text-decoration: none }
+.app_grid .app_txt16 { padding: 10px 10px 0 10px }
+.app_grid .app_txt12 { color: #7a7979; text-transform: uppercase; font-style: italic; width: 84px; margin: 6px auto; line-height: 16px; height: 32px; overflow: hidden; }
+.app_grid .app_txt12:hover, .app_grid .app_txt12:active { text-decoration: none }
+.app_grid ul { list-style: none; padding: 8px; margin: 0; }
+.app_grid ul li { float: left; width: 96px; height: 154px; background: #fff; margin-right: 8px; -webkit-border-radius: 2px; -moz-border-radius: 2px; border-radius: 2px; -webkit-box-shadow: 0px 2px 0px rgba(150, 150, 150, 0.15); -moz-box-shadow: 0px 2px 0px rgba(150, 150, 150, 0.15); box-shadow: 0px 2px 0px rgba(150, 150, 150, 0.15); margin-bottom: 10px; }
+.app_grid ul li:nth-child(3n+3) { margin-right: 0 }
+.app_grid .app_btndown_hot, .app_grid .app_btndown { position: relative; right: 4px; display: block; float: right; top: 0px; padding-left: 18px; text-transform: uppercase; font-weight: bold; font-size: 10px; }
+.app_grid .app_btndown_hot { color: #ff4800; background: url(../images/icon_down_hot.png) no-repeat; background-size: 16px 16px; }
+.app_grid .app_btndown { color: #96aa39; background: url(../images/icon_down.png) no-repeat; background-size: 16px 16px; }
+.mob_block, .mob_grid { width: 100%; clear: both; display: table; }
+.mob_table { width: 100%; background: #fff; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; }
+.mob_row { padding: 0; border-bottom: 1px solid #d0d4d9; }
+.mob_table .mob_row:last-child { border-bottom: none }
+.mob_row input { border: none; outline: none; width: 90%; height: 48px; font-size: 18px; padding: 3px 10px; margin: 0; -webkit-tap-highlight-color: rgba(0,0,0,0); }
+.mob_row select { border: none; outline: none; -webkit-appearance: none; height: 48px; font-size: 18px; width: 99%; padding: 3px 0 3px 6px; background: url(../images/btn_down@2x.png) right no-repeat; background-size: 25px 60px; }
+.mob_row .row_data { border: none; outline: none; width: 90%; height: 48px; font-size: 18px; line-height: 48px; padding: 3px 10px; margin: 0; -webkit-tap-highlight-color: rgba(0,0,0,0); }
+.mob_row .row_data span:nth-child(2) { margin-left: 20px; color: #008fff; font-weight: bold; }
+.mob_grid .mob_grid_4 { width: 50%; height: 40px; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; margin: 0 0 12px 0; float: left; display: table; }
+.mob_grid .mob_grid_4 .mob_block { height: 40px; width: 96%; background: #fff; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; }
+.mob_grid .mob_grid_4:nth-child(2n+2) { margin-right: 0; clear: right; float: right; }
+.mob_grid .mob_grid_4:nth-child(2n+2)  > .mob_block { margin-right: 0px; float: right; }
+.mob_grid .mob_grid_4:nth-child(2n+1) { margin-left: 0; clear: left; float: left; }
+.mob_grid .mob_grid_4:nth-child(2n+1)  > .mob_block { margin-right: 12px }
+.mob_grid .mob_grid_4:nth-child(2), .mob_grid .mob_grid_4:nth-child(4) { margin-right: 0; clear: right; float: right; }
+.mob_grid .mob_grid_4:nth-child(2) > .mob_block, .mob_grid .mob_grid_4:nth-child(4) > .mob_block { margin-right: 0px; float: right; }
+.mob_grid .mob_grid_4:nth-child(1), .mob_grid .mob_grid_4:nth-child(3) { margin-left: 0; clear: left; float: left; }
+.mob_grid .mob_grid_4:nth-child(1) > .mob_block, .mob_grid .mob_grid_4:nth-child(3) > .mob_block { margin-right: 12px }
+.mob_grid .mob_grid_4 .mob_block .btn_link { display: block; width: 100%; height: 40px; text-align: center; line-height: 40px; font-weight: bold; color: #7a7979; }
+.mob_grid .mob_grid_4 .mob_block > a > .icon32 { margin: 4px 0 0 4px }
+.mob_grid .mob_grid_4 .mob_block > a > div:nth-child(2) { float: left; text-align: center; line-height: 40px; margin-left: 10px; font-weight: bold; color: #7a7979; }
+.mob_warning { background: #b83d3d; padding: 12px; color: #fff; font-size: 14px; text-align: center; font-weight: bold; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; }
+/* ===[ Target ]=== */
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2),screen and (-webkit-device-pixel-ratio: 1.5) {
+
+}
+/* TABS
+   ================================================== */
+#tabs .tab { display: none; }
+.swiper-container2 { max-width: 680px; height: 230px; color: #fff; text-align: center; color: #fff; text-align: center; line-height: 230px; font-size: 40px; }
+.swiper-loop { margin-bottom: 15px; margin-top: 5px; }
+.swiper-slide img {  }
+/* grid banner  */
+/* *** MINI & BIG BANNERS  ****
+   ================================================== */
+.bannergroup { overflow: hidden; padding: 0; position: relative; display: block; width: auto; margin: 0; margin-bottom: 4px; clear: both; }
+.bannergroup a { display: inline-block }
+.bannergroup .minibanner { position: relative; nowhitespace: afterproperty; text-align: center; width: 320px; height: 214px; margin: 4px auto; margin-bottom: 0px; /*top: 48px;*/; }
+.appview .minibanner { top: 0!important; height: 166px!important; }
+#all14 { position: absolute; top: 0px; left: 0px; z-index: 100; width: 320px; height: 162px; margin-bottom: 4px; }
+#all14 img { height: 162px!important; width: 320px!important; }
+#ngang11 { position: absolute; top: 0px; left: 0px; z-index: 9; width: 158px; height: 79px; }
+#ngang12 { position: absolute; top: 0px; left: 0px; z-index: 8; width: 320px; height: 79px; }
+#ngang21 { position: absolute; top: 0px; right: 0; z-index: 7; width: 158px; height: 79px; }
+#ngang31 { position: absolute; top: 83px; left: 0px; z-index: 6; width: 158px; height: 79px; }
+#ngang32 { position: absolute; top: 83px; left: 0px; z-index: 5; width: 320px; height: 79px; }
+#ngang41 { position: absolute; top: 83px; right: 0; z-index: 4; width: 158px; height: 79px; }
+#ngang11 img, #ngang21 img, #ngang31 img, #ngang41 img { width: 158px; height: 79px; display: inline-block; }
+#header1ad { height: 79px!important }
+#header1ad img { width: 320px!important; height: 79px!important; }
+/* banner footer  */
+.bannergroup .minibannerfooter { position: relative; text-align: center; width: 300px; height: 250px; margin: 5px auto; margin-bottom: 0px; }
+#fall14 { position: absolute; top: 0px; left: 0px; z-index: 100; width: 300px; height: 250px; margin-bottom: 5px; }
+#fngang11 { position: absolute; top: 0px; left: 0px; z-index: 9; width: 148px; height: 120px; }
+#fngang12 { position: absolute; top: 0px; left: 0px; z-index: 8; width: 300px; height: 120px; }
+#fngang21 { position: absolute; top: 0px; left: 152px; z-index: 7; width: 148px; height: 120px; }
+#fngang31 { position: absolute; top: 125px; left: 0px; z-index: 6; width: 148px; height: 120px; }
+#fngang32 { position: absolute; top: 125px; left: 0px; z-index: 5; width: 300px; height: 120px; }
+#fngang41 { position: absolute; top: 125px; left: 152px; z-index: 4; width: 148px; height: 120px; }
+#fngang11 img, #fngang21 img, #fngang31 img, #fngang41 img { width: 148px; height: 120px; display: inline-block; }
+/* V2
+   ================================================== */
+.wrapper-search { padding: 6px 10px; position: relative; }
+.frm-search { height: 29px; line-height: 29px; -webkit-border-radius: 30px; -moz-border-radius: 30px; border-radius: 30px; padding: 0 62px 0 10px; border: 2px solid #819427; background: #eeecec; }
+.input-search { background: transparent; outline: none; border: none; color: #333; height: 22px; line-height: 22px; font-size: 13px; width: 100%; text-shadow: 1px 1px 1px #fff; font-weight: bold; }
+.icon-search { background: url(../images/icon_search.png); background-size: 42px 21px; }
+.icon-search:hover, .icon-search:active { background: url(../images/icon_search.png) -21px 0 }
+.icon-search-close { background: url(../images/icon_search_close.png) }
+.icon-search-close:hover, .icon-search-close:active { background: url(../images/icon_search_close.png) -21px 0 }
+.icon-search, .icon-search-close { right: 20px; top: 4px; display: block; width: 21px; height: 21px; position: absolute; }
+.ic-btn-download {background:url(../images/icon_download.png); display:block; background-size:26px 26px; width:26px; height:26px; float:left}
+input[type=submit].btn-search { background: url(../images/icon_search.png) no-repeat; border: none; outline: none; display: block; background-size: 42px 21px; }
+input[type=submit].btn-search:hover, input[type=button].btn-search:active { background: url(../images/icon_search.png) -21px 0 no-repeat; background-size: 42px 21px; }
+input[type=submit].btn-search { right: 20px; top: 12px; display: block; width: 21px; height: 21px; position: absolute; }
+/* downapk home text link  */
+#downapk_home_textlink .text_list { padding: 0; margin: 0; }
+#downapk_home_textlink .text_list li { padding: 8px 0px 8px 8px; border-bottom: 1px solid #cfcfcf; }
+#downapk_home_textlink .text_list li a { line-height: 12px; color: #333; font-size: 16px; }
+#downapk_home_textlink .text_list li .label-textlink { display: table; background: #ff4b04; float: left; font-size: 12px; color: #fff; font-weight: bold; height: 16px; line-height: 16px; padding: 2px 6px; margin: 0px 6px 0 0; text-transform: uppercase; }
+#downapk_home_textlink .text_list li a:hover, #downapk_home_textlink .text_list li a:active, #downapk_home_textlink .text_list li a.active { text-decoration: none }
+/* downapk hot app grid  */
+.downapk_appgrid  { background: #fff; display: table; width: 100%; }
+/*.downapk_app_detail .downapk_appgrid { background: none} 	*/
+.downapk_appgrid ul { list-style: none; padding: 8px; margin: 0 0 0 6px; }
+.downapk_appgrid  ul li { float: left; width: 28.33%; height: 116px; background: #fff; margin-right: 8px; margin-bottom: 10px; text-align: center; border: 6px solid #fff; }
+/*.downapk_app_detail  .downapk_appgrid  ul li { background:none; border:6px solid #e5e5e5}*/
+.downapk_appgrid  ul li:nth-child(2n+16) { display: none }
+#downapk_home_newlist .downapk_appgrid  ul li:nth-child(2n+4) { display: none }
+#downapk_home_newlist .downapk_appgrid  ul li:nth-child(2n+5) { display: none }
+.downapk_appgrid  ul li.fav { border: 6px solid #FC6 }
+.downapk_appgrid  ul li:nth-child(3n+3) { margin-right: 0 }
+.downapk_appgrid .app_icon84 { display: block; width: 84px; height: 84px; margin: 6px auto 0 auto; }
+.downapk_appgrid .app_icon84 img { width: 84px; height: 84px; }
+.downapk_appgrid a:hover, .app_grid a:active { text-decoration: none }
+.downapk_appgrid { padding-bottom: 10px; border-bottom: 2px solid #c3c3c3; }
+.downapk_appgrid.li_container { padding: 0; width: 99.99%; }
+.downapk_appgrid .li_container .more { width: 44px; height: 18px; background: #b2cb39; position: relative; right: 9px; display: block; float: right; color: #fff; font-size: 10px; font-style: italic; text-align: center; line-height: 18px; margin-top: 10px; }
+.downapk_appgrid .li_container .more:hover, .app_grid .li_container .more:active { text-decoration: none }
+.downapk_appgrid .app_txt16 { padding: 10px 10px 0 10px; font-style: italic; font-size: 20px; color: #96aa39; font-weight: normal; text-transform: uppercase; }
+.downapk_appgrid .app_txt12 { color: #7a7979; font-style: italic; width: 84px; margin: 6px auto; line-height: 16px; height: 32px; overflow: hidden; font-weight: bold; }
+.downapk_appgrid .app_txt12:hover, .app_grid .app_txt12:active { text-decoration: none }
+.app_grid .app_btndown_hot, .app_grid .app_btndown { position: relative; right: 4px; display: block; float: right; top: 0px; padding-left: 18px; text-transform: uppercase; font-weight: bold; font-size: 10px; }
+.app_grid .app_btndown_hot { color: #ff4800; background: url(../images/icon_down_hot.png) no-repeat; background-size: 16px 16px; }
+.app_grid .app_btndown { color: #96aa39; background: url(../images/icon_down.png) no-repeat; background-size: 16px 16px; }
+.downapk_appgrid .right .grid_more { position:relative; margin-top:-50px; top:30px; height:22px; line-height:22px; padding:0 16px; color:#999;}
+.downapk_appgrid .right .grid_more:before { content: "Xem thêm" }
+
+
+/* downapk hot collection  */
+#downapk_home_collection .bannergroup .minibanner { display: table }
+#downapk_home_collection .app_txt16 { padding: 10px 10px 0 10px; font-style: italic; font-size: 20px; color: #7a7979; font-weight: normal; text-transform: uppercase; }
+#downapk_home_collection .bannergroup { margin-top: 20px }
+#downapk_home_collection .bannergroup a:hover { text-decoration: none; color: #fff; }
+#downapk_home_collection .bannergroup .label-collection { display: block; width: 100%; height: 24px; background: rgba(0,0,0,0.75); color: #fff; top: -24px; position: relative; line-height: 24px; font-weight: bold; font-size: 12px; }
+/* .minibanner-block:nth-child(2n+1) {position:absolute;top:0px;left:0px;z-index:9;width:158px;height:79px;}
+.minibanner-block:nth-child(2n+2)  {position:absolute;top:0px;right:0;z-index:7;width:158px;height:79px;}
+.minibanner-block:nth-child(2n+3)  {position:absolute;top:83px;left:0px;z-index:6;width:158px;height:79px;}
+.minibanner-block:nth-child(2n+4)  {position:absolute;top:83px;right:0;z-index:4;width:158px;height:79px;}
+.minibanner-block:nth-child(2n+5) {position:absolute;top:166px;left:0px;z-index:9;width:158px;height:79px;}
+.minibanner-block:nth-child(2n+6)  {position:absolute;top:166px;right:0;z-index:7;width:158px;height:79px;}
+.minibanner-block:nth-child(2n+7)  {position:absolute;top:252px;left:0px;z-index:6;width:158px;height:79px;}
+.minibanner-block:nth-child(2n+8)  {position:absolute;top:252px;right:0;z-index:4;width:158px;height:79px;}
+.minibanner-block:nth-child(2n+9) {position:absolute;top:332px;left:0px;z-index:9;width:158px;height:79px;}
+.minibanner-block:nth-child(2n+10)  {position:absolute;top:332px;right:0;z-index:7;width:158px;height:79px;}
+.minibanner-block:nth-child(2n+11)  {position:absolute;top:415px;left:0px;z-index:6;width:158px;height:79px;}
+.minibanner-block:nth-child(2n+12)  {position:absolute;top:415px;right:0;z-index:4;width:158px;height:79px;}
+   ================================================== */
+.minibanner-block img { width: 158px; height: 79px; display: inline-block; }
+.grid_more { border:3px solid #c7c7c7; display:block; text-align:center; height:32px; line-height:32px; font-size:14px; font-weight:bold; margin:20px; color:#616161}
+/* target at bottom  */
+@media screen and (min-width:0px) and (max-width:319px) {
+ .bannergroup { overflow: hidden; padding: 0; position: relative; display: block; width: auto; margin: 0; margin-bottom: 4px; clear: both; }
+ .bannergroup a { display: inline-block }
+ .bannergroup .minibanner { position: relative; text-align: center; width: 240px; height: 450px; margin: 4px auto; margin-bottom: 0px; /*top: 48px; */ }
+ .appview .minibanner { top: 0!important; height: 120px!important; }
+ #all14 { position: absolute; top: 0px; left: 0px; z-index: 100; width: 240px; height: 120px; margin-bottom: 4px; }
+ #all14 img { height: 240px!important; width: 240px!important; }
+ #ngang11 { position: absolute; top: 0px; left: 0px; z-index: 9; width: 138px; height: 69px; }
+ #ngang12 { position: absolute; top: 0px; left: 0px; z-index: 8; width: 240px; height: 69px; }
+ #ngang21 { position: absolute; top: 0px; right: 0; z-index: 7; width: 138px; height: 69px; }
+ #ngang31 { position: absolute; top: 73px; left: 0px; z-index: 6; width: 138px; height: 69px; }
+ #ngang32 { position: absolute; top: 73px; left: 0px; z-index: 5; width: 480px; height: 69px; }
+ #ngang41 { position: absolute; top: 73px; right: 0; z-index: 4; width: 138px; height: 69px; }
+ #ngang11 img, #ngang21 img, #ngang31 img, #ngang41 img { width: 138px; height: 69px; display: inline-block; }
+ /* old miniblock banner
+ .minibanner-block:nth-child(2n+1)  {position:absolute;top:0px;left:0px;z-index:9;width:138px;height:69px;}
+ .minibanner-block:nth-child(2n+2)   {position:absolute;top:0px;right:0;z-index:7;width:138px;height:69px;}
+ .minibanner-block:nth-child(2n+3)  {position:absolute;top:73px;left:0px;z-index:6;width:138px;height:69px;}
+ .minibanner-block:nth-child(2n+4)  {position:absolute;top:73px;right:0;z-index:4;width:138px;height:69px;}
+ .minibanner-block:nth-child(2n+5)  {position:absolute;top:146px;left:0px;z-index:9;width:138px;height:69px;}
+ .minibanner-block:nth-child(2n+6)   {position:absolute;top:146px;right:0;z-index:7;width:138px;height:69px;}
+ .minibanner-block:nth-child(2n+7)  {position:absolute;top:219px;left:0px;z-index:6;width:138px;height:69px;}
+ .minibanner-block:nth-child(2n+8)  {position:absolute;top:219px;right:0;z-index:4;width:138px;height:69px;}
+ .minibanner-block:nth-child(2n+9)  {position:absolute;top:292px;left:0px;z-index:9;width:138px;height:69px;}
+ .minibanner-block:nth-child(2n+10)   {position:absolute;top:292px;right:0;z-index:7;width:138px;height:69px;}
+ .minibanner-block:nth-child(2n+11)  {position:absolute;top:365px;left:0px;z-index:6;width:138px;height:69px;}
+ .minibanner-block:nth-child(2n+12)  {position:absolute;top:365px;right:0;z-index:4;width:138px;height:69px;}
+
+ */
+ .minibanner-block { clear: both !important; width: 138px; height: 69px; margin: 0 auto 10px auto; }
+ .minibanner-block img { width: 138px; height: 69px; display: inline-block; }
+ #downapk_home_collection .app_txt16 { padding: 10px 10px 0 10px; font-style: italic; font-size: 14px; color: #7a7979; font-weight: normal; text-transform: uppercase; }
+ .downapk_appgrid .app_icon84 { display: block; width: 48px; height: 48px; margin: 6px auto 0 auto; }
+ .downapk_appgrid .app_icon84 img { width: 48px; height: 48px; }
+ .downapk_appgrid .app_txt16 { padding: 10px 10px 0 10px; font-style: italic; font-size: 14px; color: #96aa39; font-weight: normal; text-transform: uppercase; }
+ .downapk_appgrid .app_txt12 { display: none !important }
+ #header1ad { height: 119px!important }
+ #header1ad img { width: 240px!important; height: 69px!important; }
+ #downapk_home_textlink .text_list li .label-textlink { display: none !important }
+ .downapk_appgrid ul li { width: 24.33%; height: 54px; }
+ #downapk_home_textlink .text_list li { padding: 4px 0px 4px 8px; border-bottom: 1px solid #cfcfcf; }
+ #downapk_home_textlink .text_list li a { line-height: 12px; color: #333; font-size: 14px; }
+ .menu_bar li  a { width: 100%; display: block; text-align: center; height: 48px; line-height: 48px; font-size: 11px; text-transform: uppercase; font-weight: bold; color: #505050; }
+ .menu_bar { background: url(../images/bg_menubar.png) repeat-x; height: 48px; width: 100%; background-size: 320px 48px; position: relative; z-index: 990; top: -6px; margin: 0; padding: 0; list-style: none; }
+ .menu_bar li { float: left; width: 25%; height: 48px; line-height: 48px; }
+ .menu_bar li:nth-child(1) a:before { content: "Home" }
+ .menu_bar li:nth-child(2) a:before { content: "hot" }
+ .menu_bar li:nth-child(3) a:before { content: "new" }
+ .menu_bar li:nth-child(4) a:before { content: "cat" }
+ .app_btndown_big { min-width: 220px; height: 26px; display: block; position: relative; clear:both; top: 0px; text-transform: uppercase; font-weight: bold; font-size: 12px; color: #fff; background: #8da80b; text-align: center; line-height: 26px; margin:10px 0 }
+ .app_box {height:118px}
+ .app_icon96 { display: block; width: 64px; height:64px; }
+ .app_icon96 img { width: 64px; height: 64px; }
+ .app_about .app_txt12 { text-align: justify; font-size:11px; line-height:16px }
+ .swiper-loop { margin-bottom: 4px !important; margin-top: 5px; }
+ .cat_list li { height: 36px; line-height: 36px; border-bottom: 1px solid #cfcfcf; padding-left: 6px; }
+ .cat_list li a { width: 100%; display: block; height: 36px; line-height: 36px; color: #96aa39; font-size: 16px; }
+ .app_icon72 { display: block; width: 42px; height: 42px; }
+ .app_icon72 img { width: 42px; height: 42px; }
+ .app_list .app_txt16 { font-size: 14px; color: #7a7979; font-weight: bold; }
+ .downapk_appgrid .right .grid_more:before { content: "More" }
+
+ .app_list li .li_container .app_txt16  {color:#333; white-space:normal; text-overflow: ellipsis; font-size:12px; line-height:14px}
+
+}
+@media screen and (min-width:320px) {
+ .downapk_appgrid ul li { width: 26.33% }
+ .bannergroup .minibanner { position: relative; text-align: center; width: 280px; height: 450px/*234px*/; margin: 0 auto; margin-bottom: 0px; /*top: 48px; */ }
+ .minibanner-block:nth-child(2n+1) { position: absolute; top: 0px; left: 0px; z-index: 9; width: 138px; height: 69px; }
+ .minibanner-block:nth-child(2n+2) { position: absolute; top: 0px; right: 0; z-index: 7; width: 138px; height: 69px; }
+ .minibanner-block:nth-child(2n+3) { position: absolute; top: 73px; left: 0px; z-index: 6; width: 138px; height: 69px; }
+ .minibanner-block:nth-child(2n+4) { position: absolute; top: 73px; right: 0; z-index: 4; width: 138px; height: 69px; }
+ .minibanner-block:nth-child(2n+5) { position: absolute; top: 146px; left: 0px; z-index: 9; width: 138px; height: 69px; }
+ .minibanner-block:nth-child(2n+6) { position: absolute; top: 146px; right: 0; z-index: 7; width: 138px; height: 69px; }
+ .minibanner-block:nth-child(2n+7) { position: absolute; top: 219px; left: 0px; z-index: 6; width: 138px; height: 69px; }
+ .minibanner-block:nth-child(2n+8) { position: absolute; top: 219px; right: 0; z-index: 4; width: 138px; height: 69px; }
+ .minibanner-block:nth-child(2n+9) { position: absolute; top: 292px; left: 0px; z-index: 9; width: 138px; height: 69px; }
+ .minibanner-block:nth-child(2n+10) { position: absolute; top: 292px; right: 0; z-index: 7; width: 138px; height: 69px; }
+ .minibanner-block:nth-child(2n+11) { position: absolute; top: 365px; left: 0px; z-index: 6; width: 138px; height: 69px; }
+ .minibanner-block:nth-child(2n+12) { position: absolute; top: 365px; right: 0; z-index: 4; width: 138px; height: 69px; }
+ .minibanner-block img { width: 138px; height: 69px; display: inline-block; }
+ .app_list li .li_container .app_txt16  {color:#333; white-space:normal; text-overflow: ellipsis; font-size:16px; line-height:20px}
+
+ .app_icon72 { display: block; width: 54px; height:54px; }
+ .app_icon72 img { width: 54px; height:54px;  }
+}
+@media screen and (min-width:0px) and (max-width:339px) {
+ .downapk_appgrid .right .grid_more {font-size:12px; border:2px solid; height:16px; line-height:16px}
+ .li_btn_download_hot .app_btndown_big { min-width:30px; height: 18px; display: block; position: relative; right: 9px; float: right; top: -10px; text-transform: uppercase; font-weight: bold; font-size:8px; color: #fff; background: #ad0000; text-align: center; line-height: 18px; border-bottom:2px solid #7c0404; padding:0 8px }
+ .li_btn_download .app_btndown_big { min-width: 30px; height: 18px; display: block; position: relative; right: 9px; float: right; top: -10px; text-transform: uppercase; font-weight: bold; font-size: 8px; color: #fff; background: #8da80b; text-align: center; line-height: 18px; border-bottom:2px solid #617406; padding:0 8px }
+ .li_btn_download .app_btndown_big .ic-btn-download { display:none}
+ .li_btn_download_hot .app_btndown_big .ic-btn-download { display:none}
+}
+@media screen and (min-width:360px) {
+ .bannergroup { overflow: hidden; padding: 0; position: relative; display: block; width: auto; margin: 0; margin-bottom: 0; clear: both; }
+ .bannergroup a { display: inline-block }
+ .bannergroup .minibanner { position: relative; text-align: center; width: 360px; height: 600px/*234px*/; margin: 0 auto; margin-bottom: 0px; /*top: 48px; */ }
+ .appview .minibanner { top: 0!important; height: 184px!important; }
+ #all14 { position: absolute; top: 0px; left: 0px; z-index: 100; width: 360px; height: 180px; margin-bottom: 0; }
+ #all14 img { height: 180px!important; width: 360px!important; }
+ #ngang11 { position: absolute; top: 0px; left: 0px; z-index: 9; width: 177px; height: 88px; }
+ #ngang12 { position: absolute; top: 0px; left: 0px; z-index: 8; width: 360px; height: 89px; }
+ #ngang21 { position: absolute; top: 0px; right: 0; z-index: 7; width: 177px; height: 88px; }
+ #ngang31 { position: absolute; top: 93px; left: 0px; z-index: 6; width: 177px; height: 88px; }
+ #ngang32 { position: absolute; top: 93px; left: 0px; z-index: 5; width: 360px; height: 89px; }
+ #ngang41 { position: absolute; top: 93px; right: 0; z-index: 4; width: 177px; height: 88px; }
+ #ngang11 img, #ngang21 img, #ngang31 img, #ngang41 img { width: 177px; height: 88px; display: block; }
+ .minibanner-block:nth-child(2n+1) { position: absolute; top: 0px; left: 0px; z-index: 9; width: 177px; height: 88px; }
+ .minibanner-block:nth-child(2n+2) { position: absolute; top: 0px; right: 0; z-index: 7; width: 177px; height: 88px; }
+ .minibanner-block:nth-child(2n+3) { position: absolute; top: 93px; left: 0px; z-index: 6; width: 177px; height: 88px; }
+ .minibanner-block:nth-child(2n+4) { position: absolute; top: 93px; right: 0; z-index: 4; width: 177px; height: 88px; }
+ .minibanner-block:nth-child(2n+5) { position: absolute; top: 186px; left: 0px; z-index: 9; width: 177px; height: 88px; }
+ .minibanner-block:nth-child(2n+6) { position: absolute; top: 186px; right: 0; z-index: 7; width: 177px; height: 88px; }
+ .minibanner-block:nth-child(2n+7) { position: absolute; top: 279px; left: 0px; z-index: 6; width: 177px; height: 88px; }
+ .minibanner-block:nth-child(2n+8) { position: absolute; top: 279px; right: 0; z-index: 4; width: 177px; height: 88px; }
+ .minibanner-block:nth-child(2n+9) { position: absolute; top: 372px; left: 0px; z-index: 9; width: 177px; height: 88px; }
+ .minibanner-block:nth-child(2n+10) { position: absolute; top: 372px; right: 0; z-index: 7; width: 177px; height: 88px; }
+ .minibanner-block:nth-child(2n+11) { position: absolute; top: 465px; left: 0px; z-index: 6; width: 177px; height: 88px; }
+ .minibanner-block:nth-child(2n+12) { position: absolute; top: 465px; right: 0; z-index: 4; width: 177px; height: 88px; }
+ .minibanner-block img { width: 177px; height: 88px; display: block; }
+ #header1ad { height: 80px!important }
+ #header1ad img { width: 360px!important; height: 80px!important; }
+}
+@media screen and (min-width:480px) {
+ .bannergroup { overflow: hidden; padding: 0; position: relative; display: block; width: auto; margin: 0; margin-bottom: 4px; clear: both; }
+ .bannergroup a { display: inline-block }
+ .bannergroup .minibanner { position: relative; text-align: center; width: 480px; height: /*294px*/750px; margin: 4px auto; margin-bottom: 0px; /*top: 48px; */ }
+ .appview .minibanner { top: 0!important; height: 246px!important; }
+ #all14 { position: absolute; top: 0px; left: 0px; z-index: 100; width: 480px; height: 240px; margin-bottom: 4px; }
+ #all14 img { height: 240px!important; width: 480px!important; }
+ #ngang11 { position: absolute; top: 0px; left: 0px; z-index: 9; width: 238px; height: 119px; }
+ #ngang12 { position: absolute; top: 0px; left: 0px; z-index: 8; width: 480px; height: 119px; }
+ #ngang21 { position: absolute; top: 0px; right: 0; z-index: 7; width: 238px; height: 119px; }
+ #ngang31 { position: absolute; top: 123px; left: 0px; z-index: 6; width: 238px; height: 119px; }
+ #ngang32 { position: absolute; top: 123px; left: 0px; z-index: 5; width: 480px; height: 119px; }
+ #ngang41 { position: absolute; top: 123px; right: 0; z-index: 4; width: 238px; height: 119px; }
+ #ngang11 img, #ngang21 img, #ngang31 img, #ngang41 img { width: 238px; height: 119px; display: inline-block; }
+ .minibanner-block:nth-child(2n+1) { position: absolute; top: 0px; left: 0px; z-index: 9; width: 238px; height: 119px; }
+ .minibanner-block:nth-child(2n+2) { position: absolute; top: 0px; right: 0; z-index: 7; width: 238px; height: 119px; }
+ .minibanner-block:nth-child(2n+3) { position: absolute; top: 123px; left: 0px; z-index: 6; width: 238px; height: 119px; }
+ .minibanner-block:nth-child(2n+4) { position: absolute; top: 123px; right: 0; z-index: 4; width: 238px; height: 119px; }
+ .minibanner-block:nth-child(2n+5) { position: absolute; top: 246px; left: 0px; z-index: 9; width: 238px; height: 119px; }
+ .minibanner-block:nth-child(2n+6) { position: absolute; top: 246px; right: 0; z-index: 7; width: 238px; height: 119px; }
+ .minibanner-block:nth-child(2n+7) { position: absolute; top: 369px; left: 0px; z-index: 6; width: 238px; height: 119px; }
+ .minibanner-block:nth-child(2n+8) { position: absolute; top: 369px; right: 0; z-index: 4; width: 238px; height: 119px; }
+ .minibanner-block:nth-child(2n+9) { position: absolute; top: 492px; left: 0px; z-index: 9; width: 238px; height: 119px; }
+ .minibanner-block:nth-child(2n+10) { position: absolute; top: 492px; right: 0; z-index: 7; width: 238px; height: 119px; }
+ .minibanner-block:nth-child(2n+11) { position: absolute; top: 615px; left: 0px; z-index: 6; width: 238px; height: 119px; }
+ .minibanner-block:nth-child(2n+12) { position: absolute; top: 615px; right: 0; z-index: 4; width: 238px; height: 119px; }
+ .minibanner-block img { width: 238px; height: 119px; display: inline-block; }
+ #header1ad { height: 119px!important }
+ #header1ad img { width: 480px!important; height: 119px!important; }
+}
+@media screen and (min-width:540px) {
+ .bannergroup { overflow: hidden; padding: 0; position: relative; display: block; width: auto; margin: 0; margin-bottom: 4px; clear: both; }
+ .bannergroup a { display: inline-block }
+ .bannergroup .minibanner { position: relative; text-align: center; width: 540px; height: /*324px*/ 850px; margin: 4px auto; margin-bottom: 0px; /*top: 48px; */ }
+ .appview .minibanner { top: 0!important; height: 276px!important; }
+ #all14 { position: absolute; top: 0px; left: 0px; z-index: 100; width: 540px; height: 270px; margin-bottom: 4px; }
+ #all14 img { height: 274px!important; width: 540px!important; }
+ #ngang11 { position: absolute; top: 0px; left: 0px; z-index: 9; width: 268px; height: 134px; }
+ #ngang12 { position: absolute; top: 0px; left: 0px; z-index: 8; width: 540px; height: 134px; }
+ #ngang21 { position: absolute; top: 0px; right: 0; z-index: 7; width: 268px; height: 134px; }
+ #ngang31 { position: absolute; top: 138px; left: 0px; z-index: 6; width: 268px; height: 134px; }
+ #ngang32 { position: absolute; top: 138px; left: 0px; z-index: 5; width: 540px; height: 134px; }
+ #ngang41 { position: absolute; top: 138px; right: 0; z-index: 4; width: 268px; height: 134px; }
+ #ngang11 img, #ngang21 img, #ngang31 img, #ngang41 img { width: 268px; height: 134px; display: inline-block; }
+ .minibanner-block:nth-child(2n+1) { position: absolute; top: 0px; left: 0px; z-index: 9; width: 268px; height: 134px; }
+ .minibanner-block:nth-child(2n+2) { position: absolute; top: 0px; right: 0; z-index: 7; width: 268px; height: 134px; }
+ .minibanner-block:nth-child(2n+3) { position: absolute; top: 138px; left: 0px; z-index: 6; width: 268px; height: 134px; }
+ .minibanner-block:nth-child(2n+4) { position: absolute; top: 138px; right: 0; z-index: 4; width: 268px; height: 134px; }
+ .minibanner-block:nth-child(2n+5) { position: absolute; top: 276px; left: 0px; z-index: 9; width: 268px; height: 134px; }
+ .minibanner-block:nth-child(2n+6) { position: absolute; top: 276px; right: 0; z-index: 7; width: 268px; height: 134px; }
+ .minibanner-block:nth-child(2n+7) { position: absolute; top: 414px; left: 0px; z-index: 6; width: 268px; height: 134px; }
+ .minibanner-block:nth-child(2n+8) { position: absolute; top: 414px; right: 0; z-index: 4; width: 268px; height: 134px; }
+ .minibanner-block:nth-child(2n+9) { position: absolute; top: 552px; left: 0px; z-index: 9; width: 268px; height: 134px; }
+ .minibanner-block:nth-child(2n+10) { position: absolute; top: 552px; right: 0; z-index: 7; width: 268px; height: 134px; }
+ .minibanner-block:nth-child(2n+11) { position: absolute; top: 690px; left: 0px; z-index: 6; width: 268px; height: 134px; }
+ .minibanner-block:nth-child(2n+12) { position: absolute; top: 690px; right: 0; z-index: 4; width: 268px; height: 134px; }
+ .minibanner-block img { width: 268px; height: 134px; display: inline-block; }
+ #header1ad { height: 134px!important }
+ #header1ad img { width: 540px!important; height: 134px!important; }
+ .downapk_appgrid ul li { width: 21% }
+ .downapk_appgrid  ul li:nth-child(2n+16) { display: block }
+ #downapk_home_newlist .downapk_appgrid  ul li:nth-child(2n+4) { display: block }
+ #downapk_home_newlist .downapk_appgrid  ul li:nth-child(2n+5) { display: none }
+}
+@media screen and (min-width:720px) {
+ .bannergroup { overflow: hidden; padding: 0; position: relative; display: block; width: auto; margin: 0; margin-bottom: 4px; clear: both; }
+ .bannergroup a { display: inline-block }
+ .bannergroup .minibanner { position: relative; text-align: center; width: 720px; height: /*414px*/ 1100px; margin: 4px auto; margin-bottom: 0px; /*top: 48px; */ }
+ .appview .minibanner { top: 0!important; height: 276px!important; }
+ #all14 { position: absolute; top: 0px; left: 0px; z-index: 100; width: 720px; height: 270px; margin-bottom: 4px; }
+ #all14 img { height: 362px!important; width: 720px!important; }
+ #ngang11 { position: absolute; top: 0px; left: 0px; z-index: 9; width: 358px; height: 179px; }
+ #ngang12 { position: absolute; top: 0px; left: 0px; z-index: 8; width: 720px; height: 179px; }
+ #ngang21 { position: absolute; top: 0px; right: 0; z-index: 7; width: 358px; height: 179px; }
+ #ngang31 { position: absolute; top: 183px; left: 0px; z-index: 6; width: 358px; height: 179px; }
+ #ngang32 { position: absolute; top: 183px; left: 0px; z-index: 5; width: 720px; height: 179px; }
+ #ngang41 { position: absolute; top: 183px; right: 0; z-index: 4; width: 358px; height: 179px; }
+ #ngang11 img, #ngang21 img, #ngang31 img, #ngang41 img { width: 358px; height: 179px; display: inline-block; }
+ .minibanner-block:nth-child(2n+1) { position: absolute; top: 0px; left: 0px; z-index: 9; width: 358px; height: 179px; }
+ .minibanner-block:nth-child(2n+2) { position: absolute; top: 0px; right: 0; z-index: 7; width: 358px; height: 179px; }
+ .minibanner-block:nth-child(2n+3) { position: absolute; top: 183px; left: 0px; z-index: 6; width: 358px; height: 179px; }
+ .minibanner-block:nth-child(2n+4) { position: absolute; top: 183px; right: 0; z-index: 4; width: 358px; height: 179px; }
+ .minibanner-block:nth-child(2n+5) { position: absolute; top: 366px; left: 0px; z-index: 9; width: 358px; height: 179px; }
+ .minibanner-block:nth-child(2n+6) { position: absolute; top: 366px; right: 0; z-index: 7; width: 358px; height: 179px; }
+ .minibanner-block:nth-child(2n+7) { position: absolute; top: 549px; left: 0px; z-index: 6; width: 358px; height: 179px; }
+ .minibanner-block:nth-child(2n+8) { position: absolute; top: 549px; right: 0; z-index: 4; width: 358px; height: 179px; }
+ .minibanner-block:nth-child(2n+9) { position: absolute; top: 732px; left: 0px; z-index: 9; width: 358px; height: 179px; }
+ .minibanner-block:nth-child(2n+10) { position: absolute; top: 732px; right: 0; z-index: 7; width: 358px; height: 179px; }
+ .minibanner-block:nth-child(2n+11) { position: absolute; top: 915px; left: 0px; z-index: 6; width: 358px; height: 179px; }
+ .minibanner-block:nth-child(2n+12) { position: absolute; top: 915px; right: 0; z-index: 4; width: 358px; height: 179px; }
+ .minibanner-block img { width: 358px; height: 179px; display: inline-block; }
+ #header1ad { height: 179px!important }
+ #header1ad img { width: 720px!important; height: 179px!important; }
+ .downapk_appgrid ul li { width: 20% }
+ .downapk_appgrid  ul li:nth-child(2n+16) { display: block }
+ #downapk_home_newlist .downapk_appgrid  ul li:nth-child(2n+4) { display: block }
+ #downapk_home_newlist .downapk_appgrid  ul li:nth-child(2n+5) { display: none }
+}
+@media screen and (min-width:768px) {
+ .downapk_appgrid ul li { width: 22% }
+ .downapk_appgrid  ul li:nth-child(2n+16) { display: block }
+ #downapk_home_newlist .downapk_appgrid  ul li:nth-child(2n+4) { display: block }
+ #downapk_home_newlist .downapk_appgrid  ul li:nth-child(2n+5) { display: none }
+}
+@media screen and (min-width:960px) {
+ .downapk_appgrid ul li { width: 23% }
+ .downapk_appgrid  ul li:nth-child(2n+16) { display: block }
+ #downapk_home_newlist .downapk_appgrid  ul li:nth-child(2n+4) { display: block }
+ #downapk_home_newlist .downapk_appgrid  ul li:nth-child(2n+5) { display: none }
+}
+@media screen and (min-width:1024px) {
+ .downapk_appgrid ul li { width: 18% }
+ .downapk_appgrid  ul li:nth-child(2n+16) { display: none }
+ #downapk_home_newlist .downapk_appgrid  ul li:nth-child(2n+4) { display: block }
+ #downapk_home_newlist .downapk_appgrid  ul li:nth-child(2n+5) { display: block }
+}
+@media screen and (min-width:1200px) {
+ .downapk_appgrid ul li { width: 18% }
+ .downapk_appgrid  ul li:nth-child(2n+16) { display: none }
+ #downapk_home_newlist .downapk_appgrid  ul li:nth-child(2n+4) { display: block }
+ #downapk_home_newlist .downapk_appgrid  ul li:nth-child(2n+5) { display: block }
+}
+
+
+.username { background:#222; border-top:1px solid #333; padding:5px 0; }
+.orange { color:#F79720;}
+.helloall{padding:10px 10px; font-size:12px; }
+.game_details {
+ padding:20px;
+ margin-bottom:10px;
+}
+.icon_gameDetails {
+ float:left;
+ margin-right:10px;
+}
+
+.list_gameDetails {
+
+}
+
+.fotter {
+ margin:10px 0;
+}
+.textlink {
+ padding:0 20px;
+}
+.btn_tst {
+ padding:0 20px;
+ margin-bottom:10px;
+}
+.btn_tst a,.btn_tst input {
+ border:1px solid #ccc;
+ background:#fff;
+ padding:5px 15px;
+ border-radius:3px;
+ margin-right:10px;
+ font-weight:bold;
+ color: #08C;height: 28px;
+}
+.btn_tst a:hover,.btn_tst input:hover { text-decoration:none;
+                   background:#F79720;
+                   border:1px solid #fff; color:#fff;  }
+
+.ads_qc2 {
+ text-align: center;
+ margin-top: 10px;
+}
+ul.paging {
+ text-align:center;
+}
+ul.paging li{
+ list-style:none;
+ display:inline;
+}
+ul.paging li a {
+ border:1px solid #ccc;
+ margin-left:3px;
+ padding:3px 8px;
+ border-radius:2px;
+ color:#000;
+ background:#fff;
+}
+ul.paging li a:hover {
+ color:#fff;background:#9C0;
+ text-decoration:none;border:1px solid #9C0;
+}

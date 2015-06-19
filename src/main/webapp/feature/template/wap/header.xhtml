@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:fragment xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:h="http://xmlns.jcp.org/jsf/html"
+             xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+ <div id="header" >
+  <a href="#menu"></a>
+  <div class="logo" style="padding-top:0px;"><img src="images/logoVNM.png" style="vertical-align: middle;"/></div>
+  <div class="search_topMn">
+   <form method="get" action="search.xhtml" id="search">
+    <input name="keyword" type="text" size="40"/>
+   </form>
+  </div>
+ </div>
+ <div class="top_box">
+  <ul id="nav" class="menu_main">
+   <li><a id="default" class="highlite"  onclick="highlite(this);" href="index.xhtml">
+     <img src="images/home_icon.png" /> </a>
+   </li>
+   <li><a onclick="highlite(this);" class="" href="game.xhtml"> Game </a> </li>
+   <li><a onclick="highlite(this);" class="" href="#"> Nhạc chờ</a> </li>
+   <li><a onclick="highlite(this);" class="" href="#"> DailyInfo</a> </li>
+  </ul>
+ </div>
+ <div class=" clearfix"> </div>
+</ui:fragment>
+
