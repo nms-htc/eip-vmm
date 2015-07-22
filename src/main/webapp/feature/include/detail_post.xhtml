@@ -12,9 +12,9 @@
                     <div class="col-xs-12">
                         <h3>#{post.title}</h3>
                         <ul>
-                            <li class="view">#{post.viewCount}</li>
+                            <li class="view">Lượt xem: #{post.viewCount}</li>
                             <li class="createDate">
-                                <h:outputText value="#{post.createdDate}">
+                                Ngày đăng: <h:outputText value="#{post.createdDate}">
                                     <f:convertDateTime parent="dd/MM/yyyy" locale="vi"/>
                                 </h:outputText>
                             </li>

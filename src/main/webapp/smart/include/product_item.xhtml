@@ -9,6 +9,7 @@
             <c:when test="#{productType == 'game'}">
                 <ui:include src="game_item.xhtml">
                     <ui:param name="productEntity" value="#{productEntity}"/>
+                    <ui:param name="breakPage" value="#{breakPage}"/>
                 </ui:include>
             </c:when>
             <c:when test="#{productType == 'video'}">

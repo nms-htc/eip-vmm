@@ -18,6 +18,9 @@
   <style>
    .class-col-one {min-height: 1000px}
   </style>
+  <div class="mob_wrapper downapk_cat_list_app">
+  <div class="green_bar"> <a href="#{request.contextPath}/smart/index.xhtml" class="logo_back">Tìm kiếm</a></div>
+ </div>
   <!--Khong thay ket qua-->
   <c:if test="#{!(gameController.model.size() > 0)}">
    <div class="box-application">
@@ -36,6 +39,7 @@
     <ui:include src="include/product_list.xhtml">
      <ui:param name="productEntities" value="#{gameController.model}"/>
      <ui:param name="productType" value="game"/>
+     <ui:param name="breakLine" value="true"/>
     </ui:include>
    </div>
 
@@ -48,6 +52,15 @@
       <f:param name="page" value="#{gameController.page - 1}"/>
      </h:link>
     </li>
+    <!--Number-->
+    <c:forEach var="pageNumber" items="#{gameController.listPagging}" varStatus="vs">
+     <li>
+      <h:link outcome="search.xhtml" value="#{pageNumber+1}" style="#{gameController.page == pageNumber?'font-weight:bold;color:#0C77D0;':''}">
+       <f:param name="keyword" value="#{gameController.keyword}" />
+       <f:param name="page" value="#{pageNumber}"/>
+      </h:link>
+     </li>
+    </c:forEach>
     <li class="next #{gameController.hasNext ? '' : 'disabled'}">
      <h:link outcome="search.xhtml"
              value="#{msg['pager.next']}"

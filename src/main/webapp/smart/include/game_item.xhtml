@@ -4,7 +4,7 @@
              xmlns:h="http://xmlns.jcp.org/jsf/html"
              xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
              xmlns:f="http://xmlns.jcp.org/jsf/core">
- <div class="swiper-slide">
+ <div class="swiper-slide #{breakLine == 'true' ? 'swiper-slide-forsearch' : ''}">
   <h:link outcome="/smart/game.xhtml">
    <f:param name="id" value="#{productEntity.id}"/>
    <img src="#{productEntity.thumbnailUrl}" alt="#{productEntity.title}"/>

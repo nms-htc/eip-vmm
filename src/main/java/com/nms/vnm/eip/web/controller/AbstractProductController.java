@@ -4,14 +4,18 @@
  */
 package com.nms.vnm.eip.web.controller;
 
+import com.nms.vnm.eip.entity.BannerCategory;
 import com.nms.vnm.eip.entity.Category;
 import com.nms.vnm.eip.entity.Product;
 import com.nms.vnm.eip.service.ChargingService;
 import com.nms.vnm.eip.service.MobileChecker;
+import com.nms.vnm.eip.service.entity.BannerCategoryService;
+import com.nms.vnm.eip.service.entity.BaseService;
 import com.nms.vnm.eip.service.entity.ProductService;
 import com.nms.vnm.eip.web.util.MessageUtil;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -37,6 +41,7 @@ public abstract class AbstractProductController<T extends Product, C extends Cat
  @Inject
  protected MobileChecker mobileChecker;
 
+ private final boolean isCheckMobile = true; //bat tat mobile checker
  protected List<T> model;
 
  protected List<T> listByCat;
@@ -96,6 +101,8 @@ public abstract class AbstractProductController<T extends Product, C extends Cat
  protected List<T> tops20;
  protected List<T> news20;
 
+
+
  private String keyword;
 
  public T getCurrent() {
@@ -111,61 +118,65 @@ public abstract class AbstractProductController<T extends Product, C extends Cat
  }
 
  public List<T> getListExcludeCurrent() {
-  return getProductService().findExcludeCurrent(0, 4, current, mobileChecker);
+  return getProductService().findExcludeCurrent(0, 4, current, isCheckMobile ? mobileChecker : null);
  }
 
  public List<T> getHots() {
   if (hots == null) {
-   return hots = getProductService().search(null, category, mobileChecker, "downloadCount", false, 0, 10);
+   return hots = getProductService().search(null, category, isCheckMobile ? mobileChecker : null, "downloadCount", false, 0, 10);
   }
   return hots;
  }
 
  public List<T> getHots20() {
   if (hots20 == null) {
-   return hots20 = getProductService().search(null, category, mobileChecker, "downloadCount", false, 10, 10);
+   return hots20 = getProductService().search(null, category, isCheckMobile ? mobileChecker : null, "downloadCount", false, 10, 10);
   }
   return hots20;
  }
 
  public List<T> getHots(int start, int range) {
-  return getProductService().search(null, category, mobileChecker, "downloadCount", false, start, range);
+  return getProductService().search(null, category, isCheckMobile ? mobileChecker : null, "downloadCount", false, start, range);
  }
 
  public List<T> getTops() {
   if (tops == null) {
-   return tops = getProductService().search(null, category, mobileChecker, "downloadCount", false, 0, 10);
+   return tops = getProductService().search(null, category, isCheckMobile ? mobileChecker : null, "downloadCount", false, 0, 10);
   }
   return tops;
  }
 
  public List<T> getTops20() {
   if (tops20 == null) {
-   return tops20 = getProductService().search(null, category, mobileChecker, "downloadCount", false, 10, 10);
+   return tops20 = getProductService().search(null, category, isCheckMobile ? mobileChecker : null, "downloadCount", false, 10, 10);
   }
   return tops20;
  }
 
  public List<T> getTops(int start, int range) {
-  return getProductService().search(null, category, mobileChecker, "downloadCount", false, start, range);
+  return getProductService().search(null, category, isCheckMobile ? mobileChecker : null, "downloadCount", false, start, range);
  }
 
  public List<T> getNews() {
   if (news == null) {
-   return news = getProductService().search(null, category, mobileChecker, "createdDate", false, 0, 10);
+   return news = getProductService().search(null, category, isCheckMobile ? mobileChecker : null, "createdDate", false, 0, 10);
   }
   return news;
  }
 
  public List<T> getNews20() {
   if (news20 == null) {
-   return news20 = getProductService().search(null, category, mobileChecker, "createdDate", false, 10, 10);
+   return news20 = getProductService().search(null, category, isCheckMobile ? mobileChecker : null, "createdDate", false, 10, 10);
   }
   return news20;
  }
 
+ public List<T> getList5ByCat(Category inputCat) {
+  return getProductService().search(null, (C) inputCat, isCheckMobile ? mobileChecker : null, "createdDate", false, 0, 5);
+ }
+
  public List<T> getNews(int start, int range) {
-  return getProductService().search(null, category, mobileChecker, "createdDate", false, start, range);
+  return getProductService().search(null, category, isCheckMobile ? mobileChecker : null, "createdDate", false, start, range);
  }
 
  public List<T> getFrees() {
@@ -205,23 +216,28 @@ public abstract class AbstractProductController<T extends Product, C extends Cat
   this.orderField = orderField;
  }
 
+ public List<T> randomList(List<T> inputList){
+  Collections.shuffle(inputList);
+  return inputList;
+ }
+
  public void initData() {
+  int numberPerPage = 10;
   if (current != null) {
    // increase view count
    getProductService().increaseViewCount(current);
-   model = getProductService().findExcludeCurrent(page * 10, 10, current, mobileChecker);
+   model = getProductService().findExcludeCurrent(page * numberPerPage, numberPerPage, current, isCheckMobile ? mobileChecker : null);
    category = (C) current.getCategory();
-   count = getProductService().count(null, category, mobileChecker) - 1;
-
+   count = getProductService().count(null, category, isCheckMobile ? mobileChecker : null) - 1;
   } else if (category != null) {
-   model = getProductService().findByCat(page * 10, 10, category, orderField, false);
-   count = getProductService().count(null, category, mobileChecker);
+   model = getProductService().findByCat(page * numberPerPage, numberPerPage, category, orderField, false);
+   count = getProductService().count(null, category, isCheckMobile ? mobileChecker : null);
   } else if (keyword != null) {
-   model = getProductService().search(keyword, null, mobileChecker, "createdDate", false, page * 10, 10);
-   count = getProductService().count(keyword, null, mobileChecker);
+   model = getProductService().search(keyword, null, isCheckMobile ? mobileChecker : null, "createdDate", false, page * numberPerPage, numberPerPage);
+   count = getProductService().count(keyword, null, isCheckMobile ? mobileChecker : null);
   }
-  if (current != null || category != null || null != keyword) { // cần gì check cái này.
-   if ((page + 1) * 10 < count) {
+  if (current != null || category != null || null != keyword) {
+   if ((page + 1) * numberPerPage < count) {
     hasNext = true;
    }
    if (page > 0) {
@@ -236,10 +252,10 @@ public abstract class AbstractProductController<T extends Product, C extends Cat
    getListPagging().add(page - 1);
   }
   getListPagging().add(page);
-  if ((page + 1) * 10 < count) {
+  if ((page + 1) * numberPerPage < count) {
    getListPagging().add(page + 1);
   }
-  if ((page + 2) * 10 < count) {
+  if ((page + 2) * numberPerPage < count) {
    getListPagging().add(page + 2);
   }
  }
@@ -300,4 +316,6 @@ public abstract class AbstractProductController<T extends Product, C extends Cat
  public void setKeyword(String keyword) {
   this.keyword = keyword;
  }
+
+
 }

@@ -2,12 +2,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:fragment xmlns="http://www.w3.org/1999/xhtml"
              xmlns:h="http://xmlns.jcp.org/jsf/html"
-             xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+             xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+             xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
  <div id="header" >
   <a href="#menu"></a>
-  <div class="logo" style="padding-top:0px;"><img src="images/logoVNM.png" style="vertical-align: middle;"/></div>
+  <div class="logo" style="padding-top:0px;"><img src="#{request.contextPath}/feature/images/logoVNM.png" style="vertical-align: middle;"/></div>
   <div class="search_topMn">
-   <form method="get" action="search.xhtml" id="search">
+   <form method="get" action="#{request.contextPath}/feature/search.xhtml" id="search">
     <input name="keyword" type="text" size="40"/>
    </form>
   </div>
@@ -15,7 +16,7 @@
  <div class="top_box">
   <ul id="nav" class="menu_main">
    <li><a id="default" class="highlite"  onclick="highlite(this);" href="index.xhtml">
-     <img src="images/home_icon.png" /> </a>
+     <img src="#{request.contextPath}/feature/images/home_icon.png" /> </a>
    </li>
    <li><a onclick="highlite(this);" class="" href="game.xhtml"> Game </a> </li>
    <li><a onclick="highlite(this);" class="" href="#"> Nhạc chờ</a> </li>
@@ -23,5 +24,12 @@
   </ul>
  </div>
  <div class=" clearfix"> </div>
+ <div class="ads_qc">
+  <c:forEach items="#{bannerController.randomList(bannerController.featureBanner)}" var="banner" varStatus="vs">
+   <a href="#{banner.reviewUrl}" style="display:#{vs.index == 1 ? 'block' : 'none'}">
+    <img src="#{banner.thumbnailUrl}" />
+   </a>
+  </c:forEach>
+ </div>
 </ui:fragment>
 

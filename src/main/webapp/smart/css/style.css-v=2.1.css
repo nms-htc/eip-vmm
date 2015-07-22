@@ -484,11 +484,12 @@ input[type=submit].btn-search { right: 20px; top: 12px; display: block; width: 2
 .btn_tst a,.btn_tst input {
  border:1px solid #ccc;
  background:#fff;
- padding:5px 15px;
+ padding:2px 15px;
  border-radius:3px;
  margin-right:10px;
  font-weight:bold;
  color: #08C;height: 28px;
+ display: inline-block;
 }
 .btn_tst a:hover,.btn_tst input:hover { text-decoration:none;
                    background:#F79720;

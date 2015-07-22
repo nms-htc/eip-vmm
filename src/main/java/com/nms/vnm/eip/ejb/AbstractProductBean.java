@@ -62,9 +62,10 @@ public abstract class AbstractProductBean<C extends Category, P extends Product>
    Root<P> root = cq.from(entityClass);
 
    List<Predicate> predicates = buildPredicates(cb, root, category, null);
-   List<Predicate> mobilePredicates = buildPredicates(cb, root, mobileChecker);
-
-   predicates.addAll(mobilePredicates);
+   if (mobileChecker != null) {
+    List<Predicate> mobilePredicates = buildPredicates(cb, root, mobileChecker);
+    predicates.addAll(mobilePredicates);
+   }
    // exclude current product.
    predicates.add(cb.notEqual(root.get(BaseEntity_.id), ((Product) product).getId()));
 
@@ -266,9 +267,10 @@ public abstract class AbstractProductBean<C extends Category, P extends Product>
   cq.select(root);
 
   List<Predicate> predicates = buildPredicates(cb, root, category, keywords);
-  List<Predicate> mobilePredicates = buildPredicates(cb, root, mobileChecker);
-
-  predicates.addAll(mobilePredicates);
+  if (mobileChecker != null) {
+   List<Predicate> mobilePredicates = buildPredicates(cb, root, mobileChecker);
+   predicates.addAll(mobilePredicates);
+  }
 
   if (!predicates.isEmpty()) {
    cq.where(predicates.toArray(new Predicate[]{}));
@@ -296,10 +298,10 @@ public abstract class AbstractProductBean<C extends Category, P extends Product>
   cq.select(cb.count(root));
 
   List<Predicate> predicates = buildPredicates(cb, root, category, keywords);
-  List<Predicate> mobilePredicates = buildPredicates(cb, root, mobileChecker);
-
-  predicates.addAll(mobilePredicates);
-
+  if (mobileChecker != null) {
+   List<Predicate> mobilePredicates = buildPredicates(cb, root, mobileChecker);
+   predicates.addAll(mobilePredicates);
+  }
   if (!predicates.isEmpty()) {
    cq.where(predicates.toArray(new Predicate[]{}));
   }

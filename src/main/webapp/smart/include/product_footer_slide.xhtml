@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+              xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+              xmlns:h="http://xmlns.jcp.org/jsf/html"
+              xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+ <div class="horiz_container_outer">
+  <div class="swiper-container banners-container border-gradient">
+   <div class="swiper-wrapper">
+    <c:forEach items="#{bannerController.randomList(bannerController.footerBanner)}" var="banner" varStatus="vs">
+     <div class="swiper-slide">
+     <a href="#{banner.reviewUrl}">
+      <div class="banner" style="background-image: url(#{banner.thumbnailUrl})"></div>
+     </a>
+    </div>
+   </c:forEach>
+   </div>
+  </div>
+ </div>
+</ui:component>
+

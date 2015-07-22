@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pretty-config xmlns="http://ocpsoft.org/schema/rewrite-config-prettyfaces"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xsi:schemaLocation="http://ocpsoft.org/schema/rewrite-config-prettyfaces
+                      http://ocpsoft.org/xml/ns/prettyfaces/rewrite-config-prettyfaces.xsd">
+ <!--smart mapping-->
+ <url-mapping id="smart-game">
+  <pattern value="/smart/game/#{id:id}" />
+  <view-id value="/smart/game.xhtml" />
+ </url-mapping>
+ <url-mapping id="smart-post">
+  <pattern value="/smart/post/#{id:id}" />
+  <view-id value="/smart/post.xhtml" />
+ </url-mapping>
+ <!--feature mapping-->
+ <url-mapping id="feature-game">
+  <pattern value="/feature/game/#{id:id}" />
+  <view-id value="/feature/game.xhtml" />
+ </url-mapping>
+ <url-mapping id="feature-post">
+  <pattern value="/feature/post/#{id:id}" />
+  <view-id value="/feature/post.xhtml" />
+ </url-mapping>
+ <!--feature mapping-->
+</pretty-config>

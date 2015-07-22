@@ -19,7 +19,7 @@
             <p:toolbar>
                 <f:facet name="left">
                     <p:commandButton id="addButton"
-                                     value="#{msg['add']}" 
+                                     value="#{msg['add']}"
                                      immediate="true"
                                      icon="ui-icon-plus"
                                      actionListener="#{entityBean.resetEntity()}"
@@ -41,32 +41,32 @@
                          paginator="true"
                          rows="10"
                          paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
-                         rowsPerPageTemplate="10,15,20" 
+                         rowsPerPageTemplate="10,15,20"
                          paginatorPosition="bottom"
                          rowStyleClass="#{index mod 2 == 1 ? 'odd' : null}">
 
-                <p:column headerText="#{msg['title']}" 
-                          filterBy="#{cat.title}" 
-                          sortBy="#{cat.title}" 
+                <p:column headerText="#{msg['title']}"
+                          filterBy="#{cat.title}"
+                          sortBy="#{cat.title}"
                           filterStyle="width: 90%;">
                     <h:outputText value="#{cat.title}"/>
                 </p:column>
 
-                <p:column headerText="#{msg['createdDate']}" 
+                <p:column headerText="#{msg['createdDate']}"
                           sortBy="#{cat.createdDate}">
                     <h:outputText value="#{cat.createdDate}">
                         <f:convertDateTime parent="dd/MM/yyyy"/>
                     </h:outputText>
                 </p:column>
 
-                <p:column headerText="#{msg['modifiedDate']}" 
+                <p:column headerText="#{msg['modifiedDate']}"
                           sortBy="#{cat.modifiedDate}">
                     <h:outputText value="#{cat.modifiedDate}">
                         <f:convertDateTime parent="dd/MM/yyyy"/>
                     </h:outputText>
                 </p:column>
 
-                <p:column headerText="#{msg['description']}" 
+                <p:column headerText="#{msg['description']}"
                           sortBy="#{cat.description}"
                           filterBy="#{cat.description}"
                           filterStyle="width: 90%">
@@ -74,18 +74,18 @@
                 </p:column>
 
                 <p:column style="width: 90px" toggleable="false" >
-                    <p:commandButton icon="ui-icon-pencil" 
-                                     update=":editDl" 
+                    <p:commandButton icon="ui-icon-pencil"
+                                     update=":editDl"
                                      immediate="true"
                                      actionListener="#{entityBean.prepareEntity(cat)}"
                                      oncomplete="PF('editDl').show();"/>
 
-                    <p:commandButton icon="ui-icon-trash" 
+                    <p:commandButton icon="ui-icon-trash"
                                      actionListener="#{entityBean.remove(cat)}"
                                      immediate="true"
                                      update="@form :growl">
                         <p:confirm header="Confirmation"
-                                   message="#{msg['category.action.delete.confirm']}" 
+                                   message="#{msg['category.action.delete.confirm']}"
                                    icon="ui-icon-alert"/>
                     </p:commandButton>
                 </p:column>

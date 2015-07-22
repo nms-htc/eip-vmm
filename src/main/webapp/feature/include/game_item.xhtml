@@ -11,7 +11,7 @@
   <div class="item-info">
    <h:link outcome="/feature/game.xhtml">
     <f:param name="id" value="#{productEntity.id}"/>
-    <span class="bold">#{productEntity.title} <img src="images/hot_icon.gif" /></span>
+    <span class="bold">#{productEntity.title} <img src="#{request.contextPath}/feature/images/hot_icon.gif" /></span>
    </h:link>
    <p>Thể loại: #{productEntity.category}</p>
    <h:form>

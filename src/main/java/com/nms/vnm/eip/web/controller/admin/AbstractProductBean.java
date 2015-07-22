@@ -21,7 +21,7 @@ public abstract class AbstractProductBean<T extends Product> extends AbstractMan
     protected void onBeforePersist() {
         super.onBeforePersist();
         // add current user for createdUser
-        ((Product) current).setUser(currentUser);
+        ((Product) current).setUser(currentUser); 
     }
 
     @Override
