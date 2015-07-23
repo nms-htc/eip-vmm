@@ -26,7 +26,7 @@
  <div class=" clearfix"> </div>
  <div class="ads_qc">
   <c:forEach items="#{bannerController.randomList(bannerController.featureBanner)}" var="banner" varStatus="vs">
-   <a href="#{banner.reviewUrl}" style="display:#{vs.index == 1 ? 'block' : 'none'}">
+   <a href="#{banner.reviewUrl}" style="display:#{vs.index == 0 ? 'block' : 'none'}">
     <img src="#{banner.thumbnailUrl}" />
    </a>
   </c:forEach>

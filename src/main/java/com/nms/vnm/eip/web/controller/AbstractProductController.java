@@ -17,6 +17,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
@@ -100,8 +101,6 @@ public abstract class AbstractProductController<T extends Product, C extends Cat
  protected List<T> hots20;
  protected List<T> tops20;
  protected List<T> news20;
-
-
 
  private String keyword;
 
@@ -216,8 +215,12 @@ public abstract class AbstractProductController<T extends Product, C extends Cat
   this.orderField = orderField;
  }
 
- public List<T> randomList(List<T> inputList){
-  Collections.shuffle(inputList);
+ public List<T> randomList(List<T> inputList) {
+  Random rand = new Random();
+  int n = rand.nextInt(50) + 1;
+  if ((n % 2) == 0) {
+   Collections.reverse(inputList);
+  }
   return inputList;
  }
 
@@ -316,6 +319,5 @@ public abstract class AbstractProductController<T extends Product, C extends Cat
  public void setKeyword(String keyword) {
   this.keyword = keyword;
  }
-
 
 }
