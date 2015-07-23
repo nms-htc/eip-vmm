@@ -4,6 +4,7 @@
  */
 package com.nms.vnm.eip.web.controller;
 
+import com.nms.vnm.eip.entity.Banner;
 import com.nms.vnm.eip.entity.BannerCategory;
 import com.nms.vnm.eip.entity.Category;
 import com.nms.vnm.eip.entity.Product;
@@ -216,10 +217,10 @@ public abstract class AbstractProductController<T extends Product, C extends Cat
  }
 
  public List<T> randomList(List<T> inputList) {
-  Random random = new Random(inputList.size());
+  /*Random random = new Random(inputList.size());
   for (int index = 0; index < inputList.size(); index += 1) {
    Collections.swap(inputList, index, index + random.nextInt(inputList.size() - index));
-  }
+  }*/ //Cuong xu ly tiep // swap object bi loi.
   return inputList;
  }
 
