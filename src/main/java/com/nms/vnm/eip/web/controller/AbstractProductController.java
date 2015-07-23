@@ -216,10 +216,9 @@ public abstract class AbstractProductController<T extends Product, C extends Cat
  }
 
  public List<T> randomList(List<T> inputList) {
-  Random rand = new Random();
-  int n = rand.nextInt(50) + 1;
-  if ((n % 2) == 0) {
-   Collections.reverse(inputList);
+  Random random = new Random(inputList.size());
+  for (int index = 0; index < inputList.size(); index += 1) {
+   Collections.swap(inputList, index, index + random.nextInt(inputList.size() - index));
   }
   return inputList;
  }

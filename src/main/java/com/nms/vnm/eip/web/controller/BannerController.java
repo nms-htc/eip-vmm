@@ -39,7 +39,7 @@ public class BannerController extends AbstractProductController<Banner, BannerCa
  public List<Banner> getFeatureBanner() {
   if (featureBanner == null) {
    BannerCategory cat = catService.find(FEATURE_BAN_ID);
-   featureBanner = bannerService.search(null, cat, null, "createdDate", false, 0, 4);
+   featureBanner = bannerService.search(null, cat, null, "createdDate", false, 0, 2);
   }
   return featureBanner;
  }
